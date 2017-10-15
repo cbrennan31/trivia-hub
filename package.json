@@ -1,0 +1,49 @@
+{
+  "name": "adding-react-to-rails",
+  "version": "1.0.0",
+  "description": "",
+  "main": "webpack.config.js",
+  "scripts": {
+    "heroku-postbuild": "NODE_ENV=production npm run webpack -- -p",
+    "test": "node_modules/.bin/karma start react/karma.conf.js",
+    "start": "yarn run webpack -- --watch",
+    "webpack": "node_modules/.bin/webpack --config ./react/webpack.config.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "enzyme": "^2.9.1",
+    "isparta-loader": "2.0.0",
+    "jasmine-ajax": "3.2.0",
+    "jasmine-core": "^2.4.1",
+    "jasmine-enzyme": "^3.4.0",
+    "jquery": "^3.2.1",
+    "karma": "^0.13.22",
+    "karma-coverage": "0.5.5",
+    "karma-jasmine": "^0.3.8",
+    "karma-phantomjs-launcher": "^1.0.4",
+    "karma-sourcemap-loader": "0.3.7",
+    "karma-spec-reporter": "0.0.26",
+    "karma-webpack": "2.0.1",
+    "node-sass": "^4.5.1",
+    "phantomjs-prebuilt": "^2.1.14",
+    "react-addons-test-utils": "^15.6.0",
+    "redux-devtools": "3.2.0",
+    "sass-loader": "^6.0.3",
+    "static-site-generator-webpack-plugin": "^3.4.1",
+    "whatwg-fetch": "^2.0.3"
+  },
+  "dependencies": {
+    "babel-core": "^6.5.1",
+    "babel-loader": "^6.2.2",
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-es2015": "^6.5.0",
+    "babel-preset-react": "^6.5.0",
+    "jservice-node": "^0.2.3",
+    "net": "^1.0.2",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "tls": "0.0.1",
+    "webpack": "^2.6.0"
+  }
+}
