@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171024021817) do
+ActiveRecord::Schema.define(version: 20171025003531) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,20 @@ ActiveRecord::Schema.define(version: 20171024021817) do
     t.string   "value"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "clues", force: :cascade do |t|
+    t.string  "question", null: false
+    t.string  "answer",   null: false
+    t.integer "value",    null: false
+    t.date    "airdate",  null: false
+    t.integer "game_id",  null: false
+  end
+
+  create_table "games", force: :cascade do |t|
+    t.integer "total_score",       null: false
+    t.integer "questions_correct", null: false
+    t.integer "user_id",           null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -31,8 +45,11 @@ ActiveRecord::Schema.define(version: 20171024021817) do
     t.string   "token"
     t.string   "refresh_token"
     t.datetime "oauth_expires_at"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.integer  "lifetime_correct", default: 0
+    t.integer  "lifetime_points",  default: 0
+    t.float    "points_per_game",  default: 0.0
   end
 
 end

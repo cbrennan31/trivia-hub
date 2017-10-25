@@ -48,6 +48,23 @@ class App extends React.Component{
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
+  componentDidUpdate() {
+    if (this.state.lostGame || this.state.wonGame) {
+      let newGame = {
+        total_score: this.state.score,
+        questions_correct: this.state.correctQuestions.length
+      }
+      fetch('/api/v1/games', {
+        credentials: 'same-origin',
+        method: 'POST',
+        body: JSON.stringify({newGame}),
+        headers: { 'Content-Type': 'application/json'}
+      })
+      // .then GET BACK THE GAMES FOR THAT USER!
+      // .then UPDATE USER WITH POINTS!
+    }
+  }
+
   handleCorrectReponse(clue){
     this.setState({
       latestQuestionCorrect: true,
