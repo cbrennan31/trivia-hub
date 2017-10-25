@@ -1,29 +1,25 @@
-// How to add valid clues by selecting invalid clue ID's
 
-// 1. Go to jArchive, offset by max amount for that value (to get most recent), then work backwards.
-// 2. Remove JSONView from Chrome
-// 3. Parse in (json.parser.online.fr)
-// 4. Copy string into console as newArray (jsconsole.com)
-// 5. newArray = newArray.map( (obj) => obj.id )
-// 6. Reinstall JSONView
-// 6. newArray = newArray.filter( (id) => { return !([list invalid ids here].includes(id))})
-// 7. Concantenate the validIDsArray (below) with the new array.
-
-validIDsArray = [
-
+invalidIDsArray = [
+129204, 129205, 129292, 129324, 129442, 129443, 129505, 129567, 129592, 129596,
+129656, 129713, 129805, 129836, 129862, 129864, 129865, 129866, 129893, 129952,
+129983, 130012, 130016, 130017, 130043, 130044, 130072, 130104, 130132, 130162,
+130163, 130165, 130285, 130344, 130377, 130402, 130527, 130582, 130586, 130644,
+130732, 130735, 130736, 130764, 130767, 130852, 130972, 131034, 131066, 131182,
+131185, 131274, 131276, 131337, 131362, 131396 (27).
 ]
-
 
 //
 // Goal: 1000 clues for each value
+// New max date: 2014-09-18
 // //
 // // Progress:
 // //   $200:
-//       - New max date: 2014-09-18
+//
+//       - Max offset: 1201
 //       - Clues to choose from: 1301
-//     - Clues validated:
+//       - Offset completed: 400
+//       - Clues validated: 349
 //
-//     - Offset completed (lower offset = more clues):
 //
-// When finished with all values, change options in clues method in app
-  // (new max date, random = clues to choose from)
+// When finished with all values, change offset for each value to the max offset
+// (100 less than "clues to choose from")

@@ -1,0 +1,71 @@
+body {
+  background-color: #e1f5fe;
+  text-align: center;
+  font-family: 'PTSans', sans-serif;
+}
+
+.button {
+  font-family: 'PTSans', sans-serif;
+}
+
+.category-title, .clue {
+  max-width: 750px;
+  min-width: 300px;
+}
+.category-title {
+  background-color: #6dffe7;
+  border-color: #173CA3;
+  border-radius: 10px;
+  border-style: solid;
+  border-width: 5px;
+  cursor: pointer;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 42px;
+  margin: 10px auto;
+}
+
+.clue {
+  color: white;
+  background-color: #173CA3;
+  margin: 10px auto;
+  font-size: 28px;
+  padding: 10px;
+  box-shadow: 10px 10px 5px #00838f;
+  border-radius: 10px;
+}
+
+.answer-input {
+  text-align: center;
+}
+
+.scoreboard-container {
+  margin: 10px;
+}
+
+.scoreboard-correct, .scoreboard-current, .scoreboard-upcoming{
+  font-family: "Kannada MN", serif;
+  font-size: 16px;
+  padding: 5px;
+  border-style: solid;
+  border-radius: 35px;
+  margin: 3px;
+}
+
+.scoreboard-correct {
+  background-color: #0277bd;
+  border-color: #173CA3;
+  color: #73e8ff;
+}
+
+.scoreboard-current {
+  background-color: #008e76;
+  color: #9effff;
+  border-color: #9effff;
+  box-shadow: 0 0 8px #008e76;
+}
+
+.scoreboard-upcoming {
+  background-color: #9effff;
+  color: #008e76;
+  border-color: #008e76;
+}

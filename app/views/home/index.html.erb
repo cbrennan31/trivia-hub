@@ -1,0 +1,7 @@
+<% if current_user  %>
+  <h3>Welcome, <%= "#{current_user.first_name} #{current_user.last_name}" %></h3>
+  <%= link_to "Logout", logout_path %>
+  <%= link_to "New Game", game_index_path %>
+<% else %>
+  <%= link_to "Sign in with Google", "/auth/google" %>
+<% end %>
