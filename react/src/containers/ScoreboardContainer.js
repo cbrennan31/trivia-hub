@@ -11,18 +11,26 @@ class ScoreboardContainer extends Component{
 
   render(){
     let values = this.props.cat1Clues.map (clue => {
-      let className;
+      let className
 
-      if (this.props.cat1Clues.indexOf(clue) + 1 <=
-        this.props.correctQuestions.length) {
-        className = "scoreboard-correct"
-      } else if ( this.props.cat1Clues.indexOf(clue) ==
+      let attemptedClues = this.props.incorrectClues.length +
+        this.props.correctClues.length
+
+      // if ( (this.props.cat1Clues.indexOf(clue) + 1 <=
+      //   attemptedClues) &&
+      //   (this.props.cat1Clues.indexOf(clue) ==
+      //     this.props.currentQuestionIndex)) {
+      //   className = "scoreboard-attempted-current"
+      // } else if (this.props.cat1Clues.indexOf(clue) + 1 <=
+      //   attemptedClues) {
+      //   className = "scoreboard-attempted"
+
+      if ( this.props.cat1Clues.indexOf(clue) ==
         this.props.currentQuestionIndex) {
         className = "scoreboard-current"
       } else {
         className = "scoreboard-upcoming"
       }
-
       return(<p className = {className}>${clue.value}</p>)
     })
     return(

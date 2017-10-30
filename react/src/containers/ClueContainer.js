@@ -7,7 +7,8 @@ class ClueContainer extends Component{
     super(props);
 
     this.state = {
-      response: ''
+      response: '',
+      answerSubmitted: false
     }
 
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -18,12 +19,13 @@ class ClueContainer extends Component{
   handleSubmit(event) {
     event.preventDefault();
     if (this.props.latestQuestionCorrect == false) {
+      this.setState({ answerSubmitted: true })
       let response = modify.response(this.state.response)
       let answer = modify.answer(this.props.clue.answer)
       if (response == answer) {
         this.props.handleCorrectReponse(this.props.clue)
       } else {
-        this.props.loseGame()
+        this.props.handleIncorrectResponse(this.props.clue)
       }
     }
   }
@@ -45,11 +47,11 @@ class ClueContainer extends Component{
       value="Submit Answer"
     />
 
-    if (this.props.lostGame) {
-      submitDiv = <div><p>Sorry!</p></div>
-    } else if (this.props.wonGame) {
-      submitDiv = <div><p>Correct!</p></div>
-    } else if (this.props.latestQuestionCorrect){
+    if (this.props.strikes == 3) {
+      submitDiv = <div><p>Sorry! Game over.</p></div>
+    } else if (this.props.wonGame){
+      submitDiv = <div><p>Correct! You win!</p></div>
+    } else if (this.props.latestQuestionCorrect) {
       submitDiv =
       <div>
         <p>Correct!</p>
@@ -62,6 +64,19 @@ class ClueContainer extends Component{
           }
           value = "Next Question"
         />
+      </div>
+    } else if (this.props.strikes < 3 && this.state.answerSubmitted) {
+    submitDiv = <div>
+      <p>Sorry! The correct answer is: ANSWER</p>
+      <input
+        className = "button"
+        onClick = { () => {
+            this.props.handleNextQuestion();
+            this.clearResponse();
+          }
+        }
+        value = "Next Question"
+      />
       </div>
     }
 

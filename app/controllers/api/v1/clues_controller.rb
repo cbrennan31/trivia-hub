@@ -20,9 +20,10 @@ class Api::V1::CluesController < ApplicationController
         offset = 0
       end
 
+      response = HTTParty.get("http://jservice.io/api/clues?value=#{value}&max_date=2014-09-18&offset=#{offset}")
+      parsed_response = JSON.parse(response.body)
+
       number_of_times.times do
-        response = HTTParty.get("http://jservice.io/api/clues?value=#{value}&max_date=2014-09-18&offset=#{offset}")
-        parsed_response = JSON.parse(response.body)
         cat_1_clue = parsed_response.sample
 
         # add more filters here to clues
@@ -32,8 +33,6 @@ class Api::V1::CluesController < ApplicationController
 
         questions[:cat_1_array] << cat_1_clue
 
-        response = HTTParty.get("http://jservice.io/api/clues?value=#{value}&max_date=2014-09-18&offset=#{offset}")
-        parsed_response = JSON.parse(response.body)
         cat_2_clue = parsed_response.sample
 
         while questions[:cat_1_array].include?(cat_2_clue) || questions[:cat_2_array].include?(cat_2_clue)
@@ -47,7 +46,7 @@ class Api::V1::CluesController < ApplicationController
     end
 
     two_hund_questions = get_clues(200, 2)
-    four_hund_questions = get_clues(400, 0)
+    four_hund_questions = get_clues(400, 2)
     six_hund_questions = get_clues(600, 0)
     eight_hund_questions = get_clues(800, 0)
     one_thou_questions = get_clues(1000, 0)

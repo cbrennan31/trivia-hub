@@ -1,71 +1,119 @@
 body {
   background-color: #e1f5fe;
   text-align: center;
-  font-family: 'PTSans', sans-serif;
+  font-family: 'Avenir-Black', sans-serif;
 }
 
 .button {
-  font-family: 'PTSans', sans-serif;
+  font-family: 'Charter', serif;
+  font-weight: bold;
 }
 
-.category-title, .clue {
-  max-width: 750px;
-  min-width: 300px;
+.category-title, .clue, .score-and-question-container {
+  max-width: 750px !important;
+  min-width: 400px !important;
+  margin: 10px 10px 10px auto !important;
 }
+
+hr {
+  margin: 0px 5px;
+}
+
+.score {
+  background-color: #173CA3;
+  color: white;
+  font-size: 20px;
+  font-family: 'Charter', serif;
+  font-weight: bold;
+  padding: 0px;
+  width: 195px;
+  border-radius: 3px
+}
+
+.question {
+  background-color: #173CA3;
+  color: white;
+  font-size: 20px;
+  font-family: 'Charter', serif;
+  font-weight: bold;
+  padding: 0px;
+  width: 195px;
+  border-radius: 3px
+}
+
 .category-title {
-  background-color: #6dffe7;
-  border-color: #173CA3;
+  background-color: #a7ffeb;
+  border-color: #00897b;
+  color: #00897b;
   border-radius: 10px;
   border-style: solid;
   border-width: 5px;
   cursor: pointer;
-  font-family: 'Roboto Mono', monospace;
   font-size: 42px;
-  margin: 10px auto;
+  text-transform: capitalize;
 }
 
 .clue {
   color: white;
   background-color: #173CA3;
-  margin: 10px auto;
   font-size: 28px;
   padding: 10px;
+  font-weight: bold;
   box-shadow: 10px 10px 5px #00838f;
   border-radius: 10px;
+  font-family: "Charter", serif;
 }
+
 
 .answer-input {
   text-align: center;
+  font-weight: normal;
+  font-size: 18px;
 }
 
 .scoreboard-container {
-  margin: 10px;
+  margin: 10px auto 5px 10px;
+  border-style: solid;
+  border-color: #00897b;
+  border-width: 1px;
+  min-width: 60px;
+  max-width: 125px;
 }
 
-.scoreboard-correct, .scoreboard-current, .scoreboard-upcoming{
-  font-family: "Kannada MN", serif;
+.game-container {
+  margin: 0px auto;
+}
+
+.scoreboard-attempted, .scoreboard-current, .scoreboard-upcoming, .scoreboard-attempted-current{
   font-size: 16px;
   padding: 5px;
-  border-style: solid;
-  border-radius: 35px;
-  margin: 3px;
+  margin: 0px;
 }
 
-.scoreboard-correct {
-  background-color: #0277bd;
-  border-color: #173CA3;
-  color: #73e8ff;
+.no-margin {
+  margin: 0px
+}
+
+.scoreboard-attempted-current {
+  background-color: #173CA3;
+  text-decoration: line-through;
+  color: white;
+  box-shadow: 0 0 8px #173CA3;
+}
+
+.scoreboard-attempted {
+  background-color: #a7ffeb;
+  text-decoration: line-through;
+  color: #00897b;
 }
 
 .scoreboard-current {
-  background-color: #008e76;
-  color: #9effff;
-  border-color: #9effff;
-  box-shadow: 0 0 8px #008e76;
+  background-color: #173CA3;
+  color: white;
+  box-shadow: 0 0 8px #173CA3;
 }
 
 .scoreboard-upcoming {
-  background-color: #9effff;
-  color: #008e76;
-  border-color: #008e76;
+  background-color: #a7ffeb;
+  color: #00897b;
 }

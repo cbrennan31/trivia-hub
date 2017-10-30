@@ -10,20 +10,21 @@ class App extends React.Component{
     this.state = {
       cat1Clues: null,
       cat2Clues: null,
-      correctQuestions: [],
+      correctClues: [],
+      incorrectClues: [],
       currentQuestionIndex: 0,
       latestQuestionCorrect: false,
-      lostGame: false,
+      strikes: 0,
       numberCorrect: 0,
       score: 0,
       selectedCategory: null,
       wonGame: false
     }
 
+    this.handleIncorrectResponse = this.handleIncorrectResponse.bind(this)
     this.handleCorrectReponse = this.handleCorrectReponse.bind(this)
     this.handleNextQuestion = this.handleNextQuestion.bind(this)
     this.handleSelection = this.handleSelection.bind(this)
-    this.loseGame = this.loseGame.bind(this)
   }
 
   componentDidMount() {
@@ -49,10 +50,10 @@ class App extends React.Component{
   }
 
   componentDidUpdate() {
-    if (this.state.lostGame || this.state.wonGame) {
+    if (this.state.strikes == 3 || this.state.wonGame) {
       let newGame = {
         total_score: this.state.score,
-        questions_correct: this.state.correctQuestions.length
+        questions_correct: this.state.correctClues.length
       }
       fetch('/api/v1/games', {
         credentials: 'same-origin',
@@ -68,7 +69,7 @@ class App extends React.Component{
   handleCorrectReponse(clue){
     this.setState({
       latestQuestionCorrect: true,
-      correctQuestions: this.state.correctQuestions.concat(clue),
+      correctClues: this.state.correctClues.concat(clue),
       score: this.state.score + clue.value
     })
     if (this.state.currentQuestionIndex + 1 == this.state.cat1Clues.length) {
@@ -96,19 +97,19 @@ class App extends React.Component{
     })
   }
 
-  loseGame(){
-    this.setState({lostGame: true})
+  handleIncorrectResponse(clue){
+    this.setState({
+      strikes: this.state.strikes + 1,
+      incorrectClues: this.state.incorrectClues.concat(clue)
+    })
   }
 
   render(){
     let currentQuestionIndex = this.state.currentQuestionIndex
 
-    let id1, id2;
+    let id1 = 1, id2 = 2;
 
-    if (this.state.selectedCategory == null) {
-      id1 = 1
-      id2 = 2
-    } else {
+    if (this.state.selectedCategory) {
       id1 = this.state.selectedCategory
       id2 = this.state.selectedCategory
     }
@@ -117,19 +118,21 @@ class App extends React.Component{
 
     if (this.state.cat1Clues && this.state.cat2Clues) {
       score =
-        <div className = "row score">
-          <div className = "small-8 columns">
+        <div className = "row score-and-question-container">
+          <div className = "small-6 columns score">
+            <span>Earnings | ${this.state.score}</span><br/>
+            <span>Strikes | {this.state.strikes}</span><br/>
           </div>
-
-          <div className = "small-4 columns score">
-            <span>${this.state.score}</span><br/>
+          <div className = "small-6 columns question">
+            <span>This Clue | ${this.state.cat1Clues[currentQuestionIndex].value}</span><br/>
           </div>
         </div>
 
       scoreboardContainer =
         <ScoreboardContainer
           cat1Clues = {this.state.cat1Clues}
-          correctQuestions = {this.state.correctQuestions}
+          correctClues = {this.state.correctClues}
+          incorrectClues = {this.state.incorrectClues}
           currentQuestionIndex = {this.state.currentQuestionIndex}
           score = {this.state.score}
         />
@@ -137,18 +140,18 @@ class App extends React.Component{
       if (this.state.selectedCategory != 2) {
         categoryTitle1 =
           <div className='category-title'>
-            <span id={id1} onClick={this.handleSelection} >
+            <p className = "no-margin" id = {id1} onClick = {this.handleSelection} >
               {this.state.cat1Clues[currentQuestionIndex].category.title}
-            </span>
+            </p>
           </div>
       }
 
       if (this.state.selectedCategory != 1) {
         categoryTitle2 =
           <div className='category-title'>
-            <span id = {id2} onClick = {this.handleSelection} >
+            <p className = "no-margin" id = {id2} onClick = {this.handleSelection} >
               {this.state.cat2Clues[currentQuestionIndex].category.title}
-            </span>
+            </p>
           </div>
       }
 
@@ -156,11 +159,11 @@ class App extends React.Component{
         clue1 =
           <ClueContainer
             clue={this.state.cat1Clues[currentQuestionIndex]}
-            lostGame={this.state.lostGame}
+            strikes={this.state.strikes}
             wonGame={this.state.wonGame}
             latestQuestionCorrect={this.state.latestQuestionCorrect}
 
-            loseGame={this.loseGame}
+            handleIncorrectResponse={this.handleIncorrectResponse}
             handleCorrectReponse={this.handleCorrectReponse}
             handleNextQuestion={this.handleNextQuestion}
           />
@@ -170,11 +173,11 @@ class App extends React.Component{
         clue2 =
         <ClueContainer
           clue={this.state.cat2Clues[currentQuestionIndex]}
-          lostGame={this.state.lostGame}
+          strikes={this.state.strikes}
           wonGame={this.state.wonGame}
           latestQuestionCorrect={this.state.latestQuestionCorrect}
 
-          loseGame={this.loseGame}
+          handleIncorrectResponse={this.handleIncorrectResponse}
           handleCorrectReponse={this.handleCorrectReponse}
           handleNextQuestion={this.handleNextQuestion}
         />
@@ -182,15 +185,15 @@ class App extends React.Component{
     }
 
     return (
-      <div className = "row">
-        <div className = "small-10 columns">
+      <div className = "row game-container">
+        <div className = "small-9 columns game-and-score-container">
           {score}
           {categoryTitle1}
           {clue1}
           {categoryTitle2}
           {clue2}
         </div>
-        <div className = "small-2 columns">
+        <div className = "small-3 columns">
           {scoreboardContainer}
         </div>
       </div>
