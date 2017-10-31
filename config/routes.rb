@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root 'home#index'
   get 'auth/google/callback',  to: 'sessions#create'
   get 'logout', to: 'sessions#destroy'
+  get '/privacy', to: 'home#privacy'
 
   resources :home, only: [:index]
   resources :game, only: [:index]
