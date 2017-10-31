@@ -1,7 +1,11 @@
-<% if current_user  %>
-  <h3>Welcome, <%= "#{current_user.first_name} #{current_user.last_name}" %></h3>
-  <%= link_to "Logout", logout_path %>
-  <%= link_to "New Game", game_index_path %>
+<% if current_user %>
+   <h1>Home Page</h1>
+   <%= link_to "Logout", logout_path %>
+   <%= link_to "New Game", game_index_path %>
 <% else %>
-  <%= link_to "Sign in with Google", "/auth/google" %>
+  <h1>Welcome to TriviaHub</h1>
+  <h4>Create your own trivia game, browse user games, or try out real <b><i>Jeopardy!</i></b> questions.</h4>
+  <div id=home-button>
+    <a href="/auth/google" class="button-nav">Sign in with Google</a>
+  </div>
 <% end %>

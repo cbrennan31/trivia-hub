@@ -13,6 +13,7 @@ gem "uglifier", ">= 1.3.0"
 gem "httparty"
 gem 'omniauth-google-oauth2'
 gem 'figaro'
+gem 'font-awesome-rails'
 
 group :development, :test do
   gem "dotenv-rails"

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <title>TriviaHub</title>
+    <%= csrf_meta_tags %>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+  </head>
+
+  <body>
+    <div class="top-panel">
+      <div class = "row gutter" >
+        <% if @user_game_new %>
+          <h1 id=new-title>Create Your Own Game</h1>
+          <h4 id=new-subtitle>Quiz other trivia buffs on topics you love.</h4>
+        <% end %>
+
+        <% if @user_games %>
+          <h1 id=new-title>User-Created Games</h1>
+          <h4 id=new-subtitle>Trebek isn't the only expert around here.</h4>
+        <% end %>
+      </div>
+    </div>
+
+    <div class = "row gutter main">
+      <% if flash %>
+        <p class="notice"><%= notice %></p>
+        <p class="alert"><%= alert %></p>
+      <% end %>
+
+      <%= yield %>
+    </div>
+  </body>
+
+
+</html>
