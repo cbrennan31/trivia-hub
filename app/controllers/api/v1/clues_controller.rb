@@ -47,9 +47,9 @@ class Api::V1::CluesController < ApplicationController
 
     two_hund_questions = get_clues(200, 2)
     four_hund_questions = get_clues(400, 2)
-    six_hund_questions = get_clues(600, 0)
-    eight_hund_questions = get_clues(800, 0)
-    one_thou_questions = get_clues(1000, 0)
+    six_hund_questions = get_clues(600, 2)
+    eight_hund_questions = get_clues(800, 2)
+    one_thou_questions = get_clues(1000, 2)
 
     cat_1_all = [
       two_hund_questions[:cat_1_array],

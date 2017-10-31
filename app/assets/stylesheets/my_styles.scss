@@ -1,12 +1,129 @@
+$dark-blue: #4d82cb;
+
 body {
-  background-color: #e1f5fe;
+  background-color: lighten(#b6e3ff, 7%);
+}
+
+body, h3, h1, h4 {
   text-align: center;
   font-family: 'Avenir-Black', sans-serif;
+}
+
+#new-title, #new-subtitle, .my-label, #new-question-title {
+  text-align: left;
+}
+
+.top-panel {
+  background-color: #4d82cb;
+  color: white;
+}
+
+.user-game h3, .user-game h4, .user-game, .user-game p {
+  text-align: left;
+  padding-left: 10px;
+}
+
+.my-label {
+  font-size: 20px;
+}
+
+
+.clue-form .my-label {
+  font-size: 18px;
+  color: black;
+}
+
+.value {
+  padding-left: 0px;
+}
+
+.category {
+  padding-right: 0px;
+}
+
+.value-category {
+  max-width: 700px !important;
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+}
+
+.value-select {
+  min-width: 70px;
+  color: #black;
+}
+
+.input {
+  max-width: 715px;
+  font-size: 16px;
+}
+
+.textarea {
+  height: 100px;
+  max-width: 715px;
+  font-size: 14px;
+}
+
+.radio-item {
+  display: inline
+}
+
+#home-button {
+  margin-top: 50px;
 }
 
 .button {
   font-family: 'Charter', serif;
   font-weight: bold;
+}
+
+#button-play {
+  padding: 9px 12px 9px 12px;
+  margin-left: 10px;
+  background-color: $dark-blue;
+}
+
+.button-nav {
+  font-family: 'Avenir-Black', sans-serif;
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 3px;
+  background-color: lighten(#b6e3ff, 7%);
+  border-color: darken( $dark-blue, 10% );
+  color: darken( $dark-blue, 10% );
+  padding: 20px;
+  font-size: 24px;
+}
+
+.site-submit {
+  // background-color:
+  float: left;
+  font-family: 'Avenir-Black', sans-serif;
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 3px;
+  padding: 10px;
+  font-size: 20px;
+  margin-top: 16px;
+  background-color: $dark-blue;
+}
+
+.add-new-question, .clue-form {
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 3px;
+  background-color: lighten(#b6e3ff, 7%);
+  border-color: darken( $dark-blue, 10% );
+  color: darken( $dark-blue, 10% );
+  padding: 10px;
+  max-width: 715px;
+  margin-top: 10px;
+  text-align: left;
+  box-shadow: 0 0 3px darken( $dark-blue, 10% );
+}
+
+.add-new-question h4 {
+  text-align: left;
+  margin-bottom: 0px;
 }
 
 .category-title, .clue, .score-and-question-container {
@@ -42,12 +159,12 @@ hr {
 }
 
 .category-title {
-  background-color: #a7ffeb;
-  border-color: #00897b;
-  color: #00897b;
-  border-radius: 10px;
+  background-color: #4d82cb;
+  border-color: #4d82cb;
+  color: white;
+  border-radius: 3px;
   border-style: solid;
-  border-width: 5px;
+  border-width: 2px;
   cursor: pointer;
   font-size: 42px;
   text-transform: capitalize;
@@ -60,7 +177,7 @@ hr {
   padding: 10px;
   font-weight: bold;
   box-shadow: 10px 10px 5px #00838f;
-  border-radius: 10px;
+  border-radius: 3px;
   font-family: "Charter", serif;
 }
 
@@ -74,7 +191,7 @@ hr {
 .scoreboard-container {
   margin: 10px auto 5px 10px;
   border-style: solid;
-  border-color: #00897b;
+  border-color: #173CA3;
   border-width: 1px;
   min-width: 60px;
   max-width: 125px;
@@ -102,9 +219,9 @@ hr {
 }
 
 .scoreboard-attempted {
-  background-color: #a7ffeb;
+  background-color: lighten(#b6e3ff, 7%);
   text-decoration: line-through;
-  color: #00897b;
+  color: #173CA3;
 }
 
 .scoreboard-current {
@@ -114,6 +231,6 @@ hr {
 }
 
 .scoreboard-upcoming {
-  background-color: #a7ffeb;
-  color: #00897b;
+  background-color: lighten( #82b1ff, 10% );
+  color: #173CA3;
 }
