@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   get 'auth/google/callback',  to: 'sessions#create'
   get 'logout', to: 'sessions#destroy'
 
+  get '/google78f84367ded1837b.html', to: 'home#google_verify'
+
   resources :home, only: [:index]
   resources :game, only: [:index]
   resources :user_games, only: [:new, :index]
