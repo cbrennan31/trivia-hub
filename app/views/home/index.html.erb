@@ -1,7 +1,10 @@
 <% if current_user %>
-   <h1>Home Page</h1>
+   <h1>Trivia Hub</h1>
    <%= link_to "Logout", logout_path %>
    <%= link_to "New Game", game_index_path %>
+   <%= link_to "Browse User Games", user_games_path %>
+   <%= link_to "Create a Game", new_user_game_path %>
+
 <% else %>
   <h1>Welcome to TriviaHub</h1>
   <h4>Create your own trivia game, browse user games, or try out real <b><i>Jeopardy!</i></b> questions.</h4>
