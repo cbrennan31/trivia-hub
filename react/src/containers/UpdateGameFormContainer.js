@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import GameForm from '../components/GameForm'
 import ClueFormContainer from './ClueFormContainer'
 
-class GameFormContainer extends Component{
+class UpdateGameFormContainer extends Component{
 
   constructor(props) {
     super(props);
@@ -12,15 +12,13 @@ class GameFormContainer extends Component{
       description: '',
       strikes: null,
       clues: [],
-      clueFormsDisplayed: [],
-      thanksMessage: null
+      clueFormsDisplayed: []
     }
 
     this.handleChange = this.handleChange.bind(this)
     this.handleClueChange = this.handleClueChange.bind(this)
     this.openClueForm = this.openClueForm.bind(this)
-    this.handleClearForm = this.handleClearForm.bind(this)
-    this.handleGameRequest = this.handleGameRequest.bind(this)
+    this.handleUpdateGame = this.handleUpdateGame.bind(this)
     this.deleteNewClue = this.deleteNewClue.bind(this)
   }
 
@@ -32,20 +30,24 @@ class GameFormContainer extends Component{
       this.setState({strikes: event})
     }
   }
-
   // For the react-radio-button-group library, the value property is
   // automatically passed in at the argument to any function called onChange
 
-  handleClueChange(obj, index) {
-    let clues = this.state.clues
-    Object.assign ( clues, { [index]: obj } )
-    this.setState({clues: clues})
-  }
 
   componentDidMount(){
-    let clues = this.state.clues
+    let clues = []
 
-    this.setState({clues: clues}, () => {
+    this.props.clues.forEach( clue => {
+      let index = this.props.clues.indexOf(clue)
+      Object.assign ( clues, { [index]: clue } )
+    })
+
+    this.setState({
+      title: this.props.title,
+      description: this.props.description,
+      strikes: this.props.strikes,
+      clues: clues
+    }, () => {
       let clueFormsDisplayed = []
 
       Object.values(this.state.clues).forEach((clue) => {
@@ -60,49 +62,22 @@ class GameFormContainer extends Component{
     })
   }
 
-  handleClearForm() {
-    let clueFormsDisplayed = []
-
-    while (clueFormsDisplayed.length < 12) {
-      clueFormsDisplayed.push(false)
-    }
-
-    this.setState({
-      title: '',
-      description: '',
-      strikes: null,
-      clues: [],
-      thanksMessage: "Your game has been submitted!",
-      clueFormsDisplayed: clueFormsDisplayed
-    })
+  handleClueChange(obj, index) {
+    let clues = this.state.clues
+    Object.assign ( clues, { [index]: obj } )
+    this.setState({clues: clues})
   }
 
-  handleGameRequest(event){
+  handleUpdateGame(event){
     event.preventDefault();
     let formPayload = {
       title: this.state.title,
       description: this.state.description,
       strikes: this.state.strikes,
-      clues: this.state.clues,
+      clues: Object.values(this.state.clues),
+      id: this.props.id
     }
-
-    fetch('/api/v1/user_games', {
-      credentials: 'same-origin',
-      method: 'POST',
-      body: JSON.stringify(formPayload),
-      headers: { 'Content-Type': 'application/json' }
-    })
-    .then(response => {
-      if (response.ok) {
-        return response;
-      } else {
-        let errorMessage = `${response.status} (${response.statusText})`,
-            error = new Error(errorMessage);
-        throw(error);
-      }
-    })
-    .catch(error => console.error(`Error in fetch: ${error.message}`))
-    this.handleClearForm()
+    this.props.handleUpdateGame(formPayload)
   }
 
   deleteNewClue(index){
@@ -152,12 +127,7 @@ class GameFormContainer extends Component{
     this.setState({clueFormsDisplayed: rearrangedForms})
   }
 
-
   render(){
-    let thanksMessage;
-    if (this.state.thanksMessage) {
-      thanksMessage = <h4>{this.state.thanksMessage}</h4>
-    }
     let clues = this.state.clues
 
     let filledClueForms = clues.map( clue => {
@@ -226,8 +196,7 @@ class GameFormContainer extends Component{
 
     return(
       <div>
-        {thanksMessage}
-        <form onSubmit={this.handleGameRequest}>
+        <form onSubmit={this.handleUpdateGame}>
           <GameForm
             handleChange = {this.handleChange}
             title = {this.state.title}
@@ -236,12 +205,14 @@ class GameFormContainer extends Component{
           />
           {clueForms}
           {addClueDiv}
-          <br/>
-          <input type="submit" className="button button-small" value = "Submit Game" />
+          <div className="text-center">
+            <br/>
+            <input type="submit" className="button button-small" value = "Update Game" />
+          </div>
         </form>
       </div>
     )
   }
 }
 
-export default GameFormContainer;
+export default UpdateGameFormContainer;

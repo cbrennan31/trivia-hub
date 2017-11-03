@@ -1,21 +1,40 @@
 $dark-blue: #4d82cb;
 
+html {
+  height: 100%;
+  overflow: hidden;
+}
 body {
   background-color: lighten(#b6e3ff, 7%);
+  font-family: 'Charter', serif;
+  height: 100%;
+  overflow: scroll;
 }
 
-body, h3, h1, h4 {
-  text-align: center;
+h3, h1, h4, h5, h2 {
   font-family: 'Avenir-Black', sans-serif;
 }
 
-#new-title, #new-subtitle, .my-label, #new-question-title {
-  text-align: left;
+#delete-button {
+  text-align: right;
+  background-color: red;
+}
+
+.user-game .new-question-title {
+  padding-left: 0
+}
+
+#delete-div {
+  padding-right: 0
 }
 
 .top-panel {
   background-color: #4d82cb;
   color: white;
+}
+
+.top-panel h1 {
+  margin-top: 8px;
 }
 
 .user-game h3, .user-game h4, .user-game, .user-game p {
@@ -27,10 +46,25 @@ body, h3, h1, h4 {
   font-size: 20px;
 }
 
+.update-form {
+  box-shadow: 0 0 20px #173CA3;
+  border-radius: 5px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: $dark-blue;
+  padding: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  max-width: 745px;
+}
 
 .clue-form .my-label {
   font-size: 18px;
   color: black;
+}
+
+.clue-form .new-question-title {
+  padding-left: 0px;
 }
 
 .value {
@@ -58,9 +92,9 @@ body, h3, h1, h4 {
 }
 
 .textarea {
-  height: 100px;
+  height: 70px;
   max-width: 715px;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .radio-item {
@@ -71,39 +105,25 @@ body, h3, h1, h4 {
   margin-top: 50px;
 }
 
-.button {
-  font-family: 'Charter', serif;
-  font-weight: bold;
-}
 
-#button-play {
-  padding: 9px 12px 9px 12px;
-  margin-left: 10px;
+.button-small {
+  border-width: 2px;
+  border-radius: 3px;
   background-color: $dark-blue;
-}
-
-.button-nav {
-  font-family: 'Avenir-Black', sans-serif;
-  border-width: 2px;
-  border-style: solid;
-  border-radius: 3px;
-  background-color: lighten(#b6e3ff, 7%);
-  border-color: darken( $dark-blue, 10% );
-  color: darken( $dark-blue, 10% );
-  padding: 20px;
-  font-size: 24px;
-}
-
-.site-submit {
-  // background-color:
-  float: left;
-  font-family: 'Avenir-Black', sans-serif;
-  border-width: 2px;
-  border-style: solid;
-  border-radius: 3px;
   padding: 10px;
   font-size: 20px;
-  margin-top: 16px;
+}
+
+.privacy, .privacy h3 {
+  text-align: left !important;
+}
+
+.button-large {
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 3px;
+  padding: 20px;
+  font-size: 24px;
   background-color: $dark-blue;
 }
 
@@ -116,7 +136,7 @@ body, h3, h1, h4 {
   color: darken( $dark-blue, 10% );
   padding: 10px;
   max-width: 715px;
-  margin-top: 10px;
+  margin-top: 15px;
   text-align: left;
   box-shadow: 0 0 3px darken( $dark-blue, 10% );
 }
@@ -160,7 +180,8 @@ hr {
 
 .category-title {
   background-color: #4d82cb;
-  border-color: #4d82cb;
+  border-color: darken(#4d82cb, 20%);
+  box-shadow: 0 0 2px darken(#4d82cb, 20%);
   color: white;
   border-radius: 3px;
   border-style: solid;
@@ -168,6 +189,14 @@ hr {
   cursor: pointer;
   font-size: 42px;
   text-transform: capitalize;
+  text-align: center;
+  font-family: 'Avenir-Black', sans-serif;
+}
+
+.category-title:hover{
+  background-color: white;
+  border-color: #4d82cb;
+  color: #4d82cb;
 }
 
 .clue {
@@ -191,17 +220,29 @@ hr {
 .scoreboard-container {
   margin: 10px auto 5px 10px;
   border-style: solid;
-  border-color: #173CA3;
-  border-width: 1px;
+  border-color: lighten(#8eacbb, 34%);
+  border-radius: 2px;
+  box-shadow: 0 0 3px #34515e;
   min-width: 60px;
   max-width: 125px;
 }
 
+.answer-submit {
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 3px;
+  padding: 20px;
+  font-size: 24px;
+  background-color: lighten(#4d82cb, 10%)
+}
+
 .game-container {
   margin: 0px auto;
+  text-align: center;
 }
 
 .scoreboard-attempted, .scoreboard-current, .scoreboard-upcoming, .scoreboard-attempted-current{
+  font-weight: bold;
   font-size: 16px;
   padding: 5px;
   margin: 0px;
@@ -211,26 +252,47 @@ hr {
   margin: 0px
 }
 
-.scoreboard-attempted-current {
-  background-color: #173CA3;
-  text-decoration: line-through;
-  color: white;
-  box-shadow: 0 0 8px #173CA3;
+// .scoreboard-attempted-current {
+//   background-color: #173CA3;
+//   text-decoration: line-through;
+//   color: white;
+//   box-shadow: 0 0 8px #173CA3;
+// }
+//
+// .scoreboard-attempted {
+//   background-color: lighten(#b6e3ff, 7%);
+//   text-decoration: line-through;
+//   color: #173CA3;
+// }
+
+.top-bar, .top-bar a, .top-bar ul, {
+  background-color: #34515e;
+  color: lighten(#8eacbb, 34%);
+  font-size: 20px;
 }
 
-.scoreboard-attempted {
-  background-color: lighten(#b6e3ff, 7%);
-  text-decoration: line-through;
-  color: #173CA3;
+.top-bar a:hover {
+  background-color: lighten(#8eacbb, 34%);
+  color: #34515e;
+  font-size: 20px;
+}
+
+.top-bar {
+  box-shadow: 0 0 10px #34515e;
+}
+
+.top-bar #home-link {
+  font-size: 1.2rem;
+  font-weight: bold;
 }
 
 .scoreboard-current {
-  background-color: #173CA3;
-  color: white;
-  box-shadow: 0 0 8px #173CA3;
+  background-color: #34515e;
+  color: lighten(#8eacbb, 34%);
+  box-shadow: 0 0 10px #90a4ae;
 }
 
 .scoreboard-upcoming {
-  background-color: lighten( #82b1ff, 10% );
-  color: #173CA3;
+  background-color: lighten(#8eacbb, 34%);
+  color: #34515e;
 }

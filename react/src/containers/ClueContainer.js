@@ -42,7 +42,7 @@ class ClueContainer extends Component{
     let question = modify.question(this.props.clue.question)
 
     let submitDiv = <input
-      className="button"
+      className="button answer-submit"
       type="submit"
       value="Submit Answer"
     />

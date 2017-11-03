@@ -5,11 +5,33 @@
     <title>TriviaHub</title>
     <%= csrf_meta_tags %>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="google-site-verification" content="46Cmo65xmkn3HejWTL94pK2arhHoTvFeu7Mpfmf5dZ4" />
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
   </head>
 
   <body>
+    <div data-sticky-container>
+      <div class="top-bar" data-sticky data-options="marginTop:0;" style="width:100%" >
+        <div class="top-bar-left">
+          <ul class="menu">
+            <li id="home-link"><%= link_to "TriviaHub", home_index_path %></li>
+            <li><%= link_to "Play", game_index_path %></li>
+            <li><%= link_to "Browse", user_games_path %></li>
+            <li><%= link_to "Create", new_user_game_path %></li>
+          </ul>
+        </div>
+
+        <div class="top-bar-right">
+          <ul class="menu">
+          <% if current_user %>
+            <li><%= link_to "Profile", user_path(current_user) %></li>
+            <li><%= link_to "Logout", logout_path %></li>
+          <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
     <div class="top-panel">
       <div class = "row gutter" >
         <% if @user_game_new %>
@@ -20,6 +42,10 @@
         <% if @user_games %>
           <h1 id=new-title>User-Created Games</h1>
           <h4 id=new-subtitle>Trebek isn't the only expert around here.</h4>
+        <% end %>
+
+        <% if @user_profile %>
+          <h1 id=new-title>My Profile</h1>
         <% end %>
       </div>
     </div>

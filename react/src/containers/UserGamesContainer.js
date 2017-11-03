@@ -39,14 +39,15 @@ class UserGamesContainer extends Component{
       let clues = this.state.clues.filter((c) => c.user_game_id == game.id)
        return(
        <div>
-         <hr/>
-
          <div className = "user-game">
            <h3>{game.title}</h3>
            <i><p>{clues.length} questions</p></i>
            <h4>{game.description}</h4>
-           <input type="button" id="button-play" className="button" value="Play"/>
+           <input type="button" className="button button-small" value="Play"/>
          </div>
+
+         <hr/>
+         <br/>
        </div>
        )
      })

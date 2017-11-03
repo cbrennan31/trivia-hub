@@ -11,7 +11,7 @@ class Api::V1::UserGamesController < ApplicationController
     )
 
     @user_clues = params[:clues].each_with_index do |clue, index|
-      @clue = UserClue.create(
+      UserClue.create(
         question: user_clue_params(index)[:question],
         answer: user_clue_params(index)[:answer],
         value: user_clue_params(index)[:value],
@@ -21,6 +21,32 @@ class Api::V1::UserGamesController < ApplicationController
     end
 
     redirect_to new_user_game_path
+  end
+
+  def update
+    @user_game = UserGame.find(params[:id])
+
+    @user_game.update(user_game_params)
+
+    @user_clues_old = UserClue.where(user_game: @user_game)
+
+    @user_clues_old.each do |clue|
+      clue.destroy
+    end
+
+    @user_clues = params[:clues].each_with_index do |clue, index|
+      UserClue.create(
+        question: user_clue_params(index)[:question],
+        answer: user_clue_params(index)[:answer],
+        value: user_clue_params(index)[:value],
+        category: user_clue_params(index)[:category],
+        user_game_id: @user_game.id
+      )
+    end
+    @games = UserGame.where({user: current_user}).order(created_at: :desc)
+    @clues = UserClue.where({user_game: @games}).order(:value)
+
+    render json: { games: @games, clues: @clues }
   end
 
   def index
