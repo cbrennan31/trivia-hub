@@ -11,6 +11,42 @@ body {
   overflow: scroll;
 }
 
+.earnings-table {
+  margin-bottom: 0px;
+}
+
+#earnings-top {
+  border-bottom: 1px solid white;
+}
+
+.loading::after {
+  content: "";
+  background: url("https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Question_mark.svg/1200px-Question_mark.svg.png");
+  opacity: 0.03;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 22%;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+  -webkit-animation: spinX 3s infinite;
+  animation: spinX 3s infinite;
+}
+
+@-webkit-keyframes spinX
+{
+0%   {-webkit-transform: rotateX(0deg); -webkit-transform-origin: 0% 50% 0;}
+100% {-webkit-transform: rotateX(360deg); -webkit-transform-origin: 0% 50% 0;}
+}
+@keyframes spinX
+{
+0%   {transform: rotateX(0deg); transform-origin: 0% 50% 0;}
+100% {transform: rotateX(360deg); transform-origin: 0% 50% 0;}
+}
+
 h3, h1, h4, h5, h2 {
   font-family: 'Avenir-Black', sans-serif;
 }
@@ -20,6 +56,29 @@ h3, h1, h4, h5, h2 {
   background-color: red;
 }
 
+#current-value {
+  font-size: 34px;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.circle, .circle-selected {
+  border: 2px solid red;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  box-shadow: 0 0 8px red;
+  display: inline-block;
+  margin: 7px 2px 0px 2px;
+}
+
+.circle {
+  background-color: #173CA3;
+}
+
+.circle-selected {
+  background-color:red;
+}
 .user-game .new-question-title {
   padding-left: 0
 }
@@ -163,6 +222,7 @@ hr {
   font-family: 'Charter', serif;
   font-weight: bold;
   padding: 0px;
+  height: 60px;
   width: 195px;
   border-radius: 3px
 }
@@ -174,7 +234,9 @@ hr {
   font-family: 'Charter', serif;
   font-weight: bold;
   padding: 0px;
+  height: 60px;
   width: 195px;
+  line-height: 60px;
   border-radius: 3px
 }
 
@@ -194,9 +256,9 @@ hr {
 }
 
 .category-title:hover{
-  background-color: white;
+  background-color: lighten(#4d82cb, 10%);
   border-color: #4d82cb;
-  color: #4d82cb;
+  color: white;
 }
 
 .clue {

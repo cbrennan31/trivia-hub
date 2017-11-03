@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router';
+import Routes from '../Routes'
 
 class UserGamesContainer extends Component{
 
@@ -43,9 +45,10 @@ class UserGamesContainer extends Component{
            <h3>{game.title}</h3>
            <i><p>{clues.length} questions</p></i>
            <h4>{game.description}</h4>
-           <input type="button" className="button button-small" value="Play"/>
+           <a href = {`/user_games/${game.id}`}>
+              <input type="button" className="button button-small" value="Play"/>
+          </a>
          </div>
-
          <hr/>
          <br/>
        </div>
