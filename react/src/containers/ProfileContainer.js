@@ -14,7 +14,6 @@ class ProfileContainer extends Component{
 
     this.editGame = this.editGame.bind(this)
     this.handleUpdateGame = this.handleUpdateGame.bind(this)
-    this.deleteExistingClue = this.deleteExistingClue.bind(this)
   }
 
   componentDidMount(){
@@ -41,31 +40,6 @@ class ProfileContainer extends Component{
 
   editGame(event){
     this.setState({gamesBeingEdited: this.state.gamesBeingEdited.concat(event.target.id)})
-  }
-
-  deleteExistingClue(obj){
-    if (obj.id) {
-      fetch(`/api/v1/user_clues/${obj.id}`, {
-        credentials: 'same-origin',
-        method: 'DELETE',
-        body: JSON.stringify(obj),
-        headers: { 'Content-Type': 'application/json' }
-      })
-      .then(response => {
-        if (response.ok) {
-          return response;
-        } else {
-          let errorMessage = `${response.status} (${response.statusText})`,
-              error = new Error(errorMessage);
-          throw(error);
-        }
-      })
-      .then(response => response.json())
-      .then(body => {
-        this.setState({ clues: body.clues})
-      })
-      .catch(error => console.error(`Error in fetch: ${error.message}`))
-    }
   }
 
   handleUpdateGame(formPayload){

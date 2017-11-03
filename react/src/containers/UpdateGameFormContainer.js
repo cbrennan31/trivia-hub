@@ -19,7 +19,6 @@ class UpdateGameFormContainer extends Component{
     this.handleClueChange = this.handleClueChange.bind(this)
     this.openClueForm = this.openClueForm.bind(this)
     this.handleUpdateGame = this.handleUpdateGame.bind(this)
-    this.deleteExistingClue = this.deleteExistingClue.bind(this)
     this.deleteNewClue = this.deleteNewClue.bind(this)
   }
 
@@ -63,29 +62,6 @@ class UpdateGameFormContainer extends Component{
     })
   }
 
-  componentWillReceiveProps(newProps) {
-    let clues = this.state.clues
-
-    newProps.clues.forEach( clue => {
-      let index = newProps.clues.indexOf(clue)
-      clues.concat(clue)
-    })
-
-    this.setState({clues: clues}, () => {
-      let clueFormsDisplayed = []
-
-      Object.values(this.state.clues).forEach((clue) => {
-        clueFormsDisplayed.push(true)
-      })
-
-      while (clueFormsDisplayed.length < 12) {
-        clueFormsDisplayed.push(false)
-      }
-
-      this.setState({clueFormsDisplayed: clueFormsDisplayed})
-    })
-  }
-
   handleClueChange(obj, index) {
     let clues = this.state.clues
     Object.assign ( clues, { [index]: obj } )
@@ -102,37 +78,6 @@ class UpdateGameFormContainer extends Component{
       id: this.props.id
     }
     this.props.handleUpdateGame(formPayload)
-  }
-
-  deleteExistingClue(index){
-    let clue = this.state.clues[index]
-    this.props.deleteExistingClue(clue)
-
-    let clues = this.state.clues
-    clues.splice(index, 1)
-
-    this.setState({clues: clues}, () => {
-      let clueFormsDisplayed = this.state.clueFormsDisplayed
-      Object.assign(clueFormsDisplayed, {[index]: false })
-
-      let rearrangedForms = []
-      this.state.clueFormsDisplayed.forEach((boolean)=>{
-        if (boolean === true) {
-          rearrangedForms.push(boolean)
-        }
-      })
-      while (rearrangedForms.length < 12) {
-        rearrangedForms.push(false)
-      }
-      this.setState({clueFormsDisplayed: rearrangedForms})
-
-      let rearrangedClues = []
-      this.state.clues.forEach((clue)=>{
-        rearrangedClues.push(clue)
-      })
-
-      this.setState({clues: rearrangedClues})
-    })
   }
 
   deleteNewClue(index){
@@ -187,7 +132,7 @@ class UpdateGameFormContainer extends Component{
 
     let filledClueForms = clues.map( clue => {
       let index = clues.indexOf(clue)
-      let deleteExistingClue = () => {
+      let deleteNewClue = () => {
         this.deleteNewClue(index)
       }
 
@@ -200,7 +145,7 @@ class UpdateGameFormContainer extends Component{
             category = {clue.category}
             answer = {clue.answer}
             handleClueChange = {this.handleClueChange}
-            deleteFunction = {deleteExistingClue}
+            deleteFunction = {deleteNewClue}
           />
         </div>
       )
