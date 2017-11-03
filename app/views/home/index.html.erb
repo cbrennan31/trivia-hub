@@ -6,9 +6,9 @@
    <%= link_to "Create a Game", new_user_game_path %>
 
 <% else %>
-  <h1>Welcome to TriviaHub</h1>
-  <h4>Create your own trivia game, browse user games, or try out real <b><i>Jeopardy!</i></b> questions.</h4>
-  <div id=home-button>
-    <a href="/auth/google" class="button-nav">Sign in with Google</a>
+  <div class="text-center">
+    <h1>Welcome to TriviaHub</h1>
+    <h4>Create your own trivia game, browse user games, or try out real <b><i>Jeopardy!</i></b> questions.</h4>
+    <a href="/auth/google" class="button button-large">Sign in with Google</a>
   </div>
 <% end %>

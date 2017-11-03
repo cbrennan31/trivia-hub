@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import ReactRadioButtonGroup from 'react-radio-button-group';
 const GameForm = props => {
-
+  let strikesValue = null
+  if (props.strikes) {
+    strikesValue = props.strikes.toString()
+  }
   return (
     <div>
       <label className="my-label">
@@ -31,7 +34,7 @@ const GameForm = props => {
           options={['1', '2', '3']}
           name='strikes'
           isStateful={false}
-          value={props.strikes}
+          value = {strikesValue}
           onChange={props.handleChange}
           fireOnMount={true}
           itemClassName="radio-item"

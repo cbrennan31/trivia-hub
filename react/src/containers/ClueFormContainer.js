@@ -10,10 +10,28 @@ class ClueFormContainer extends Component{
       value: 200,
       category: "",
       question: "",
-      answer: ""
+      answer: "",
     }
 
     this.handleChange = this.handleChange.bind(this)
+  }
+
+  componentDidMount(){
+    this.setState({
+      value: this.props.value,
+      category: this.props.category,
+      question: this.props.question,
+      answer: this.props.answer
+    })
+  }
+
+  componentWillReceiveProps(newProps){
+    this.setState({
+      value: newProps.value,
+      category: newProps.category,
+      question: newProps.question,
+      answer: newProps.answer
+    })
   }
 
   handleChange(event){
@@ -26,6 +44,11 @@ class ClueFormContainer extends Component{
 
     return(
       <ClueForm
+        deleteFunction = {this.props.deleteFunction}
+        value = {this.state.value}
+        category = {this.state.category}
+        question = {this.state.question}
+        answer = {this.state.answer}
         handleChange = {this.handleChange}
       />
     )
