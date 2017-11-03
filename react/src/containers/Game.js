@@ -18,7 +18,8 @@ class App extends React.Component{
       numberCorrect: 0,
       score: 0,
       selectedCategory: null,
-      wonGame: false
+      wonGame: false,
+      maxStrikes: 3
     }
 
     this.handleIncorrectResponse = this.handleIncorrectResponse.bind(this)
@@ -61,8 +62,6 @@ class App extends React.Component{
         body: JSON.stringify({newGame}),
         headers: { 'Content-Type': 'application/json'}
       })
-      // .then GET BACK THE GAMES FOR THAT USER!
-      // .then UPDATE USER WITH POINTS!
     }
   }
 
@@ -102,9 +101,13 @@ class App extends React.Component{
       strikes: this.state.strikes + 1,
       incorrectClues: this.state.incorrectClues.concat(clue)
     })
+    if (this.state.currentQuestionIndex + 1 == this.state.cat1Clues.length) {
+      this.setState({wonGame: true})
+    }
   }
 
   render(){
+    let loadingClass = "loading"
     let currentQuestionIndex = this.state.currentQuestionIndex
 
     let id1 = 1, id2 = 2;
@@ -117,14 +120,33 @@ class App extends React.Component{
     let categoryTitle1, categoryTitle2, clue1, clue2, scoreboardContainer, score;
 
     if (this.state.cat1Clues && this.state.cat2Clues) {
+      loadingClass = ''
+      let strikeCircles = []
+
+      for (let i=0; i < this.state.strikes; i++) {
+        strikeCircles.push(<div className = "circle-selected"/>)
+      }
+
+      for (let i=this.state.strikes; i < this.state.maxStrikes; i++) {
+        strikeCircles.push(<div className = "circle" />)
+      }
+
       score =
         <div className = "row score-and-question-container">
           <div className = "small-6 columns score">
-            <span>Earnings | ${this.state.score}</span><br/>
-            <span>Strikes | {this.state.strikes}</span><br/>
+            <table className = "earnings-table">
+              <tr id="earnings-top">
+                <td>Earnings</td>
+                <td>${this.state.score}</td>
+              </tr>
+              <tr>
+                <td>Strikes</td>
+                <td>{strikeCircles}</td>
+              </tr>
+            </table>
           </div>
           <div className = "small-6 columns question">
-            <span>This Clue | ${this.state.cat1Clues[currentQuestionIndex].value}</span><br/>
+            <span id="current-value" >${this.state.cat1Clues[currentQuestionIndex].value}</span>
           </div>
         </div>
 
@@ -162,6 +184,7 @@ class App extends React.Component{
             strikes={this.state.strikes}
             wonGame={this.state.wonGame}
             latestQuestionCorrect={this.state.latestQuestionCorrect}
+            maxStrikes={this.state.maxStrikes}
 
             handleIncorrectResponse={this.handleIncorrectResponse}
             handleCorrectReponse={this.handleCorrectReponse}
@@ -176,6 +199,7 @@ class App extends React.Component{
           strikes={this.state.strikes}
           wonGame={this.state.wonGame}
           latestQuestionCorrect={this.state.latestQuestionCorrect}
+          maxStrikes={this.state.maxStrikes}
 
           handleIncorrectResponse={this.handleIncorrectResponse}
           handleCorrectReponse={this.handleCorrectReponse}
@@ -185,16 +209,18 @@ class App extends React.Component{
     }
 
     return (
-      <div className = "row game-container">
-        <div className = "small-9 columns game-and-score-container">
-          {score}
-          {categoryTitle1}
-          {clue1}
-          {categoryTitle2}
-          {clue2}
-        </div>
-        <div className = "small-3 columns">
-          {scoreboardContainer}
+      <div className = {loadingClass}>
+        <div className = "row game-container">
+          <div className = "small-9 columns game-and-score-container">
+            {score}
+            {categoryTitle1}
+            {clue1}
+            {categoryTitle2}
+            {clue2}
+          </div>
+          <div className = "small-3 columns">
+            {scoreboardContainer}
+          </div>
         </div>
       </div>
     )

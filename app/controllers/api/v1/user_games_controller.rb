@@ -23,6 +23,13 @@ class Api::V1::UserGamesController < ApplicationController
     redirect_to new_user_game_path
   end
 
+  def show
+    @user_game = UserGame.find(params[:id])
+    @clues = @user_game.user_clues
+
+    render json: {game: @user_game, clues: @clues}
+  end
+
   def update
     @user_game = UserGame.find(params[:id])
 
