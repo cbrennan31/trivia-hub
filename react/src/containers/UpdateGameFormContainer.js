@@ -98,13 +98,6 @@ class UpdateGameFormContainer extends Component{
       rearrangedForms.push(false)
     }
     this.setState({clueFormsDisplayed: rearrangedForms})
-
-    let rearrangedClues = []
-    this.state.clues.forEach((clue)=>{
-      rearrangedClues.push(clue)
-    })
-
-    this.setState({clues: rearrangedClues})
   }
 
   openClueForm(){
