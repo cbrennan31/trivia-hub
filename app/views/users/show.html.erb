@@ -9,7 +9,7 @@
         <td>Earnings Per Game</td>
       </tr>
       <tr>
-        <td><%= number_to_currency(@lifetime_earnings) %></td>
+        <td><%= number_to_currency(@lifetime_earnings, precision: 0) %></td>
         <td><%= @lifetime_games %></td>
         <td><%= @lifetime_correct %></td>
         <td><%= number_to_currency(@earnings_per_game) %></td>
