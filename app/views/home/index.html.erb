@@ -1,14 +1,39 @@
 <% if current_user %>
-   <h1>Trivia Hub</h1>
-   <%= link_to "Logout", logout_path %>
-   <%= link_to "New Game", game_index_path %>
-   <%= link_to "Browse User Games", user_games_path %>
-   <%= link_to "Create a Game", new_user_game_path %>
+   <h1 class="text-center">Welcome to <span class="keyword" id="logo">TriviaHub</span></h1>
+
+   <div class="row home-links">
+     <div class="small-4 columns text-center">
+       <div class="home-button">
+         <a href="/game"><span class="link-panel"></span></a>
+         <div class="home-button-text">
+           <h4><p class="keyword">Play</p>our classic quiz with hundreds of real <b><i>Jeopardy!</i></b> clues.</h4>
+         </div>
+       </div>
+     </div>
+
+     <div class="small-4 columns text-center">
+       <div class="home-button">
+         <a href="/user_games"><span class="link-panel"></span></a>
+         <div class="home-button-text">
+           <h4><p class="keyword">Browse</p>and try out user-submitted quizzes on a range of topics.</h4>
+         </div>
+       </div>
+     </div>
+
+     <div class="small-4 columns text-center">
+       <div class="home-button">
+         <a href="/user_games/new"><span class="link-panel"></span></a>
+         <div class="home-button-text">
+           <h4><p class="keyword">Create</p>custom quizzes to show off your personal expertise.</h4>
+         </div>
+       </div>
+     </div>
+   </div>
 
 <% else %>
   <div class="text-center">
-    <h1>Welcome to TriviaHub</h1>
-    <h4>Create your own trivia game, browse user games, or try out real <b><i>Jeopardy!</i></b> questions.</h4>
+    <h1>Welcome to <span class="keyword" id="logo">TriviaHub</span></h1>
+    <h4>Create your own trivia game, browse user games, and try out real <b><i>Jeopardy!</i></b> questions.</h4>
     <a href="/auth/google" class="button button-large">Sign in with Google</a>
   </div>
 <% end %>

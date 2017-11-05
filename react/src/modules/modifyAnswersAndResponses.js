@@ -25,5 +25,16 @@ module.exports = {
   question: (question) => {
     let modifiedQuestion = question.replace(/:/g, ": ")
     return modifiedQuestion
-  }
+  },
+
+  displayAnswer: (displayAnswer) => {
+    let modifiedDisplayAnswer = displayAnswer.replace(/[()]/g, "")
+    modifiedDisplayAnswer = striptags(modifiedDisplayAnswer)
+    modifiedDisplayAnswer = modifiedDisplayAnswer.replace(/"/g, "")
+    modifiedDisplayAnswer = modifiedDisplayAnswer.replace(/\\/g, "")
+    modifiedDisplayAnswer = modifiedDisplayAnswer.replace(/^an /, "")
+    modifiedDisplayAnswer = modifiedDisplayAnswer.replace(/^a /, "")
+    modifiedDisplayAnswer = modifiedDisplayAnswer.replace(/^the /, "")
+    return modifiedDisplayAnswer
+  },
 }

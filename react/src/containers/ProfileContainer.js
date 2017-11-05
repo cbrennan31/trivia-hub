@@ -9,7 +9,8 @@ class ProfileContainer extends Component{
     this.state = {
       games: null,
       clues: null,
-      gamesBeingEdited: []
+      gamesBeingEdited: [],
+      thanksMessage: null
     }
 
     this.editGame = this.editGame.bind(this)
@@ -32,7 +33,8 @@ class ProfileContainer extends Component{
     .then(body => {
       this.setState({
         games: body.games,
-        clues: body.clues
+        clues: body.clues,
+        thanksMessage: null
       });
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
@@ -42,12 +44,12 @@ class ProfileContainer extends Component{
     this.setState({gamesBeingEdited: this.state.gamesBeingEdited.concat(event.target.id)})
   }
 
-  handleUpdateGame(formPayload){
+  handleUpdateGame(formPayload, method){
     let id = formPayload.id
 
     fetch(`/api/v1/user_games/${formPayload.id}`, {
       credentials: 'same-origin',
-      method: 'PATCH',
+      method: method,
       body: JSON.stringify(formPayload),
       headers: { 'Content-Type': 'application/json' }
     })
@@ -65,7 +67,8 @@ class ProfileContainer extends Component{
       this.setState({
         games: body.games,
         clues: body.clues,
-        gamesBeingEdited: []
+        gamesBeingEdited: [],
+        thanksMessage: "Your changes have been saved."
       });
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`))
@@ -73,7 +76,13 @@ class ProfileContainer extends Component{
 
   render(){
     let gameDiv;
+    let thanksMessage;
+
     if (this.state.games) {
+      if (this.state.thanksMessage) {
+        thanksMessage = <h4><i>{this.state.thanksMessage}</i></h4>
+      }
+
       let that = this
       gameDiv = that.state.games.map ((game) => {
         let index = that.state.games.indexOf(game).toString()
@@ -103,7 +112,7 @@ class ProfileContainer extends Component{
               <hr/>
               <div className = 'user-game'>
                 <h3>{game.title}</h3>
-                <h4>{game.description}</h4>
+                <h5>{game.description}</h5>
 
                 <input
                   id={index}
@@ -122,6 +131,7 @@ class ProfileContainer extends Component{
     return(
       <div>
         <h2>My Games</h2>
+        {thanksMessage}
         {gameDiv}
       </div>
     )

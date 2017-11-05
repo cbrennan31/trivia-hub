@@ -12,7 +12,16 @@ class UpdateGameFormContainer extends Component{
       description: '',
       strikes: null,
       clues: [],
-      clueFormsDisplayed: []
+      clueFormsDisplayed: 0,
+      errors: {
+        titleError: null,
+        descriptionError: null,
+        strikesError: null,
+        numberOfCluesError: null,
+        categoryError: null,
+        questionError: null,
+        answerError: null
+      }
     }
 
     this.handleChange = this.handleChange.bind(this)
@@ -20,6 +29,8 @@ class UpdateGameFormContainer extends Component{
     this.openClueForm = this.openClueForm.bind(this)
     this.handleUpdateGame = this.handleUpdateGame.bind(this)
     this.deleteNewClue = this.deleteNewClue.bind(this)
+    this.handleDeleteGame = this.handleDeleteGame.bind(this)
+    this.validateForm = this.validateForm.bind(this)
   }
 
   handleChange(event){
@@ -33,7 +44,6 @@ class UpdateGameFormContainer extends Component{
   // For the react-radio-button-group library, the value property is
   // automatically passed in at the argument to any function called onChange
 
-
   componentDidMount(){
     let clues = []
 
@@ -46,19 +56,8 @@ class UpdateGameFormContainer extends Component{
       title: this.props.title,
       description: this.props.description,
       strikes: this.props.strikes,
-      clues: clues
-    }, () => {
-      let clueFormsDisplayed = []
-
-      Object.values(this.state.clues).forEach((clue) => {
-        clueFormsDisplayed.push(true)
-      })
-
-      while (clueFormsDisplayed.length < 12) {
-        clueFormsDisplayed.push(false)
-      }
-
-      this.setState({clueFormsDisplayed: clueFormsDisplayed})
+      clues: clues,
+      clueFormsDisplayed: clues.length
     })
   }
 
@@ -70,61 +69,90 @@ class UpdateGameFormContainer extends Component{
 
   handleUpdateGame(event){
     event.preventDefault();
+    if ( this.validateForm() ) {
+      let formPayload = {
+        title: this.state.title,
+        description: this.state.description,
+        strikes: this.state.strikes,
+        clues: this.state.clues,
+        id: this.props.id
+      }
+      this.props.handleUpdateGame(formPayload, 'PATCH')
+    }
+  }
+
+  handleDeleteGame(){
+    event.preventDefault();
     let formPayload = {
-      title: this.state.title,
-      description: this.state.description,
-      strikes: this.state.strikes,
-      clues: Object.values(this.state.clues),
       id: this.props.id
     }
-    this.props.handleUpdateGame(formPayload)
+    this.props.handleUpdateGame(formPayload, 'DELETE')
   }
 
   deleteNewClue(index){
     let clues = this.state.clues
     clues.splice(index, 1)
-    this.setState({clues: clues})
 
     let clueFormsDisplayed = this.state.clueFormsDisplayed
-    Object.assign(clueFormsDisplayed, {[index]: false })
-
-    let rearrangedForms = []
-    clueFormsDisplayed.forEach((boolean)=>{
-      if (boolean === true) {
-        rearrangedForms.push(boolean)
-      }
-    })
-    while (rearrangedForms.length < 12) {
-      rearrangedForms.push(false)
-    }
-    this.setState({clueFormsDisplayed: rearrangedForms})
-
-    let rearrangedClues = []
-    this.state.clues.forEach((clue)=>{
-      rearrangedClues.push(clue)
-    })
-
-    this.setState({clues: rearrangedClues})
+    this.setState({clues: clues, clueFormsDisplayed: clueFormsDisplayed - 1})
   }
 
   openClueForm(){
     let clueFormsDisplayed = this.state.clueFormsDisplayed
-    for (let i = 11; i >= 0; i = i-1) {
-      if (clueFormsDisplayed[i] === false){
-        Object.assign(clueFormsDisplayed, {[i]: true })
-        break;
-      }
+    this.setState({clueFormsDisplayed: clueFormsDisplayed + 1})
+  }
+
+  assignError(field, message) {
+    let errors = this.state.errors
+    Object.assign(errors, {[field]: message})
+    this.setState({errors: errors})
+  }
+
+  validateForm() {
+    let valid = true
+    if ( this.state.title == "" || this.state.title == null ) {
+      this.assignError("titleError", "Your game should include a title.")
+      valid = false
+    } else {
+      this.assignError("titleError", null)
     }
-    let rearrangedForms = []
-    clueFormsDisplayed.forEach((boolean)=>{
-      if (boolean === true) {
-        rearrangedForms.push(boolean)
-      }
-    })
-    while (rearrangedForms.length < 12) {
-      rearrangedForms.push(false)
+    if ( this.state.description == "" || this.state.description == null ) {
+      this.assignError("descriptionError", "Your game should include a description.")
+      valid = false
+    } else {
+      this.assignError("descriptionError", null)
     }
-    this.setState({clueFormsDisplayed: rearrangedForms})
+    if (this.state.strikes == null) {
+      this.assignError("strikesError", "Your game should include a number of strikes.")
+      valid = false
+    } else {
+      this.assignError("strikesError", null)
+    }
+    if (this.state.clues.length < 2) {
+      this.assignError("numberOfCluesError", "Your game should include at least two clues.")
+      valid = false
+    } else {
+      this.assignError("numberOfCluesError", null)
+    }
+    if (this.state.clues.some( e => e.category == null || e.category == '')) {
+      this.assignError("categoryError", "Each clue should include a category.")
+      valid = false
+    } else {
+      this.assignError("categoryError", null)
+    }
+    if (this.state.clues.some( e => e.question == null || e.question == '')) {
+      this.assignError("questionError", "Each clue should include a question.")
+      valid = false
+    } else {
+      this.assignError("questionError", null)
+    }
+    if (this.state.clues.some( e => e.answer == null || e.answer == '')) {
+      this.assignError("answerError", "Each clue should include a answer.")
+      valid = false
+    } else {
+      this.assignError("answerError", null)
+    }
+    return valid;
   }
 
   render(){
@@ -164,11 +192,10 @@ class UpdateGameFormContainer extends Component{
         category = clue.category
         answer = clue.answer
       }
-      if (this.state.clueFormsDisplayed[i] === true) {
+      if (i < this.state.clueFormsDisplayed) {
         clueForms.push(
           <div className = 'clue-form'>
             <ClueFormContainer
-              edit = {false}
               id = {i}
               handleClueChange = {this.handleClueChange}
               value = {value}
@@ -184,7 +211,7 @@ class UpdateGameFormContainer extends Component{
 
     let addClueDiv
 
-    if (this.state.clueFormsDisplayed.some((element) => element === false)) {
+    if (this.state.clueFormsDisplayed <= 12) {
       addClueDiv =
         <div className="add-new-question" onClick={this.openClueForm}>
           <h4>
@@ -192,6 +219,14 @@ class UpdateGameFormContainer extends Component{
             &nbsp;Add Clue
           </h4>
         </div>
+    }
+
+    let errorDiv
+
+    if (Object.values(this.state.errors).some(e => e !== null)) {
+      errorDiv = Object.values(this.state.errors).map ( error => {
+        if (error !== null) {return(<p><i>{error}</i></p>)}
+      })
     }
 
     return(
@@ -205,10 +240,20 @@ class UpdateGameFormContainer extends Component{
           />
           {clueForms}
           {addClueDiv}
-          <div className="text-center">
-            <br/>
-            <input type="submit" className="button button-small" value = "Update Game" />
-          </div>
+          <br/>
+          {errorDiv}
+          <div className="row">
+            <div className = "small-6 text-center columns">
+              <input type="submit" className="button button-small" value = "Update Game" />
+            </div>
+            <div className = "small-6 text-center columns">
+              <input type="button"
+                className="alert button button-small"
+                onClick={this.handleDeleteGame}
+                value="Delete Game"
+              />
+            </div>
+           </div>
         </form>
       </div>
     )

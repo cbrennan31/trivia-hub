@@ -50,7 +50,6 @@ class UserGamesContainer extends Component{
           </a>
          </div>
          <hr/>
-         <br/>
        </div>
        )
      })

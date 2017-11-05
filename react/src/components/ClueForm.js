@@ -14,7 +14,7 @@ const ClueForm = props => {
         </div>
 
         <div className='small-8 columns text-right' id = 'delete-div'>
-          <input type="button" id="delete-button" className="button button-small" onClick={props.deleteFunction} value = "Delete Clue"/>
+          <input type="button" className="alert button button-small" onClick={props.deleteFunction} value = "Delete Clue"/>
         </div>
 
       <div className="row value-category">
