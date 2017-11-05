@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ClueContainer from './ClueContainer'
 import ScoreboardContainer from './ScoreboardContainer'
+import Guidelines from '../components/Guidelines'
 
 class UserGame extends Component{
 
@@ -19,13 +20,14 @@ class UserGame extends Component{
       numberCorrect: 0,
       score: 0,
       strikes: 0,
-      wonGame: false
+      wonGame: false,
+      guidelinesOpen: false
     }
 
     this.handleIncorrectResponse = this.handleIncorrectResponse.bind(this)
     this.handleCorrectReponse = this.handleCorrectReponse.bind(this)
     this.handleNextQuestion = this.handleNextQuestion.bind(this)
-    // this.handleSelection = this.handleSelection.bind(this)
+    this.openGuidelines = this.openGuidelines.bind(this)
   }
 
   componentDidMount() {
@@ -85,20 +87,49 @@ class UserGame extends Component{
     }
   }
 
+  openGuidelines() {
+    this.setState({guidelinesOpen: !this.state.guidelinesOpen})
+  }
+
   render(){
+    let guidelinesText = "Show Guidelines"
+    let guidelinesContent
+
+    if (this.state.guidelinesOpen) {
+      guidelinesText = "Hide Guidelines"
+      guidelinesContent = <Guidelines />
+    }
+
     let currentQuestionIndex = this.state.currentQuestionIndex
 
     let clue, scoreboardContainer, score, clueContainer;
 
     if (this.state.clues) {
+      let strikeCircles = []
+      for (let i=0; i < this.state.strikes; i++) {
+        strikeCircles.push(<div className = "circle-selected"/>)
+      }
+
+      for (let i=this.state.strikes; i < this.state.maxStrikes; i++) {
+        strikeCircles.push(<div className = "circle" />)
+      }
+
       score =
         <div className = "row score-and-question-container">
           <div className = "small-6 columns score">
-            <span>Earnings | ${this.state.score}</span><br/>
-            <span>Strikes | {this.state.strikes} of {this.state.maxStrikes}</span><br/>
+            <table className = "earnings-table">
+              <tr id="earnings-top">
+                <td>Earnings</td>
+                <td>${this.state.score}</td>
+              </tr>
+              <tr>
+                <td>Strikes</td>
+                <td>{strikeCircles}</td>
+              </tr>
+            </table>
           </div>
           <div className = "small-6 columns question">
-            <span>This Clue | ${this.state.clues[currentQuestionIndex].value}</span><br/>
+            <span id="current-value" >${this.state.clues[currentQuestionIndex].value}</span>
           </div>
         </div>
 
@@ -127,13 +158,22 @@ class UserGame extends Component{
     }
 
     return(
-      <div className = "row game-container">
-        <div className = "small-9 columns game-and-score-container">
-          {score}
-          {clueContainer}
+      <div>
+        <div className="guidelines text-left">
+          <h5 id="guidelines-header" onClick={this.openGuidelines}>{guidelinesText}</h5>
+          <hr/>
+          {guidelinesContent}
         </div>
-        <div className = "small-3 columns">
-          {scoreboardContainer}
+
+        <div className = "row game-container">
+          <div className = "small-9 columns game-and-score-container">
+            {score}
+            {clueContainer}
+          </div>
+
+          <div className = "small-3 columns">
+            {scoreboardContainer}
+          </div>
         </div>
       </div>
     )

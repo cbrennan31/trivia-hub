@@ -18,7 +18,7 @@ class ClueContainer extends Component{
 
   handleSubmit(event) {
     event.preventDefault();
-    if (this.props.latestQuestionCorrect == false) {
+    if (this.state.answerSubmitted == false) {
       this.setState({ answerSubmitted: true })
       let response = modify.response(this.state.response)
       let answer = modify.answer(this.props.clue.answer)
@@ -44,7 +44,7 @@ class ClueContainer extends Component{
     if (this.props.userGame) {
       categoryDiv = <h2 className = "text-center">{this.props.clue.category}</h2>
     }
-    
+
     let question = modify.question(this.props.clue.question)
 
     let submitDiv = <input
@@ -54,13 +54,17 @@ class ClueContainer extends Component{
     />
 
     if (this.props.strikes == 3) {
-      submitDiv = <div><p>Sorry! Game over.</p></div>
+      submitDiv =
+      <div>
+        <p>Sorry! The correct answer is <i>{modify.displayAnswer(this.props.clue.answer)}</i>.</p>
+        <p>Game over. <a href="/game">Play again?</a></p>
+      </div>
     } else if (this.props.wonGame && this.props.latestQuestionCorrect){
-      submitDiv = <div><p>Correct! You win!</p></div>
+      submitDiv = <div><p>Correct! You win! <a href="/game">Play again?</a></p></div>
     } else if (this.props.wonGame) {
       submitDiv =
         <div>
-          <p>Sorry! The correct answer is: ANSWER</p>
+          <p>Sorry! The correct answer is <i>{modify.displayAnswer(this.props.clue.answer)}.</i></p>
           <p>...but you're still a winner!</p>
         </div>
     } else if (this.props.latestQuestionCorrect) {
@@ -80,7 +84,7 @@ class ClueContainer extends Component{
         </div>
     } else if (this.props.strikes < this.props.maxStrikes && this.state.answerSubmitted) {
     submitDiv = <div>
-      <p>Sorry! The correct answer is: ANSWER</p>
+      <p>Sorry! The correct answer is <i>{modify.displayAnswer(this.props.clue.answer)}.</i></p>
       <input
         type="button"
         className = "button button-large"

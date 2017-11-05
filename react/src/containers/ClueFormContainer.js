@@ -37,7 +37,8 @@ class ClueFormContainer extends Component{
   handleChange(event){
     let value = event.target.value;
     this.setState({ [event.target.name]: value },
-      () => {this.props.handleClueChange(this.state, this.props.id)})
+      () => {this.props.handleClueChange(this.state, this.props.id)}
+    )
   }
 
   render(){

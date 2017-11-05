@@ -1,3 +1,23 @@
+<div class="user-stats">
+  <h2>My Stats (Classic Mode)</h2>
+  <table class="text-left">
+    <tbody>
+      <tr class="stats-header">
+        <td>Lifetime Earnings</td>
+        <td>Games Played</td>
+        <td>Questions Correct</td>
+        <td>Earnings Per Game</td>
+      </tr>
+      <tr>
+        <td><%= number_to_currency(@lifetime_earnings) %></td>
+        <td><%= @lifetime_games %></td>
+        <td><%= @lifetime_correct %></td>
+        <td><%= number_to_currency(@earnings_per_game) %></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <div id=app
   data-currentuserid='<%= current_user.id %>'
 />

@@ -1,6 +1,9 @@
 class Api::V1::UserGamesController < ApplicationController
   skip_before_action :verify_authenticity_token
 
+  def destroy
+  end
+
   def create
 
     @user_game = UserGame.create(
@@ -56,8 +59,24 @@ class Api::V1::UserGamesController < ApplicationController
     render json: { games: @games, clues: @clues }
   end
 
+  def destroy
+    @user_game = UserGame.find(params[:id])
+    @user_game.destroy
+    @clues = UserClue.where({user_game_id: params[:id]})
+
+    @clues.each do |c|
+      c.destroy
+    end
+    @games = UserGame.where({user: current_user}).order(created_at: :desc)
+    @clues = UserClue.where({user_game: @games}).order(:value)
+
+    render json: { games: @games, clues: @clues }
+  end
+
   def index
-    render json: {games: UserGame.all, clues: UserClue.all}
+    @games = UserGame.all.order(created_at: :desc)
+    @clues = UserClue.all.order(:value)
+    render json: {games: @games, clues: @clues}
   end
 
   private

@@ -1,6 +1,7 @@
 import React from 'react';
 import ClueContainer from './ClueContainer'
 import ScoreboardContainer from './ScoreboardContainer'
+import Guidelines from '../components/Guidelines'
 
 class App extends React.Component{
 
@@ -19,13 +20,15 @@ class App extends React.Component{
       score: 0,
       selectedCategory: null,
       wonGame: false,
-      maxStrikes: 3
+      maxStrikes: 3,
+      guidelinesOpen: false
     }
 
     this.handleIncorrectResponse = this.handleIncorrectResponse.bind(this)
     this.handleCorrectReponse = this.handleCorrectReponse.bind(this)
     this.handleNextQuestion = this.handleNextQuestion.bind(this)
     this.handleSelection = this.handleSelection.bind(this)
+    this.openGuidelines = this.openGuidelines.bind(this)
   }
 
   componentDidMount() {
@@ -106,8 +109,21 @@ class App extends React.Component{
     }
   }
 
+  openGuidelines() {
+    this.setState({guidelinesOpen: !this.state.guidelinesOpen})
+  }
+
   render(){
+    let guidelinesText = "Show Guidelines"
+    let guidelinesContent
+
+    if (this.state.guidelinesOpen) {
+      guidelinesText = "Hide Guidelines"
+      guidelinesContent = <Guidelines />
+    }
+
     let loadingClass = "loading"
+
     let currentQuestionIndex = this.state.currentQuestionIndex
 
     let id1 = 1, id2 = 2;
@@ -210,6 +226,12 @@ class App extends React.Component{
 
     return (
       <div className = {loadingClass}>
+        <div className="guidelines text-left">
+          <h5 id="guidelines-header" onClick={this.openGuidelines} >{guidelinesText}</h5>
+          <hr/>
+          {guidelinesContent}
+        </div>
+
         <div className = "row game-container">
           <div className = "small-9 columns game-and-score-container">
             {score}
@@ -218,6 +240,7 @@ class App extends React.Component{
             {categoryTitle2}
             {clue2}
           </div>
+
           <div className = "small-3 columns">
             {scoreboardContainer}
           </div>

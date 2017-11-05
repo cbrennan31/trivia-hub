@@ -26,37 +26,48 @@
           <ul class="menu">
           <% if current_user %>
             <li><%= link_to "Profile", user_path(current_user) %></li>
-            <li><%= link_to "Logout", logout_path %></li>
+            <li><%= link_to "Sign Out", logout_path %></li>
           <% end %>
           </ul>
         </div>
       </div>
     </div>
-    <div class="top-panel">
-      <div class = "row gutter" >
-        <% if @user_game_new %>
-          <h1 id=new-title>Create Your Own Game</h1>
-          <h4 id=new-subtitle>Quiz other trivia buffs on topics you love.</h4>
-        <% end %>
 
-        <% if @user_games %>
-          <h1 id=new-title>User-Created Games</h1>
-          <h4 id=new-subtitle>Trebek isn't the only expert around here.</h4>
-        <% end %>
+    <div class="layout-padding">
+      <div class="top-panel">
+        <div class = "row gutter" >
+          <% if @user_game_new %>
+            <h1 id=new-title>Create Your Own Game</h1>
+            <h3 id=new-subtitle>Quiz other trivia buffs on topics you love.</h3>
+          <% end %>
 
-        <% if @user_profile %>
-          <h1 id=new-title>My Profile</h1>
-        <% end %>
+          <% if @user_games %>
+            <h1 id=new-title>User-Created Games</h1>
+            <h3 id=new-subtitle>Trebek isn't the only expert around here.</h3>
+          <% end %>
+
+          <% if @user_profile %>
+            <h1 id=new-title>My Profile</h1>
+          <% end %>
+
+          <% if @game %>
+            <h1 id=new-title>Classic Mode</h1>
+          <% end %>
+
+          <% if @user_game %>
+            <h1 id=new-title><%= @user_game.title %></h1>
+          <% end %>
+        </div>
       </div>
-    </div>
 
-    <div class = "row gutter main">
-      <% if flash %>
-        <p class="notice"><%= notice %></p>
-        <p class="alert"><%= alert %></p>
-      <% end %>
+      <div class = "row gutter main">
+        <% if flash %>
+          <p class="notice"><%= notice %></p>
+          <p class="alert"><%= alert %></p>
+        <% end %>
 
-      <%= yield %>
+        <%= yield %>
+      </div>
     </div>
   </body>
 
