@@ -1,5 +1,3 @@
-let striptags = require('striptags')
-
 module.exports = {
   response: (response) => {
     let modifiedResponse = response.toLowerCase()
@@ -12,8 +10,11 @@ module.exports = {
 
   answer: (answer) => {
     let modifiedAnswer = answer.toLowerCase()
+    let div = document.createElement("div");
+    div.innerHTML = modifiedAnswer;
+    modifiedAnswer = div.textContent || "";
+
     modifiedAnswer = modifiedAnswer.replace(/[()]/g, "")
-    modifiedAnswer = striptags(modifiedAnswer)
     modifiedAnswer = modifiedAnswer.replace(/"/g, "")
     modifiedAnswer = modifiedAnswer.replace(/\\/g, "")
     modifiedAnswer = modifiedAnswer.replace(/^an /, "")
@@ -29,7 +30,7 @@ module.exports = {
 
   displayAnswer: (displayAnswer) => {
     let modifiedDisplayAnswer = displayAnswer.replace(/[()]/g, "")
-    modifiedDisplayAnswer = striptags(modifiedDisplayAnswer)
+    // modifiedDisplayAnswer = striptags(modifiedDisplayAnswer)
     modifiedDisplayAnswer = modifiedDisplayAnswer.replace(/"/g, "")
     modifiedDisplayAnswer = modifiedDisplayAnswer.replace(/\\/g, "")
     modifiedDisplayAnswer = modifiedDisplayAnswer.replace(/^an /, "")

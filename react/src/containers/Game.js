@@ -3,7 +3,7 @@ import ClueContainer from './ClueContainer'
 import ScoreboardContainer from './ScoreboardContainer'
 import Guidelines from '../components/Guidelines'
 
-class App extends React.Component{
+class Game extends React.Component{
 
   constructor(props) {
     super(props);
@@ -250,4 +250,4 @@ class App extends React.Component{
   }
 }
 
-export default App
+export default Game
