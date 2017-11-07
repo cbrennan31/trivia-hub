@@ -7,8 +7,9 @@ class UsersController < ApplicationController
     @lifetime_earnings = 0
     @lifetime_correct = 0
     @lifetime_games = 0
-
-    if @games > 0
+    @earnings_per_game = 0
+    
+    if @games.length > 0
 
       @games.each do |game|
         @lifetime_earnings += game.total_score

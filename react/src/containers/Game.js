@@ -3,7 +3,7 @@ import ClueContainer from './ClueContainer'
 import ScoreboardContainer from './ScoreboardContainer'
 import Guidelines from '../components/Guidelines'
 
-class App extends React.Component{
+class Game extends React.Component{
 
   constructor(props) {
     super(props);
@@ -16,10 +16,9 @@ class App extends React.Component{
       currentQuestionIndex: 0,
       latestQuestionCorrect: false,
       strikes: 0,
-      numberCorrect: 0,
       score: 0,
       selectedCategory: null,
-      wonGame: false,
+      gameOver: false,
       maxStrikes: 3,
       guidelinesOpen: false
     }
@@ -54,7 +53,7 @@ class App extends React.Component{
   }
 
   componentDidUpdate() {
-    if (this.state.strikes == 3 || this.state.wonGame) {
+    if (this.state.strikes == 3 || this.state.gameOver) {
       let newGame = {
         total_score: this.state.score,
         questions_correct: this.state.correctClues.length
@@ -75,7 +74,7 @@ class App extends React.Component{
       score: this.state.score + clue.value
     })
     if (this.state.currentQuestionIndex + 1 == this.state.cat1Clues.length) {
-      this.setState({wonGame: true})
+      this.setState({gameOver: true})
     }
   }
 
@@ -105,7 +104,7 @@ class App extends React.Component{
       incorrectClues: this.state.incorrectClues.concat(clue)
     })
     if (this.state.currentQuestionIndex + 1 == this.state.cat1Clues.length) {
-      this.setState({wonGame: true})
+      this.setState({gameOver: true})
     }
   }
 
@@ -198,7 +197,7 @@ class App extends React.Component{
           <ClueContainer
             clue={this.state.cat1Clues[currentQuestionIndex]}
             strikes={this.state.strikes}
-            wonGame={this.state.wonGame}
+            gameOver={this.state.gameOver}
             latestQuestionCorrect={this.state.latestQuestionCorrect}
             maxStrikes={this.state.maxStrikes}
 
@@ -213,7 +212,7 @@ class App extends React.Component{
         <ClueContainer
           clue={this.state.cat2Clues[currentQuestionIndex]}
           strikes={this.state.strikes}
-          wonGame={this.state.wonGame}
+          gameOver={this.state.gameOver}
           latestQuestionCorrect={this.state.latestQuestionCorrect}
           maxStrikes={this.state.maxStrikes}
 
@@ -250,4 +249,4 @@ class App extends React.Component{
   }
 }
 
-export default App
+export default Game

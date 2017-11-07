@@ -22,3 +22,23 @@ RSpec.configure do |config|
   Kernel.srand config.seed
 end
 
+def stub_omniauth
+    # first, set OmniAuth to run in test mode
+  OmniAuth.config.test_mode = true
+  # then, provide a set of fake oauth data that
+  # omniauth will use when a user tries to authenticate:
+  OmniAuth.config.mock_auth[:google] = OmniAuth::AuthHash.new({
+    provider: "google",
+    uid: "12345678910",
+    info: {
+      email: "cbrennan31@gmail.com",
+      first_name: "Casey",
+      last_name: "Brennan"
+    },
+    credentials: {
+      token: "abcdefg12345",
+      refresh_token: "12345abcdefg",
+      expires_at: DateTime.now,
+    }
+  })
+end
