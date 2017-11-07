@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class ScoreboardContainer extends Component{
+class UserScoreboardContainer extends Component{
 
   constructor(props) {
     super(props);
@@ -11,17 +11,15 @@ class ScoreboardContainer extends Component{
 
   render(){
     let that = this
-    let values = that.props.cat1Clues.map (clue => {
+    let values = that.props.clues.map (clue => {
       let className
-      let cat1Clue = clue
-      let cat2Clue = that.props.cat2Clues[that.props.cat1Clues.indexOf(clue)]
       let correctClues = that.props.correctClues
       let incorrectClues = that.props.incorrectClues
-      if (correctClues.includes(cat1Clue) || correctClues.includes(cat2Clue)) {
+      if (correctClues.includes(clue)) {
         className = "scoreboard-correct"
-      } else if (incorrectClues.includes(cat1Clue) || incorrectClues.includes(cat2Clue)) {
+      } else if (incorrectClues.includes(clue)) {
         className = "scoreboard-incorrect"
-      } else if (that.props.cat1Clues.indexOf(clue) ==
+      } else if (that.props.clues.indexOf(clue) ==
           that.props.currentQuestionIndex) {
         className = "scoreboard-current"
       } else {
@@ -40,4 +38,4 @@ class ScoreboardContainer extends Component{
   }
 }
 
-export default ScoreboardContainer;
+export default UserScoreboardContainer;

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ClueContainer from './ClueContainer'
-import ScoreboardContainer from './ScoreboardContainer'
+import UserScoreboardContainer from './UserScoreboardContainer'
 import Guidelines from '../components/Guidelines'
 
 class UserGame extends Component{
@@ -101,7 +101,7 @@ class UserGame extends Component{
 
     let currentQuestionIndex = this.state.currentQuestionIndex
 
-    let clue, scoreboardContainer, score, clueContainer;
+    let clue, userScoreboardContainer, score, clueContainer;
 
     if (this.state.clues) {
       let strikeCircles = []
@@ -117,14 +117,16 @@ class UserGame extends Component{
         <div className = "row score-and-question-container">
           <div className = "small-6 columns score">
             <table className = "earnings-table">
-              <tr id="earnings-top">
-                <td>Earnings</td>
-                <td>${this.state.score}</td>
-              </tr>
-              <tr>
-                <td>Strikes</td>
-                <td>{strikeCircles}</td>
-              </tr>
+              <tbody>
+                <tr id="earnings-top">
+                  <td>Earnings</td>
+                  <td>${this.state.score}</td>
+                </tr>
+                <tr>
+                  <td>Strikes</td>
+                  <td>{strikeCircles}</td>
+                </tr>
+              </tbody>
             </table>
           </div>
           <div className = "small-6 columns question">
@@ -132,9 +134,9 @@ class UserGame extends Component{
           </div>
         </div>
 
-      scoreboardContainer =
-        <ScoreboardContainer
-          cat1Clues = {this.state.clues}
+      userScoreboardContainer =
+        <UserScoreboardContainer
+          clues = {this.state.clues}
           correctClues = {this.state.correctClues}
           incorrectClues = {this.state.incorrectClues}
           currentQuestionIndex = {this.state.currentQuestionIndex}
@@ -171,7 +173,7 @@ class UserGame extends Component{
           </div>
 
           <div className = "small-3 columns">
-            {scoreboardContainer}
+            {userScoreboardContainer}
           </div>
         </div>
       </div>

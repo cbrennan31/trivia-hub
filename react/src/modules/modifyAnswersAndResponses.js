@@ -29,8 +29,11 @@ module.exports = {
   },
 
   displayAnswer: (displayAnswer) => {
-    let modifiedDisplayAnswer = displayAnswer.replace(/[()]/g, "")
-    // modifiedDisplayAnswer = striptags(modifiedDisplayAnswer)
+    let div = document.createElement("div");
+    div.innerHTML = displayAnswer;
+    let modifiedDisplayAnswer = div.textContent || "";
+
+    modifiedDisplayAnswer = displayAnswer.replace(/[()]/g, "")
     modifiedDisplayAnswer = modifiedDisplayAnswer.replace(/"/g, "")
     modifiedDisplayAnswer = modifiedDisplayAnswer.replace(/\\/g, "")
     modifiedDisplayAnswer = modifiedDisplayAnswer.replace(/^an /, "")

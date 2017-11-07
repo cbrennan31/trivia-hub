@@ -150,14 +150,16 @@ class Game extends React.Component{
         <div className = "row score-and-question-container">
           <div className = "small-6 columns score">
             <table className = "earnings-table">
-              <tr id="earnings-top">
-                <td>Earnings</td>
-                <td>${this.state.score}</td>
-              </tr>
-              <tr>
-                <td>Strikes</td>
-                <td>{strikeCircles}</td>
-              </tr>
+              <tbody>
+                <tr id="earnings-top">
+                  <td>Earnings</td>
+                  <td>${this.state.score}</td>
+                </tr>
+                <tr>
+                  <td>Strikes</td>
+                  <td>{strikeCircles}</td>
+                </tr>
+              </tbody>
             </table>
           </div>
           <div className = "small-6 columns question">
@@ -168,6 +170,7 @@ class Game extends React.Component{
       scoreboardContainer =
         <ScoreboardContainer
           cat1Clues = {this.state.cat1Clues}
+          cat2Clues = {this.state.cat2Clues}
           correctClues = {this.state.correctClues}
           incorrectClues = {this.state.incorrectClues}
           currentQuestionIndex = {this.state.currentQuestionIndex}

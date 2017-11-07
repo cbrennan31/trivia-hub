@@ -1,0 +1,66 @@
+!!! 5
+%html{ lang: 'en' }
+  %head
+    %meta{ charset: 'UTF-8' }
+    %title Confirm with Reveal
+    %link{ rel: 'stylesheet', href: '//cdnjs.cloudflare.com/ajax/libs/foundation/5.2.1/css/normalize.css' }
+    %link{ rel: 'stylesheet', href: '//cdnjs.cloudflare.com/ajax/libs/foundation/5.2.1/css/foundation.css' }
+  %body
+
+    .row
+      .columns.text-center
+        %h1 Confirm with Reveal
+        %hr
+
+        %p
+          Confirming a link click, using plugin defaults:
+          %a{ href: 'http://24.media.tumblr.com/tumblr_lkden9rnhW1qjzex9o1_500.gif',
+              data: { confirm: true } } Danger, danger!
+        %hr
+
+        -# Note that the options hash must be serialized with to_json
+        %form{ action: 'http://24.media.tumblr.com/tumblr_lkden9rnhW1qjzex9o1_500.gif',
+               data: { confirm: { title: 'For serious?',
+                                  body: 'Are you really, really sure you want to do that?',
+                                  password: 'YES',
+                                  ok: 'Engage!' }.to_json } }
+          %p Confirming form submission (featuring per-element plugin customization):
+          %p
+            %input.button.alert{ type: 'submit', value: 'Perilous activity' }
+        %hr
+
+        %form{ action: 'http://24.media.tumblr.com/tumblr_lkden9rnhW1qjzex9o1_500.gif' }
+          %p Confirming selected buttons in a form, leaving others unprotected:
+          %p
+            %input.button{ type: 'submit', value: 'I’m feeling lucky' }
+            %input.button.alert{ type: 'submit', value: 'Save me from myself',
+                                 data: { confirm: true } }
+        %hr
+
+        -# If data-confirm is a non-JSON string, we fall back to window.confirm
+        %p
+          Falling back to plain <strong>window.confirm</strong>:
+          %a{ href: 'http://24.media.tumblr.com/tumblr_lkden9rnhW1qjzex9o1_500.gif',
+              data: { confirm: 'It’s not pretty!' } } Plain vanilla danger
+
+    %script{ src: '//cdnjs.cloudflare.com/ajax/libs/foundation/5.2.1/js/vendor/jquery.js' }
+    %script{ src: '//cdnjs.cloudflare.com/ajax/libs/foundation/5.2.1/js/foundation/foundation.js' }
+    %script{ src: '//cdnjs.cloudflare.com/ajax/libs/foundation/5.2.1/js/foundation/foundation.reveal.js' }
+
+    -#
+      If jquery_ujs (from jquery-rails) is included prior to confirm_with_reveal,
+      $.rails.allowAction will be overwritten to use Reveal rather than window.confirm()
+      on links with complex data-confirm attributes as in this demo. However, the plugin
+      will still work without jquery_ujs being present.
+    %script{ src: asset_path('confirm_with_reveal') }
+
+    -#
+      Plugin defaults may be overridden globally in the setup call, and
+      event listeners may be attached to the confirm/cancel events:
+    :coffeescript
+      $(document).confirmWithReveal
+        ok: 'Continue'
+      .on 'cancel.reveal', (e) ->
+        console.log 'Never mind!'
+      .on 'confirm.reveal', (e) ->
+        console.log 'OK, here we go!'

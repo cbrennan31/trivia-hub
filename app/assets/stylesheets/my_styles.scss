@@ -21,13 +21,15 @@ h4, h5, h6 {
   font-size: 1.1em;
 }
 
-#layout-padding {
+.layout-padding {
   padding: 0px 10px 10px 10px;
 }
 
 #logo {
   color: #4d82cb;
 }
+
+
 
 .keyword {
   font-family: 'Avenir-Black', sans-serif;
@@ -115,10 +117,7 @@ h3, h1, h2 {
   background-color: #4d82cb;
   color: white;
   padding: 0px 10px 0px 10px;
-}
-
-.top-panel h1 {
-  margin-top: 8px;
+  border-bottom: 1px solid darken(#4d82cb, 20%);
 }
 
 .user-game {
@@ -375,7 +374,7 @@ hr {
   text-align: center;
 }
 
-.scoreboard-attempted, .scoreboard-current, .scoreboard-upcoming, .scoreboard-attempted-current{
+.scoreboard-correct, .scoreboard-current, .scoreboard-upcoming, .scoreboard-incorrect{
   font-weight: bold;
   font-size: 16px;
   padding: 5px;
@@ -387,20 +386,17 @@ hr {
 }
 
 .top-bar, .top-bar a, .top-bar ul, {
-  background-color: #34515e;
+  background-color: #4d82cb;
   color: lighten(#8eacbb, 34%);
   font-size: 20px;
 }
 
 .top-bar a:hover {
   background-color: lighten(#8eacbb, 34%);
-  color: #34515e;
+  color: #4d82cb;
   font-size: 20px;
 }
 
-.top-bar {
-  box-shadow: 0 0 10px #34515e;
-}
 
 .top-bar #home-link {
   font-size: 1.2em;
@@ -408,12 +404,47 @@ hr {
 }
 
 .scoreboard-current {
-  background-color: #34515e;
+  background-color: #173CA3;
   color: lighten(#8eacbb, 34%);
   box-shadow: 0 0 10px #90a4ae;
 }
 
+.ReactModal__Content, .ReactModal__Content--after-open {
+  border: 1px solid rgb(204, 204, 204);
+  background: rgb(255, 255, 255);
+  overflow: auto;
+  border-radius: 4px;
+  outline: none;
+  padding: 20px;
+  width: 360px;
+  height: 150px;
+  margin: auto;
+  display: table;
+}
+
+.modal-content {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  font-size: 1.08em;
+}
+
+.modal-button {
+  display: inline-block;
+  margin: 0px 15px;
+}
+
+.scoreboard-correct {
+  background-color: lighten(#8eacbb, 34%);
+  color: #003300;
+}
+
+.scoreboard-incorrect {
+  background-color: lighten(#8eacbb, 34%);
+  color: #7f0000;
+}
+
 .scoreboard-upcoming {
   background-color: lighten(#8eacbb, 34%);
-  color: #34515e;
+  color: #90a4ae;
 }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import GameForm from '../components/GameForm'
 import ClueFormContainer from './ClueFormContainer'
+import ReactModal from 'react-modal';
 
 class UpdateGameFormContainer extends Component{
 
@@ -21,7 +22,8 @@ class UpdateGameFormContainer extends Component{
         categoryError: null,
         questionError: null,
         answerError: null
-      }
+      },
+      showModal: false
     }
 
     this.handleChange = this.handleChange.bind(this)
@@ -31,6 +33,12 @@ class UpdateGameFormContainer extends Component{
     this.deleteNewClue = this.deleteNewClue.bind(this)
     this.handleDeleteGame = this.handleDeleteGame.bind(this)
     this.validateForm = this.validateForm.bind(this)
+    this.handleOpenModal = this.handleOpenModal.bind(this)
+    this.handleCloseModal = this.handleCloseModal.bind(this)
+  }
+
+  handleOpenModal () {
+    this.setState({ showModal: true });
   }
 
   handleChange(event){
@@ -67,6 +75,10 @@ class UpdateGameFormContainer extends Component{
     this.setState({clues: clues})
   }
 
+  handleCloseModal () {
+    this.setState({ showModal: false });
+  }
+
   handleUpdateGame(event){
     event.preventDefault();
     if ( this.validateForm() ) {
@@ -83,6 +95,7 @@ class UpdateGameFormContainer extends Component{
 
   handleDeleteGame(){
     event.preventDefault();
+    this.setState({ showModal: false });
     let formPayload = {
       id: this.props.id
     }
@@ -246,15 +259,26 @@ class UpdateGameFormContainer extends Component{
             <div className = "small-6 text-center columns">
               <input type="submit" className="button button-small" value = "Update Game" />
             </div>
+
             <div className = "small-6 text-center columns">
               <input type="button"
                 className="alert button button-small"
-                onClick={this.handleDeleteGame}
+                onClick={this.handleOpenModal}
                 value="Delete Game"
               />
             </div>
-           </div>
+          </div>
         </form>
+        <ReactModal
+          isOpen={this.state.showModal}
+          contentLabel="Delete"
+        >
+          <div className="modal-content">
+            <p>Are you sure you want to delete this game?</p>
+            <input className="modal-button button button-small" type="button" onClick={this.handleDeleteGame} value="Yes" />
+            <input className="modal-button button button-small" type="button" onClick={this.handleCloseModal} value="No" />
+          </div>
+        </ReactModal>
       </div>
     )
   }
