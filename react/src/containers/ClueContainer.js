@@ -59,9 +59,9 @@ class ClueContainer extends Component{
         <p>Sorry! The correct answer is <i>{modify.displayAnswer(this.props.clue.answer)}</i>.</p>
         <p>Game over. <a href="/game">Play again?</a></p>
       </div>
-    } else if (this.props.wonGame && this.props.latestQuestionCorrect){
+    } else if (this.props.gameOver && this.props.latestQuestionCorrect){
       submitDiv = <div><p>Correct! You win! <a href="/game">Play again?</a></p></div>
-    } else if (this.props.wonGame) {
+    } else if (this.props.gameOver) {
       submitDiv =
         <div>
           <p>Sorry! The correct answer is <i>{modify.displayAnswer(this.props.clue.answer)}.</i></p>

@@ -15,16 +15,7 @@ class ScoreboardContainer extends Component{
 
       let attemptedClues = this.props.incorrectClues.length +
         this.props.correctClues.length
-
-      // if ( (this.props.cat1Clues.indexOf(clue) + 1 <=
-      //   attemptedClues) &&
-      //   (this.props.cat1Clues.indexOf(clue) ==
-      //     this.props.currentQuestionIndex)) {
-      //   className = "scoreboard-attempted-current"
-      // } else if (this.props.cat1Clues.indexOf(clue) + 1 <=
-      //   attemptedClues) {
-      //   className = "scoreboard-attempted"
-
+        
       if ( this.props.cat1Clues.indexOf(clue) ==
         this.props.currentQuestionIndex) {
         className = "scoreboard-current"

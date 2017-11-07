@@ -59,18 +59,31 @@ RSpec.describe UserClue, type: :user_clue do
       }
 
       @user = User.update_or_create(auth)
+      @user_game = FactoryGirl.create(:user_game, user: @user)
     end
 
-    it 'does not save without a total score' do
-      Game.all.each { |g| g.destroy }
-      @game = FactoryGirl.build(:game, user: @user, total_score: nil)
-      expect(@game).to_not be_valid
+    it 'does not save without a value' do
+      UserClue.all.each { |g| g.destroy }
+      @user_clue = FactoryGirl.build(:user_clue, user_game: @user_game, value: nil)
+      expect(@user_clue).to_not be_valid
     end
 
-    it 'does not save without a number of correctly answer questions' do
-      Game.all.each { |g| g.destroy }
-      @game = FactoryGirl.build(:game, user: @user, questions_correct: nil)
-      expect(@game).to_not be_valid
+    it 'does not save without a category' do
+      UserClue.all.each { |g| g.destroy }
+      @user_clue = FactoryGirl.build(:user_clue, user_game: @user_game, category: nil)
+      expect(@user_clue).to_not be_valid
+    end
+
+    it 'does not save without a question' do
+      UserClue.all.each { |g| g.destroy }
+      @user_clue = FactoryGirl.build(:user_clue, user_game: @user_game, question: nil)
+      expect(@user_clue).to_not be_valid
+    end
+
+    it 'does not save without a answer' do
+      UserClue.all.each { |g| g.destroy }
+      @user_clue = FactoryGirl.build(:user_clue, user_game: @user_game, question: nil)
+      expect(@user_clue).to_not be_valid
     end
   end
 end

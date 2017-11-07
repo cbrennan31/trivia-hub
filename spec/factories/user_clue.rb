@@ -1,7 +1,7 @@
 require 'factory_girl_rails'
 
 FactoryGirl.define do
-  factory :clue do
+  factory :user_clue do
     value 200
     category 'Red Sox'
     question 'This Red Sox legend had a street named after him in 2017.'

@@ -17,10 +17,9 @@ class UserGame extends Component{
       incorrectClues: [],
       currentQuestionIndex: 0,
       latestQuestionCorrect: false,
-      numberCorrect: 0,
       score: 0,
       strikes: 0,
-      wonGame: false,
+      gameOver: false,
       guidelinesOpen: false
     }
 
@@ -61,7 +60,7 @@ class UserGame extends Component{
       score: this.state.score + clue.value
     })
     if (this.state.currentQuestionIndex + 1 == this.state.clues.length) {
-      this.setState({wonGame: true})
+      this.setState({gameOver: true})
     }
   }
 
@@ -83,7 +82,7 @@ class UserGame extends Component{
       incorrectClues: this.state.incorrectClues.concat(clue)
     })
     if (this.state.currentQuestionIndex + 1 == this.state.clues.length) {
-      this.setState({wonGame: true})
+      this.setState({gameOver: true})
     }
   }
 
@@ -148,7 +147,7 @@ class UserGame extends Component{
           clue={this.state.clues[currentQuestionIndex]}
           strikes={this.state.strikes}
           maxStrikes={this.state.maxStrikes}
-          wonGame={this.state.wonGame}
+          gameOver={this.state.gameOver}
           latestQuestionCorrect={this.state.latestQuestionCorrect}
 
           handleIncorrectResponse={this.handleIncorrectResponse}
