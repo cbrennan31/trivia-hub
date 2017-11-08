@@ -16,4 +16,3 @@
 //= require_tree .
 
 $(function(){ $(document).foundation(); });
-$(document).confirmWithReveal()

@@ -2,6 +2,7 @@ import React from 'react';
 import ClueContainer from './ClueContainer'
 import ScoreboardContainer from './ScoreboardContainer'
 import Guidelines from '../components/Guidelines'
+import {TransitionGroup} from 'react-transition-group'
 
 class Game extends React.Component{
 
@@ -71,7 +72,8 @@ class Game extends React.Component{
     this.setState({
       latestQuestionCorrect: true,
       correctClues: this.state.correctClues.concat(clue),
-      score: this.state.score + clue.value
+      score: this.state.score + clue.value,
+      moneyAppear: true
     })
     if (this.state.currentQuestionIndex + 1 == this.state.cat1Clues.length) {
       this.setState({gameOver: true})
@@ -81,7 +83,8 @@ class Game extends React.Component{
   handleNextQuestion(){
     this.setState({
       latestQuestionCorrect: false,
-      selectedCategory: null
+      selectedCategory: null,
+      moneyAppear: false
     })
 
     let currentQuestionIndex = this.state.currentQuestionIndex
@@ -150,16 +153,14 @@ class Game extends React.Component{
         <div className = "row score-and-question-container">
           <div className = "small-6 columns score">
             <table className = "earnings-table">
-              <tbody>
-                <tr id="earnings-top">
-                  <td>Earnings</td>
-                  <td>${this.state.score}</td>
-                </tr>
-                <tr>
-                  <td>Strikes</td>
-                  <td>{strikeCircles}</td>
-                </tr>
-              </tbody>
+              <tr id="earnings-top">
+                <td>Earnings</td>
+                <td>${this.state.score}</td>
+              </tr>
+              <tr>
+                <td>Strikes</td>
+                <td>{strikeCircles}</td>
+              </tr>
             </table>
           </div>
           <div className = "small-6 columns question">
@@ -236,6 +237,7 @@ class Game extends React.Component{
 
         <div className = "row game-container">
           <div className = "small-9 columns game-and-score-container">
+
             {score}
             {categoryTitle1}
             {clue1}

@@ -157,10 +157,10 @@ h3, h1, h2 {
   padding-right: 0px;
 }
 
-.value-category {
-  max-width: 700px !important;
-  margin-left: 0px !important;
-  margin-right: 0px !important;
+.row .value-category {
+  max-width: 700px;
+  margin-left: 0px;
+  margin-right: 0px;
 }
 
 .value-select {
@@ -191,8 +191,22 @@ h3, h1, h2 {
   font-size: 20px;
 }
 
-.privacy, .privacy h3 {
-  text-align: left !important;
+.example-enter {
+  opacity: 0.01;
+}
+
+.example-enter.example-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+.example-leave {
+  opacity: 1;
+}
+
+.example-leave.example-leave-active {
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
 }
 
 .button-large {
@@ -233,10 +247,10 @@ h3, h1, h2 {
   cursor: pointer;
 }
 
-.category-title, .clue, .score-and-question-container {
-  max-width: 750px !important;
-  min-width: 400px !important;
-  margin: 10px 10px 10px auto !important;
+.row .category-title, .row .clue, .row .score-and-question-container {
+  max-width: 750px;
+  min-width: 400px;
+  margin: 10px 10px 10px auto;
 }
 
 hr {

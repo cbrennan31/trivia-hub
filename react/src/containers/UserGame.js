@@ -117,16 +117,14 @@ class UserGame extends Component{
         <div className = "row score-and-question-container">
           <div className = "small-6 columns score">
             <table className = "earnings-table">
-              <tbody>
-                <tr id="earnings-top">
-                  <td>Earnings</td>
-                  <td>${this.state.score}</td>
-                </tr>
-                <tr>
-                  <td>Strikes</td>
-                  <td>{strikeCircles}</td>
-                </tr>
-              </tbody>
+              <tr id="earnings-top">
+                <td>Earnings</td>
+                <td>${this.state.score}</td>
+              </tr>
+              <tr>
+                <td>Strikes</td>
+                <td>{strikeCircles}</td>
+              </tr>
             </table>
           </div>
           <div className = "small-6 columns question">
