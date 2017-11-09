@@ -15,6 +15,8 @@ class HomeController < ApplicationController
         array << user
       end
     end
+
+    @users = array
   end
 
   def privacy
