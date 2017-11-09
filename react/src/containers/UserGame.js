@@ -24,7 +24,7 @@ class UserGame extends Component{
     }
 
     this.handleIncorrectResponse = this.handleIncorrectResponse.bind(this)
-    this.handleCorrectReponse = this.handleCorrectReponse.bind(this)
+    this.handleCorrectResponse = this.handleCorrectResponse.bind(this)
     this.handleNextQuestion = this.handleNextQuestion.bind(this)
     this.openGuidelines = this.openGuidelines.bind(this)
   }
@@ -53,7 +53,7 @@ class UserGame extends Component{
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
-  handleCorrectReponse(clue){
+  handleCorrectResponse(clue){
     this.setState({
       latestQuestionCorrect: true,
       correctClues: this.state.correctClues.concat(clue),
@@ -151,7 +151,7 @@ class UserGame extends Component{
           latestQuestionCorrect={this.state.latestQuestionCorrect}
 
           handleIncorrectResponse={this.handleIncorrectResponse}
-          handleCorrectReponse={this.handleCorrectReponse}
+          handleCorrectResponse={this.handleCorrectResponse}
           handleNextQuestion={this.handleNextQuestion}
         />
     }

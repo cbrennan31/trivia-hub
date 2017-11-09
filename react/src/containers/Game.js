@@ -25,7 +25,7 @@ class Game extends React.Component{
     }
 
     this.handleIncorrectResponse = this.handleIncorrectResponse.bind(this)
-    this.handleCorrectReponse = this.handleCorrectReponse.bind(this)
+    this.handleCorrectResponse = this.handleCorrectResponse.bind(this)
     this.handleNextQuestion = this.handleNextQuestion.bind(this)
     this.handleSelection = this.handleSelection.bind(this)
     this.openGuidelines = this.openGuidelines.bind(this)
@@ -68,7 +68,7 @@ class Game extends React.Component{
     }
   }
 
-  handleCorrectReponse(clue){
+  handleCorrectResponse(clue){
     this.setState({
       latestQuestionCorrect: true,
       correctClues: this.state.correctClues.concat(clue),
@@ -206,7 +206,7 @@ class Game extends React.Component{
             maxStrikes={this.state.maxStrikes}
 
             handleIncorrectResponse={this.handleIncorrectResponse}
-            handleCorrectReponse={this.handleCorrectReponse}
+            handleCorrectResponse={this.handleCorrectResponse}
             handleNextQuestion={this.handleNextQuestion}
           />
       }
@@ -221,7 +221,7 @@ class Game extends React.Component{
           maxStrikes={this.state.maxStrikes}
 
           handleIncorrectResponse={this.handleIncorrectResponse}
-          handleCorrectReponse={this.handleCorrectReponse}
+          handleCorrectResponse={this.handleCorrectResponse}
           handleNextQuestion={this.handleNextQuestion}
         />
       }

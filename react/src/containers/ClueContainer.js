@@ -23,13 +23,13 @@ class ClueContainer extends Component{
       let response = modify.response(this.state.response)
       let answer = modify.answer(this.props.clue.answer)
       if (response == answer) {
-        this.props.handleCorrectReponse(this.props.clue)
+        this.props.handleCorrectResponse(this.props.clue)
       } else {
         this.props.handleIncorrectResponse(this.props.clue)
       }
     }
   }
-
+//
   handleChange(event) {
     this.setState( { response: event.target.value } )
   }
@@ -53,7 +53,7 @@ class ClueContainer extends Component{
       value="Submit Answer"
     />
 
-    if (this.props.strikes == 3) {
+    if (this.props.strikes == this.props.maxStrikes) {
       submitDiv =
       <div>
         <p>Sorry! The correct answer is <i>{modify.displayAnswer(this.props.clue.answer)}</i>.</p>

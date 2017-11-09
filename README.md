@@ -1,3 +1,5 @@
+[![Coverage Status](https://coveralls.io/repos/github/cbrennan31/trivia-hub/badge.svg?branch=master)](https://coveralls.io/github/cbrennan31/trivia-hub?branch=master)
+
 == README
 
 This README would normally document whatever steps are necessary to get the
