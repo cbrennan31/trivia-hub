@@ -1,35 +1,23 @@
 <% if current_user %>
    <h1 class="text-center">Welcome to <span class="keyword" id="logo">TriviaHub</span></h1>
+   <div id=app></div>
+   <br/>
+   <hr/>
+   <div id="leaderboard" class="text-center">
 
-   <div class="row home-links">
-     <div class="small-4 columns text-center">
-       <div class="home-button">
-         <a href="/game"><span class="link-panel"></span></a>
-         <div class="home-button-text">
-           <h4><p class="keyword">Play</p>our classic quiz with hundreds of real <b><i>Jeopardy!</i></b> clues.</h4>
-         </div>
-       </div>
-     </div>
+     <h3>Classic Mode: All-Time Leaders</h3>
 
-     <div class="small-4 columns text-center">
-       <div class="home-button">
-         <a href="/user_games"><span class="link-panel"></span></a>
-         <div class="home-button-text">
-           <h4><p class="keyword">Browse</p>and try out user-submitted quizzes on a range of topics.</h4>
-         </div>
-       </div>
-     </div>
-
-     <div class="small-4 columns text-center">
-       <div class="home-button">
-         <a href="/user_games/new"><span class="link-panel"></span></a>
-         <div class="home-button-text">
-           <h4><p class="keyword">Create</p>custom quizzes to show off your personal expertise.</h4>
-         </div>
-       </div>
-     </div>
+     <table id="leaderboard-table" class="text-left">
+       <tbody>
+         <% @users.each do |user| %>
+           <tr>
+             <td><%= "#{user.first_name} #{user.last_name[0]}." %></td>
+             <td><%= number_to_currency(user.lifetime_earnings, precision: 0) %></td>
+           </tr>
+         <% end %>
+       </tbody>
+     </table>
    </div>
-
 <% else %>
   <div class="text-center">
     <h1>Welcome to <span class="keyword" id="logo">TriviaHub</span></h1>

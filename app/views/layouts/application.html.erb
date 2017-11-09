@@ -31,44 +31,46 @@
           </div>
         </div>
       </div>
-    <% end %>
 
-    <div class="layout-padding">
       <div class="top-panel">
         <div class = "row gutter" >
           <% if @user_game_new %>
-            <h1 id=new-title>Create Your Own Game</h1>
-            <h3 id=new-subtitle>Quiz other trivia buffs on topics you love.</h3>
+            <h2 id=new-title>Create Your Own Game</h2>
+            <h4 id=new-subtitle>Quiz other trivia buffs on topics you love.</h4>
           <% end %>
 
           <% if @user_games %>
-            <h1 id=new-title>User-Created Games</h1>
-            <h3 id=new-subtitle>Trebek isn't the only expert around here.</h3>
+            <h2 id=new-title>User-Created Games</h2>
+            <h4 id=new-subtitle>Trebek isn't the only expert around here.</h4>
           <% end %>
 
           <% if @user_profile %>
-            <h1 id=new-title>My Profile</h1>
+            <h2 id=new-title>My Profile</h2>
           <% end %>
 
           <% if @game %>
-            <h1 id=new-title>Classic Mode</h1>
+            <h2 id=new-title>Classic Mode</h2>
           <% end %>
 
           <% if @user_game %>
-            <h1 id=new-title><%= @user_game.title %></h1>
+            <h2 id=new-title><%= @user_game.title %></h2>
           <% end %>
         </div>
       </div>
+    <% end %>
 
-      <div class = "row gutter main">
-        <% if flash %>
-          <p class="notice"><%= notice %></p>
-          <p class="alert"><%= alert %></p>
-        <% end %>
+      <div class="layout-padding">
 
-        <%= yield %>
+        <div class = "row gutter main">
+          <% if flash %>
+            <p class="notice"><%= notice %></p>
+            <p class="alert"><%= alert %></p>
+          <% end %>
+
+          <%= yield %>
+        </div>
       </div>
-    </div>
+
   </body>
 
 

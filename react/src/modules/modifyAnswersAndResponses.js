@@ -14,6 +14,7 @@ module.exports = {
     div.innerHTML = modifiedAnswer;
     modifiedAnswer = div.textContent || "";
 
+    modifiedAnswer = modifiedAnswer.trim()
     modifiedAnswer = modifiedAnswer.replace(/[()]/g, "")
     modifiedAnswer = modifiedAnswer.replace(/"/g, "")
     modifiedAnswer = modifiedAnswer.replace(/\\/g, "")
@@ -29,8 +30,11 @@ module.exports = {
   },
 
   displayAnswer: (displayAnswer) => {
-    let modifiedDisplayAnswer = displayAnswer.replace(/[()]/g, "")
-    // modifiedDisplayAnswer = striptags(modifiedDisplayAnswer)
+    let div = document.createElement("div");
+    div.innerHTML = displayAnswer;
+    let modifiedDisplayAnswer = div.textContent || "";
+    modifiedDisplayAnswer = modifiedDisplayAnswer.trim()
+    modifiedDisplayAnswer = displayAnswer.replace(/[()]/g, "")
     modifiedDisplayAnswer = modifiedDisplayAnswer.replace(/"/g, "")
     modifiedDisplayAnswer = modifiedDisplayAnswer.replace(/\\/g, "")
     modifiedDisplayAnswer = modifiedDisplayAnswer.replace(/^an /, "")
