@@ -42,8 +42,10 @@
     "babel-preset-react": "^6.5.0",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
+    "react-modal": "^3.1.2",
     "react-radio-button-group": "^1.2.5",
     "react-router": "^3.0.0",
+    "react-transition-group": "^1.2.1",
     "tls": "0.0.1",
     "webpack": "^2.6.0"
   }

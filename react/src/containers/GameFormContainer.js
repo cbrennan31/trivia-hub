@@ -171,7 +171,7 @@ class GameFormContainer extends Component{
     if (this.state.thanksMessage) {
       thanksMessage = <h4><i>{this.state.thanksMessage}</i></h4>
     }
-    
+
     let clues = this.state.clues
 
     let filledClueForms = clues.map( clue => {

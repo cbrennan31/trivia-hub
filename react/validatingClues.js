@@ -65,6 +65,7 @@ invalidIDsArraySix = [
 //       - Clues to choose from: 1301
 //       - Clues completed: all
 //       - Clues validated: around 850 (repeats)
+//       - Clues repeated: 200-300
 //
 //    $400:
 //      - Max offset: 1166
