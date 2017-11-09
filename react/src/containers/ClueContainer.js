@@ -29,7 +29,7 @@ class ClueContainer extends Component{
       }
     }
   }
-//
+
   handleChange(event) {
     this.setState( { response: event.target.value } )
   }
@@ -57,15 +57,15 @@ class ClueContainer extends Component{
       submitDiv =
       <div>
         <p>Sorry! The correct answer is <i>{modify.displayAnswer(this.props.clue.answer)}</i>.</p>
-        <p>Game over. <a href="/game">Play again?</a></p>
+        <p>Game over. <a href="javascript:window.location.href=window.location.href">Play again?</a></p>
       </div>
     } else if (this.props.gameOver && this.props.latestQuestionCorrect){
-      submitDiv = <div><p>Correct! You win! <a href="/game">Play again?</a></p></div>
+      submitDiv = <div><p>Correct! You win! <a href="javascript:window.location.href=window.location.href">Play again?</a></p></div>
     } else if (this.props.gameOver) {
       submitDiv =
         <div>
           <p>Sorry! The correct answer is <i>{modify.displayAnswer(this.props.clue.answer)}.</i></p>
-          <p>...but you're still a winner! <a href="/game">Play again?</a><</p>
+          <p>...but you're still a winner! <a href="javascript:window.location.href=window.location.href">Play again?</a></p>
         </div>
     } else if (this.props.latestQuestionCorrect) {
         submitDiv =

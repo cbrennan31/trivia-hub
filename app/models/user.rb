@@ -16,4 +16,14 @@ class User < ActiveRecord::Base
   end
 
   has_many :games
+
+  def lifetime_earnings
+    lifetime_earnings = 0
+
+    self.games.each do |game|
+      lifetime_earnings += game.total_score
+    end
+
+    return lifetime_earnings
+  end
 end
