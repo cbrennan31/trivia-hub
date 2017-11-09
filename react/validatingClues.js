@@ -45,6 +45,13 @@ invalidIDsArrayFour = [
 156541
 ]
 
+invalidIDsArraySix = [
+129247, 129275, 129304, 129334, 129369, 129399, 129484, 129486, 129514, 129519,
+129574, 129634, 129636, 129696, 129699, 129758, 129759, 129788, 129815, 129845,
+129874, 129878, 129905, 129906, 129937, 129964, 129965, 129966, 130055, 130058,
+130115, 130146, 130177, 130178, 130206, 130236, 130239, 130268,
+]
+
 //
 // Goal: 1000 clues for each value
 // Max date: 2014-09-18
@@ -58,12 +65,18 @@ invalidIDsArrayFour = [
 //       - Clues validated: around 850 (repeats)
 //
 //    $400:
-//      - Max offset: 1165
-//      - Clues to choose from: 1265
-//      - Clues completed: 1265
+//      - Max offset: 1166
+//      - Clues to choose from: 1266
+//      - Clues completed: 1266
 //      - Clues repeated: 400
 //      - Clues validated: around 744
 //
+// $600
+//   - Max offset: 1152
+//   - Clues to choose from: 1252
+//   - Clues completed:
+//   - Clues repeated:
+//   - Clues validated
 //
 // When finished with all values, change offset for each value to the max offset
 // (100 less than "clues to choose from")
