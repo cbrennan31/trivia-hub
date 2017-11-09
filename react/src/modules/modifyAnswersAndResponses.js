@@ -14,6 +14,7 @@ module.exports = {
     div.innerHTML = modifiedAnswer;
     modifiedAnswer = div.textContent || "";
 
+    modifiedAnswer = modifiedAnswer.trim()
     modifiedAnswer = modifiedAnswer.replace(/[()]/g, "")
     modifiedAnswer = modifiedAnswer.replace(/"/g, "")
     modifiedAnswer = modifiedAnswer.replace(/\\/g, "")
@@ -30,6 +31,7 @@ module.exports = {
 
   displayAnswer: (displayAnswer) => {
     let modifiedDisplayAnswer = displayAnswer.replace(/[()]/g, "")
+    modifiedAnswer = modifiedAnswer.trim()
     // modifiedDisplayAnswer = striptags(modifiedDisplayAnswer)
     modifiedDisplayAnswer = modifiedDisplayAnswer.replace(/"/g, "")
     modifiedDisplayAnswer = modifiedDisplayAnswer.replace(/\\/g, "")
