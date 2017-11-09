@@ -14,8 +14,6 @@ class HomeController < ApplicationController
         array << user
       end
     end
-
-    @users = array.reverse
   end
 
   def privacy
