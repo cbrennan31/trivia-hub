@@ -6,7 +6,8 @@ class HomeController < ApplicationController
       u.lifetime_earnings
     end
 
-    @users.reverse
+    @users.reverse!
+
     array = []
 
     @users.each do |user|
