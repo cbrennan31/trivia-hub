@@ -6,12 +6,13 @@ class HomeController < ApplicationController
       u.lifetime_earnings
     end
 
+    @users.reverse
     array = []
 
     @users.each do |user|
-      # if @users.index(user) < 5
+      if @users.index(user) < 5
         array << user
-      # end
+      end
     end
 
     @users = array.reverse
