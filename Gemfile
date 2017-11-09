@@ -1,5 +1,4 @@
 source "https://rubygems.org"
-ruby "2.2.4"
 
 gem "coffee-rails", "~> 4.1.0"
 gem "foundation-rails"
@@ -42,3 +41,5 @@ group :production do
   gem "puma"
   gem "rails_12factor"
 end
+
+ruby "2.3.3"

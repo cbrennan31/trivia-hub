@@ -7,6 +7,7 @@ class HomeController < ApplicationController
     end
 
     array = []
+
     @users.each do |user|
       if @users.index(user) < 5
         array << user
@@ -15,6 +16,7 @@ class HomeController < ApplicationController
 
     @users = array.reverse
   end
+
   def privacy
     render '/home/privacy'
   end
