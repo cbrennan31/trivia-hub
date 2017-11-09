@@ -1,6 +1,7 @@
 class HomeController < ApplicationController
   def index
     @users = User.all
+
     @users = @users.sort_by do |u|
       u.lifetime_earnings
     end
@@ -13,7 +14,6 @@ class HomeController < ApplicationController
     end
 
     @users = array.reverse
-
   end
   def privacy
     render '/home/privacy'
