@@ -29,7 +29,7 @@ class ClueContainer extends Component{
       }
     }
   }
-
+//
   handleChange(event) {
     this.setState( { response: event.target.value } )
   }
