@@ -18,15 +18,15 @@ const Guidelines = props => {
       <h6>Responses</h6>
       <ul>
         <li>
-          Type in an exact answer, including a first and last name for people.
+          Type in an exact response, including a first and last name for people.
         </li>
 
         <li>
-          Answers are not case-sensitive.
+          Responses do not need to be in question form - just state the answer!
         </li>
 
         <li>
-          Articles ("a," "an," "the") are optional.
+          Answers are not case-sensitive, and articles ("a," "an," "the") are optional.
         </li>
       </ul>
     </div>
