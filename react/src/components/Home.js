@@ -26,7 +26,7 @@ class Home extends Component {
     let createText = <h1 className="home-button-header">create</h1>
 
     if (this.state.showOnHover == 'play') {
-      playText = <h4 className="home-button-text">try out classic mode, with hundreds of real <i>Jeopardy!</i> questions.</h4>
+      playText = <h4 className="home-button-text">try out Classic Mode, with hundreds of real <b>Jeopardy!</b> questions.</h4>
     } else if (this.state.showOnHover == 'browse') {
       browseText = <h4 className="home-button-text">check out and play user-submitted quizzes on a range of topics.</h4>
     } else if (this.state.showOnHover == 'create') {
