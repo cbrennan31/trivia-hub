@@ -14,6 +14,7 @@ class GameFormContainer extends Component{
       clues: [],
       clueFormsDisplayed: 0,
       thanksMessage: null,
+      userGameId: null,
       errors: {
         titleError: null,
         descriptionError: null,
@@ -22,7 +23,7 @@ class GameFormContainer extends Component{
         categoryError: null,
         questionError: null,
         answerError: null
-      }
+      },
     }
 
     this.handleChange = this.handleChange.bind(this)
@@ -65,7 +66,7 @@ class GameFormContainer extends Component{
       description: '',
       strikes: null,
       clues: [],
-      thanksMessage: "Your game has been submitted!",
+      thanksMessage: "Your game has been submitted.",
       clueFormsDisplayed: 0
     })
   }
@@ -95,8 +96,14 @@ class GameFormContainer extends Component{
           throw(error);
         }
       })
+      .then(response => response.json())
+      .then(body => {
+        this.setState({userGameId: body.user_game_id})
+      })
+      .then( () => {
+        this.handleClearForm()
+      })
       .catch(error => console.error(`Error in fetch: ${error.message}`))
-      this.handleClearForm()
     }
   }
 
@@ -169,7 +176,15 @@ class GameFormContainer extends Component{
   render(){
     let thanksMessage;
     if (this.state.thanksMessage) {
-      thanksMessage = <h4><i>{this.state.thanksMessage}</i></h4>
+      thanksMessage =
+        <div>
+          <h4>
+            <i>
+              {this.state.thanksMessage}&nbsp;
+              <a href = {`/user_games/${this.state.userGameId}`}>Check it out!</a>
+            </i>
+          </h4>
+        </div>
     }
 
     let clues = this.state.clues

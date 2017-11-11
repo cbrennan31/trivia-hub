@@ -53,6 +53,7 @@ class ClueContainer extends Component{
       value="Submit Answer"
     />
 
+
     if (this.props.strikes == this.props.maxStrikes) {
       submitDiv =
       <div>

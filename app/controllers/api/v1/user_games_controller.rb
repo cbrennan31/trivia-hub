@@ -23,7 +23,7 @@ class Api::V1::UserGamesController < ApplicationController
       )
     end
 
-    redirect_to new_user_game_path
+    render json: {user_game_id: @user_game.id}
   end
 
   def show
