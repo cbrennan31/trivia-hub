@@ -1,12 +1,10 @@
-[![Coverage Status](https://coveralls.io/repos/github/cbrennan31/trivia-hub/badge.svg?branch=master)](https://coveralls.io/github/cbrennan31/trivia-hub?branch=master)
-
 # README
 
 # TriviaHub
 
-Want to become the next Ken Jennings? TriviaHub is a site where you can create your own trivia games, play other user quizzes, and even try out real *Jeopardy!* questions, thanks to the (jService.io)[http://jService.io] API!
+Want to become the next Ken Jennings? TriviaHub is a site where you can create your own trivia games, play other user quizzes, and even try out real *Jeopardy!* questions, thanks to the [jService.io](http://jService.io) API!
 
-(Check it out on Heroku!)[https://trivia-hub.herokuapp.com]
+[Check it out on Heroku!](https://trivia-hub.herokuapp.com)
 
 # Technologies and Features
 
@@ -51,3 +49,5 @@ If you deploy to Heroku, make sure to include your Google OAuth keys as config v
 # Notes
 
 This was my final project during my time at Launch Academy Boston. Thanks to everyone there!
+
+[![Coverage Status](https://coveralls.io/repos/github/cbrennan31/trivia-hub/badge.svg?branch=master)](https://coveralls.io/github/cbrennan31/trivia-hub?branch=master)
