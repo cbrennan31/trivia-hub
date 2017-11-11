@@ -55,7 +55,7 @@ class Home extends Component {
 
           <div className="small-4 columns text-center">
             <div className="home-button">
-              <a href="/game">
+              <a href="/user_games">
                 <span className="link-panel"
                   id="browse"
                   onMouseEnter={this.showDesc}
@@ -71,7 +71,7 @@ class Home extends Component {
 
           <div className="small-4 columns text-center">
             <div className="home-button">
-              <a href="/game">
+              <a href="/user_games/new">
                 <span className="link-panel"
                   id="create"
                   onMouseEnter={this.showDesc}
