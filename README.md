@@ -50,5 +50,3 @@ If you deploy to Heroku, make sure to include your Google OAuth keys as config v
 # Notes
 
 This was my final project during my time at Launch Academy Boston. Thanks to everyone there!
-
-[![Coverage Status](https://coveralls.io/repos/github/cbrennan31/trivia-hub/badge.svg?branch=master)](https://coveralls.io/github/cbrennan31/trivia-hub?branch=master)
