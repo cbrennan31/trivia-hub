@@ -84,7 +84,8 @@ invalidIDsArrayEight = [
 152624, 152651, 152652, 152684, 152712, 152769, 152799, 152829, 152924, 152950,
 152953, 152979, 153013, 153041, 153040, 153070, 153099, 129640, 153103, 153160,
 153161, 153190, 153191, 153193, 153221, 153279, 153310, 153339, 153342, 153343,
-153344, 153370, 153371,
+153344, 153370, 153371, 153400, 153403, 153459, 153464, 153490, 153520, 153521,
+153584, 153642, 153671, 153672, 153704, 153733, 153759, 153764, 153821
 ]
 
 
@@ -119,8 +120,8 @@ invalidIDsArrayEight = [
 // 800
 //   - Max offset: 1102
 //   - Clues to choose from: 1202
-//   - Clues completed: 600
-//   - Clues repeated: 135
+//   - Clues completed: 700
+//   - Clues repeated: 235
 //   - Clues validated:
 // When finished with all values, change offset for each value to the max offset
 // (100 less than "clues to choose from")

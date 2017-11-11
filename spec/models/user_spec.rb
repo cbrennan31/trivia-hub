@@ -28,6 +28,5 @@ RSpec.describe User, type: :user do
     expect(new_user.last_name).to eq("Brennan")
     expect(new_user.token).to eq("abcdefg12345")
     expect(new_user.refresh_token).to eq("12345abcdefg")
-    expect(new_user.oauth_expires_at).to eq(auth[:credentials][:expires_at])
   end
 end
