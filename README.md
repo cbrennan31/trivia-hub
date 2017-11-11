@@ -22,8 +22,6 @@ After cloning down the repo, you will need to install Google OmniAuth2 in order 
 
 Then run the following in your terminal:
 
-Then run the following in your terminal:
-
 ```
 $ bundle  
 $ rake db:create
