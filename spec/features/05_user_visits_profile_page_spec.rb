@@ -1,9 +1,10 @@
 require 'rails_helper'
 
-feature 'user visits create game page' do
+feature 'user visits profile page' do
   scenario 'and sees their stats in classic mode' do
     stub_omniauth
     @user = User.first
+    binding.pry
 
     visit '/'
     click_on('Sign in with Google')
