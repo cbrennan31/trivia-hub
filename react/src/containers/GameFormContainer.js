@@ -23,7 +23,7 @@ class GameFormContainer extends Component{
         categoryError: null,
         questionError: null,
         answerError: null
-      },
+      }
     }
 
     this.handleChange = this.handleChange.bind(this)

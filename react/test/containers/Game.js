@@ -230,6 +230,7 @@ describe('Game', () => {
   it ('renders a scoreboard container with specific props', () => {
     expect(wrapper.find(ScoreboardContainer).props()).toEqual({
       cat1Clues: wrapper.state().cat1Clues,
+      cat2Clues: wrapper.state().cat2Clues,
       correctClues: wrapper.state().correctClues,
       incorrectClues: wrapper.state().incorrectClues,
       currentQuestionIndex: wrapper.state().currentQuestionIndex,
