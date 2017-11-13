@@ -147,7 +147,7 @@ class Api::V1::CluesController < ApplicationController
         invalid_clues = invalid_ids_eight
       elsif value == 1000
         offset = rand(1112)
-        invalid_clues = invalid_clues_ten
+        invalid_clues = invalid_ids_ten
       end
 
       response = HTTParty.get("http://jservice.io/api/clues?value=#{value}&max_date=2014-09-18&offset=#{offset}")
