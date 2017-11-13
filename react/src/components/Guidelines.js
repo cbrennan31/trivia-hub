@@ -4,7 +4,6 @@ const Guidelines = props => {
   return(
     <div className = "text-left">
       <br/>
-      <br/>
       <h6><b>The Basics</b></h6>
 
       <ul>
