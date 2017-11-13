@@ -28,7 +28,7 @@ class Api::V1::UserGamesController < ApplicationController
 
   def show
     @user_game = UserGame.find(params[:id])
-    @clues = @user_game.user_clues
+    @clues = @user_game.user_clues.order(:value)
 
     render json: {game: @user_game, clues: @clues}
   end
