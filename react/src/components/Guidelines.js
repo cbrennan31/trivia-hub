@@ -4,7 +4,8 @@ const Guidelines = props => {
   return(
     <div className = "text-left">
       <br/>
-      <h6><i>The Basics</i></h6>
+      <br/>
+      <h6><b>The Basics</b></h6>
 
       <ul>
         <li>Choose a category to reveal the question (classic mode only).
@@ -16,7 +17,7 @@ const Guidelines = props => {
         </li>
       </ul>
 
-      <h6><i>Responses</i></h6>
+      <h6><b>Responses</b></h6>
       <ul>
         <li>
           Type in an exact response, including a first and last name for people.
