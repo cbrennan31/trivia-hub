@@ -3,7 +3,8 @@ import React from 'react';
 const Guidelines = props => {
   return(
     <div className = "text-left">
-      <h6>The Basics</h6>
+      <br/>
+      <h6><i>The Basics</i></h6>
 
       <ul>
         <li>Choose a category to reveal the question (classic mode only).
@@ -15,7 +16,7 @@ const Guidelines = props => {
         </li>
       </ul>
 
-      <h6>Responses</h6>
+      <h6><i>Responses</i></h6>
       <ul>
         <li>
           Type in an exact response, including a first and last name for people.
