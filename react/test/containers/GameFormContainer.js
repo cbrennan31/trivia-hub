@@ -125,4 +125,10 @@ describe('GameFormContainer', () => {
     })
   })
 
+  it ('should trigger the handleGameRequest function if the form is submitted', () => {
+    let form = wrapper.find('form')
+    form.simulate('submit', { preventDefault() {} })
+
+    expect(GameFormContainer.prototype.handleGameRequest).toHaveBeenCalled()
+  })
 })
