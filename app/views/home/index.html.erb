@@ -1,34 +1,19 @@
-<% if current_user %>
-   <h1 class="text-center">Welcome to <span class="keyword" id="logo">TriviaHub</span></h1>
-   <div id=app></div>
-   <br/>
-   <hr/>
-   <div id="leaderboard" class="text-center">
+ <h1 class="text-center">Welcome to <span class="keyword" id="logo">TriviaHub</span></h1>
+ <div id=app></div>
+ <br/>
+ <hr/>
+ <div id="leaderboard" class="text-center">
 
-     <h3>Classic Mode: All-Time Leaders</h3>
+   <h3>Classic Mode: All-Time Leaders</h3>
 
-     <table id="leaderboard-table" class="text-left">
-       <tbody>
-         <% @users.each do |user| %>
-           <tr>
-             <td><%= "#{user.first_name} #{user.last_name[0]}." %></td>
-             <td><%= number_to_currency(user.lifetime_earnings, precision: 0) %></td>
-           </tr>
-         <% end %>
-       </tbody>
-     </table>
-   </div>
-<% else %>
-  <div class="text-center">
-    <h1>Welcome to <span class="keyword" id="logo">TriviaHub</span></h1>
-    <h4>Create your own trivia game, browse user games, and try out real <b><i>Jeopardy!</i></b> questions.</h4>
-    <br/>
-    <a href="/auth/google" class="button button-large">Sign in with Google</a>
-    <br/><br/>
-    <hr/>
-    <br/>
-    <h4><b>Guest Credentials<b></h4>
-    <h5>TriviaHubGuest@gmail.com (password: triviahub)</h5>
-
-  </div>
-<% end %>
+   <table id="leaderboard-table" class="text-left">
+     <tbody>
+       <% @users.each do |user| %>
+         <tr>
+           <td><%= "#{user.first_name} #{user.last_name[0]}." %></td>
+           <td><%= number_to_currency(user.lifetime_earnings, precision: 0) %></td>
+         </tr>
+       <% end %>
+     </tbody>
+   </table>
+ </div>

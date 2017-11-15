@@ -1,5 +1,9 @@
 class GameController < ApplicationController
   def index
-    @game = true
+    if current_user
+      @game = true
+    else 
+      render '/home/splash'
+    end
   end
 end
