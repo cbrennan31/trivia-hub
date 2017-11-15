@@ -39,48 +39,54 @@ class Home extends Component {
         <h3 id="home-answer-intro"><i><h3 className='q-and-a'>A:</h3> I'm here to...</i></h3>
         <div className="row home-links">
           <div className="small-4 columns text-center">
-            <div className="home-button">
-              <a href="/game">
-                <span className="link-panel"
-                  id="play"
-                  onMouseEnter={this.showDesc}
-                  onMouseLeave={this.hideDesc}>
-                </span>
-              </a>
-              <div className="home-button-text" >
-                {playText}
+            <div className="home-column-padding">
+              <div className="home-button">
+                <a href="/game">
+                  <span className="link-panel"
+                    id="play"
+                    onMouseEnter={this.showDesc}
+                    onMouseLeave={this.hideDesc}>
+                  </span>
+                </a>
+                <div className="home-button-text" >
+                  {playText}
+                </div>
               </div>
             </div>
           </div>
 
           <div className="small-4 columns text-center">
-            <div className="home-button">
-              <a href="/user_games">
-                <span className="link-panel"
-                  id="browse"
-                  onMouseEnter={this.showDesc}
-                  onMouseLeave={this.hideDesc}>
-                </span>
-              </a>
+            <div className="home-column-padding">
+              <div className="home-button">
+                <a href="/user_games">
+                  <span className="link-panel"
+                    id="browse"
+                    onMouseEnter={this.showDesc}
+                    onMouseLeave={this.hideDesc}>
+                  </span>
+                </a>
 
-              <div className="home-button-text" id='browse'>
-                {browseText}
+                <div className="home-button-text" id='browse'>
+                  {browseText}
+                </div>
               </div>
             </div>
           </div>
 
           <div className="small-4 columns text-center">
-            <div className="home-button">
-              <a href="/user_games/new">
-                <span className="link-panel"
-                  id="create"
-                  onMouseEnter={this.showDesc}
-                  onMouseLeave={this.hideDesc}>
-                </span>
-              </a>
+            <div className="home-column-padding">
+              <div className="home-button">
+                <a href="/user_games/new">
+                  <span className="link-panel"
+                    id="create"
+                    onMouseEnter={this.showDesc}
+                    onMouseLeave={this.hideDesc}>
+                  </span>
+                </a>
 
-              <div className="home-button-text" id='create'>
-                {createText}
+                <div className="home-button-text" id='create'>
+                  {createText}
+                </div>
               </div>
             </div>
           </div>
