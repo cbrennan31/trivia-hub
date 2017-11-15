@@ -125,17 +125,4 @@ describe('GameFormContainer', () => {
     })
   })
 
-  it('should trigger the handleClueChange function when the value in ClueFormContainer is modified', () => {
-    let addClue = wrapper.findWhere(div => div.prop('className') == "add-new-question")
-    addClue.simulate('click')
-    let clueFormContainer = wrapper.find(ClueFormContainer).dive()
-    clueFormContainer.simulate('handleClueChange')
-    spyOn(ClueFormContainer.prototype, 'handleChange').and.callThrough()
-    //
-    let clueForm = clueFormContainer.find(ClueForm).dive()
-    clueForm.simulate('change', {target: {value: 400}})
-    //
-    // expect(clueFormContainer.props().handleClueChange).toHaveBeenCalled()
-    expect(GameFormContainer.prototype.handleClueChange).toHaveBeenCalled()
-  })
 })

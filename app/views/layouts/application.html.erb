@@ -12,23 +12,21 @@
 
   <body>
     <% if current_user %>
-      <div data-sticky-container>
-        <div class="top-bar" data-sticky data-options="marginTop:0;" style="width:100%" >
-          <div class="top-bar-left">
-            <ul class="menu">
-              <li id="home-link"><%= link_to "TriviaHub", home_index_path %></li>
-              <li><%= link_to "Play", game_index_path %></li>
-              <li><%= link_to "Browse", user_games_path %></li>
-              <li><%= link_to "Create", new_user_game_path %></li>
-            </ul>
-          </div>
+      <div class="top-bar">
+        <div class="top-bar-left">
+          <ul class="menu" data-responsive-menu="drilldown medium-accordion">
+            <li id="home-link"><%= link_to "TriviaHub", home_index_path %></li>
+            <li><%= link_to "Play", game_index_path %></li>
+            <li><%= link_to "Browse", user_games_path %></li>
+            <li><%= link_to "Create", new_user_game_path %></li>
+          </ul>
+        </div>
 
-          <div class="top-bar-right">
-            <ul class="menu">
-              <li><%= link_to "Profile", user_path(current_user) %></li>
-              <li><%= link_to "Sign Out", logout_path %></li>
-            </ul>
-          </div>
+        <div class="top-bar-right">
+          <ul class="menu" data-responsive-menu="drilldown medium-accordion"">
+            <li><%= link_to "Profile", user_path(current_user) %></li>
+            <li><%= link_to "Sign Out", logout_path %></li>
+          </ul>
         </div>
       </div>
 
