@@ -131,44 +131,30 @@ class GameFormContainer extends Component{
     if ( this.state.title == "" || this.state.title == null ) {
       this.assignError("titleError", "Your game should include a title.")
       valid = false
-    } else {
-      this.assignError("titleError", null)
     }
     if ( this.state.description == "" || this.state.description == null ) {
       this.assignError("descriptionError", "Your game should include a description.")
       valid = false
-    } else {
-      this.assignError("descriptionError", null)
     }
     if (this.state.strikes == null) {
       this.assignError("strikesError", "Your game should include a number of strikes.")
       valid = false
-    } else {
-      this.assignError("strikesError", null)
     }
     if (this.state.clues.length < 2) {
       this.assignError("numberOfCluesError", "Your game should include at least two clues.")
       valid = false
-    } else {
-      this.assignError("numberOfCluesError", null)
     }
     if (this.state.clues.some( e => e.category == null || e.category == '')) {
       this.assignError("categoryError", "Each clue should include a category.")
       valid = false
-    } else {
-      this.assignError("categoryError", null)
     }
     if (this.state.clues.some( e => e.question == null || e.question == '')) {
       this.assignError("questionError", "Each clue should include a question.")
       valid = false
-    } else {
-      this.assignError("questionError", null)
     }
     if (this.state.clues.some( e => e.answer == null || e.answer == '')) {
       this.assignError("answerError", "Each clue should include a answer.")
       valid = false
-    } else {
-      this.assignError("answerError", null)
     }
     return valid;
   }

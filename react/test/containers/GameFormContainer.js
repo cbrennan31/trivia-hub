@@ -3,15 +3,12 @@ import GameForm from '../../src/components/GameForm.js'
 import ClueFormContainer from '../../src/containers/ClueFormContainer.js'
 import ReactRadioButtonGroup from 'react-radio-button-group'
 import ClueForm from '../../src/components/ClueForm.js'
+import fetchMock from 'fetch-mock';
 
 describe('GameFormContainer', () => {
   let wrapper;
-  let data = {
-    user_game_id: 1
-  }
 
   beforeEach(() => {
-    spyOn(global, 'fetch').and.returnValue(data);
     spyOn(GameFormContainer.prototype, 'handleChange').and.callThrough();
     spyOn(GameFormContainer.prototype, 'handleClueChange').and.callThrough();
     spyOn(GameFormContainer.prototype, 'openClueForm').and.callThrough();
@@ -116,6 +113,7 @@ describe('GameFormContainer', () => {
       let addClue = wrapper.findWhere(div => div.prop('className') == "add-new-question")
       addClue.simulate('click')
     })
+
     it('should increase the number of clueFormsDisplayed in state by 1', () => {
       expect(wrapper.state().clueFormsDisplayed).toEqual(1)
     })
@@ -130,5 +128,102 @@ describe('GameFormContainer', () => {
     form.simulate('submit', { preventDefault() {} })
 
     expect(GameFormContainer.prototype.handleGameRequest).toHaveBeenCalled()
+  })
+
+  it ('should trigger the validateForm function if the form is submitted', () => {
+    let form = wrapper.find('form')
+    form.simulate('submit', { preventDefault() {} })
+
+    expect(GameFormContainer.prototype.validateForm).toHaveBeenCalled()
+  })
+
+  describe ('validateForm', () => {
+    it ('should call the assignError function if there is a missing field for the game overall', () => {
+      wrapper.setState({
+        clues: [
+          {value: 200, category: 'a', question: 'a', answer: 'a'},
+          {value: 400, category: 'b', question: 'b', answer: 'b'}
+        ]
+      })
+
+      let form = wrapper.find('form')
+      form.simulate('submit', { preventDefault() {} })
+
+      expect(GameFormContainer.prototype.assignError).toHaveBeenCalled()
+    })
+
+    it ('should call the assignError function if there are fewer than two clues', () => {
+      wrapper.setState({
+        title: 'title',
+        description: 'description',
+        strikes: 2,
+        clues: [
+          {value: 200, category: 'a', question: 'a', answer: 'a'}
+        ]
+      })
+
+      let form = wrapper.find('form')
+      form.simulate('submit', { preventDefault() {} })
+
+      expect(GameFormContainer.prototype.assignError).toHaveBeenCalled()
+    })
+
+    it ('should call the assignError function if any clue is missing a field', () => {
+      wrapper.setState({
+        title: 'title',
+        description: 'description',
+        strikes: 2,
+        clues: [
+          {value: 200, category: 'a', question: 'a', answer: 'a'},
+          {value: 400, category: 'b', question: 'b', answer: ''}
+        ]
+      })
+
+      let form = wrapper.find('form')
+      form.simulate('submit', { preventDefault() {} })
+
+      expect(GameFormContainer.prototype.assignError).toHaveBeenCalled()
+    })
+
+    it ('should not call the assignError function if the form submission has no errors', () => {
+      wrapper.setState({
+        title: 'title',
+        description: 'description',
+        strikes: 2,
+        clues: [
+          {value: 200, category: 'a', question: 'a', answer: 'a'},
+          {value: 400, category: 'b', question: 'b', answer: 'b'}
+        ]
+      })
+
+      let form = wrapper.find('form')
+      form.simulate('submit', { preventDefault() {} })
+
+      expect(GameFormContainer.prototype.assignError).not.toHaveBeenCalled()
+    })
+  })
+
+  describe ('assignError', () => {
+    beforeEach(() => {
+      wrapper.setState({
+        title: 'title',
+        description: 'description',
+        strikes: 2,
+        clues: [
+          {value: 200, category: 'a', question: 'a', answer: 'a'}
+        ]
+      })
+
+      let form = wrapper.find('form')
+      form.simulate('submit', { preventDefault() {} })
+    })
+
+    it ('should assign the appropriate error in state when an incomplete form is submitted', () => {
+      expect(wrapper.state().errors.numberOfCluesError).toEqual("Your game should include at least two clues.")
+    })
+
+    it ('should render a p tag with the text of the error message', () => {
+      expect(wrapper.find('p').text()).toBe("Your game should include at least two clues.")
+    })
   })
 })
