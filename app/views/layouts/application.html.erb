@@ -12,22 +12,17 @@
 
   <body>
     <% if current_user %>
-      <div class="top-bar">
-        <div class="top-bar-left">
-          <ul class="menu" data-responsive-menu="drilldown medium-accordion">
-            <li id="home-link"><%= link_to "TriviaHub", home_index_path %></li>
-            <li><%= link_to "Play", game_index_path %></li>
-            <li><%= link_to "Browse", user_games_path %></li>
-            <li><%= link_to "Create", new_user_game_path %></li>
-          </ul>
-        </div>
+      <div class="navbar" id="navbar">
+        <%= link_to "TriviaHub", home_index_path, class: "small-screen", id: "home-link" %>
+        <%= link_to "Play", game_index_path %>
+        <%= link_to "Browse", user_games_path %>
+        <%= link_to "Create", new_user_game_path %>
 
-        <div class="top-bar-right">
-          <ul class="menu" data-responsive-menu="drilldown medium-accordion"">
-            <li><%= link_to "Profile", user_path(current_user) %></li>
-            <li><%= link_to "Sign Out", logout_path %></li>
-          </ul>
+        <div id="right-nav" class="right-nav">
+          <%= link_to "Profile", user_path(current_user) %>
+          <%= link_to "Sign Out", logout_path %>
         </div>
+        <a class="icon small-screen">&#9776;</a>
       </div>
 
       <div class="top-panel">

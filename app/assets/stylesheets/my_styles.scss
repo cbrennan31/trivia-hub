@@ -424,22 +424,63 @@ h3 .q-and-a {
   margin: 0px
 }
 
-.top-bar, .top-bar a, .top-bar ul, {
+.navbar {
   background-color: #4d82cb;
-  color: lighten(#8eacbb, 34%);
-  font-size: 20px;
+  overflow: hidden;
+
 }
 
-.top-bar a:hover {
+.navbar a {
+  float: left;
+  display: inline;
+  color: lighten(#8eacbb, 34%);
+  text-align: center;
+  padding: 10px 14px;
+  font-size: 17px;
+}
+
+.navbar :hover {
   background-color: lighten(#8eacbb, 34%);
   color: #4d82cb;
-  font-size: 20px;
+  font-size: 17px;
 }
 
-
-.top-bar #home-link {
+.navbar #home-link {
   font-size: 1.2em;
   font-weight: bold;
+}
+
+.navbar .icon {
+    display: none;
+}
+
+.navbar .right-nav {
+  float: right;
+
+}
+
+@media screen and (max-width: 600px) {
+  .navbar a.icon {
+    float: right;
+    display: inline;
+  }
+  .navbar a:not(.small-screen) {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .navbar.responsive {position: relative;}
+  .navbar.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .navbar.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
 }
 
 .scoreboard-current {
