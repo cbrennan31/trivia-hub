@@ -26,11 +26,11 @@ class Home extends Component {
     let createText = <h1 className="home-button-header">create</h1>
 
     if (this.state.showOnHover == 'play') {
-      playText = <h4 className="home-button-text">try out Classic Mode, with hundreds of real <b>Jeopardy!</b> questions.</h4>
+      playText = <h4 className="home-button-desc">try out Classic Mode, with hundreds of real <b>Jeopardy!</b> questions.</h4>
     } else if (this.state.showOnHover == 'browse') {
-      browseText = <h4 className="home-button-text">check out and play user-submitted quizzes on a range of topics.</h4>
+      browseText = <h4 className="home-button-desc">check out and play user-submitted quizzes on a range of topics.</h4>
     } else if (this.state.showOnHover == 'create') {
-      createText = <h4 className="home-button-text">show off my personal expertise by making a custom game.</h4>
+      createText = <h4 className="home-button-desc">show off my personal expertise by making a custom game.</h4>
     }
 
     return(
@@ -38,7 +38,7 @@ class Home extends Component {
         <h3><i><h3 className='q-and-a'>Q:</h3> What brings you here today?</i></h3>
         <h3 id="home-answer-intro"><i><h3 className='q-and-a'>A:</h3> I'm here to...</i></h3>
         <div className="row home-links">
-          <div className="small-4 columns text-center">
+          <div className="medium-4 small-12 columns text-center">
             <div className="home-column-padding">
               <div className="home-button">
                 <a href="/game">
@@ -55,7 +55,7 @@ class Home extends Component {
             </div>
           </div>
 
-          <div className="small-4 columns text-center">
+          <div className="medium-4 small-12 columns text-center">
             <div className="home-column-padding">
               <div className="home-button">
                 <a href="/user_games">
@@ -73,7 +73,7 @@ class Home extends Component {
             </div>
           </div>
 
-          <div className="small-4 columns text-center">
+          <div className="medium-4 small-12 columns text-center">
             <div className="home-column-padding">
               <div className="home-button">
                 <a href="/user_games/new">
