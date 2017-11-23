@@ -69,16 +69,25 @@ describe('Game', () => {
   })
 
   describe('handleSelection', () => {
-    it('should set render the appropriate clue container component', () => {
+    it('should set render the appropriate clue container component with specific props', () => {
       let categoryTitleDiv2 = wrapper.find({className: 'category-title'}).at(1)
       let categoryTitle2 = categoryTitleDiv2.find('p')
       categoryTitle2.simulate('click', {target: {id: 2}})
 
       let clueContainer = wrapper.find(ClueContainer)
-      expect(clueContainer.prop('clue')).toEqual(wrapper.state().cat2Clues[0])
+
+      expect(clueContainer.props()).toEqual({
+        clue: wrapper.state().cat2Clues[0],
+        strikes: wrapper.state().strikes,
+        gameOver: wrapper.state().gameOver,
+        latestQuestionCorrect: wrapper.state().latestQuestionCorrect,
+        maxStrikes: wrapper.state().maxStrikes,
+        handleIncorrectResponse: jasmine.any(Function),
+        handleCorrectResponse: jasmine.any(Function),
+        handleNextQuestion: jasmine.any(Function)
+      })
     })
   })
-
 
   it('should trigger the handle correct response function upon correct response', () => {
     let categoryTitleDiv1 = wrapper.find({className: 'category-title'}).at(0)
