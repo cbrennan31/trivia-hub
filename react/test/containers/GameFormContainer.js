@@ -226,4 +226,40 @@ describe('GameFormContainer', () => {
       expect(wrapper.find('p').text()).toBe("Your game should include at least two clues.")
     })
   })
+
+  it ('should trigger the deleteNewClue function when the delete button is clicked in the ClueForm and confirmed', () => {
+    let addClue = wrapper.findWhere(div => div.prop('className') == "add-new-question")
+    addClue.simulate('click')
+
+    let clueFormContainer = wrapper.find(ClueFormContainer).dive()
+    let clueForm = clueFormContainer.find(ClueForm).dive()
+    let deleteClueButton = wrapper.find('input').at(0)
+    deleteClueButton.simulate('click')
+    let yes = clueForm.find('input').at(1)
+    yes.simulate('click')
+
+    expect(GameFormContainer.prototype.deleteNewClue).toHaveBeenCalled()
+  })
+
+  describe ('deleteNewClue', () => {
+    beforeEach(() => {
+      let addClue = wrapper.findWhere(div => div.prop('className') == "add-new-question")
+      addClue.simulate('click')
+
+      let clueFormContainer = wrapper.find(ClueFormContainer).dive()
+      let clueForm = clueFormContainer.find(ClueForm).dive()
+      let deleteClueButton = wrapper.find('input').at(0)
+      deleteClueButton.simulate('click')
+      let yes = clueForm.find('input').at(1)
+      yes.simulate('click')
+    })
+
+    it ('should remove a clue from the clues array in state', () => {
+      expect(wrapper.state().clues.length).toEqual(0)
+    })
+
+    it ('should reduce the number of clueFormsDisplayed in state by 1', () => {
+      expect(wrapper.state().clueFormsDisplayed).toEqual(0)
+    })
+  })
 })
