@@ -525,6 +525,16 @@ h3 .q-and-a {
   display: table;
 }
 
+.clueadd-enter {
+  height: 0px;
+  overflow: hidden;
+}
+
+.clueadd-enter.clueadd-enter-active {
+    height: 365px;
+    -webkit-transition: height .5s ease;
+}
+
 .modal-content {
   display: table-cell;
   vertical-align: middle;

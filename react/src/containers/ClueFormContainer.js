@@ -44,14 +44,14 @@ class ClueFormContainer extends Component{
   render(){
 
     return(
-      <ClueForm
-        deleteFunction = {this.props.deleteFunction}
-        value = {this.state.value}
-        category = {this.state.category}
-        question = {this.state.question}
-        answer = {this.state.answer}
-        handleChange = {this.handleChange}
-      />
+        <ClueForm
+          deleteFunction = {this.props.deleteFunction}
+          value = {this.state.value}
+          category = {this.state.category}
+          question = {this.state.question}
+          answer = {this.state.answer}
+          handleChange = {this.handleChange}
+        />
     )
   }
 }
