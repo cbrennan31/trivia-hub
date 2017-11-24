@@ -39,11 +39,11 @@ class ClueForm extends Component {
     return (
       <div>
 
-        <div className='small-4 columns new-question-title'>
+        <div className='small-6 medium-4 columns new-question-title'>
           <h4 className='new-question-title'>Clue Details</h4>
         </div>
 
-        <div className='small-8 columns text-right' id = 'delete-div'>
+        <div className='small-6 medium-8 columns text-right' id = 'delete-div'>
           <input type="button" className="alert button button-small" onClick={this.handleOpenModal} value = "Delete Clue" data-confirm/>
         </div>
 
@@ -59,7 +59,7 @@ class ClueForm extends Component {
         </ReactModal>
 
         <div className="row value-category">
-          <div className="small-2 columns value">
+          <div className="small-4 medium-2 columns value">
             <label className="my-label" >Value*
               <select
                 value = {this.props.value}
@@ -76,7 +76,7 @@ class ClueForm extends Component {
             </label>
           </div>
 
-          <div className="small-10 columns category">
+          <div className="small-8 medium-10 columns category">
             <label className="my-label">Category*
               <input
                 className="input"

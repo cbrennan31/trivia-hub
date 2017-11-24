@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import GameForm from '../components/GameForm'
 import ClueFormContainer from './ClueFormContainer'
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
+import { TransitionGroup } from 'react-transition-group'
 
 class GameFormContainer extends Component{
 
@@ -182,7 +184,7 @@ class GameFormContainer extends Component{
       }
 
       return (
-        <div className = 'clue-form'>
+        <div className = 'clue-form' key = {index}>
           <ClueFormContainer
             id = {index}
             value = {clue.value}
@@ -211,17 +213,17 @@ class GameFormContainer extends Component{
       }
       if (i < this.state.clueFormsDisplayed) {
         clueForms.push(
-          <div className = 'clue-form'>
-            <ClueFormContainer
-              id = {i}
-              handleClueChange = {this.handleClueChange}
-              value = {value}
-              question = {question}
-              category = {category}
-              answer = {answer}
-              deleteFunction = {deleteNewClue}
-            />
-          </div>
+            <div className = 'clue-form' key = {i}>
+              <ClueFormContainer
+                id = {i}
+                handleClueChange = {this.handleClueChange}
+                value = {value}
+                question = {question}
+                category = {category}
+                answer = {answer}
+                deleteFunction = {deleteNewClue}
+              />
+            </div>
         )
       }
     }
@@ -242,7 +244,7 @@ class GameFormContainer extends Component{
 
     if (Object.values(this.state.errors).some(e => e !== null)) {
       errorDiv = Object.values(this.state.errors).map ( error => {
-        if (error !== null) {return(<p><i>{error}</i></p>)}
+        if (error !== null) {return(<p key={this.state.errors.indexOf(error)} ><i>{error}</i></p>)}
       })
     }
 
@@ -256,7 +258,11 @@ class GameFormContainer extends Component{
             description = {this.state.description}
             strikes = {this.state.strikes}
           />
-          {clueForms}
+
+          <CSSTransitionGroup transitionName="clueadd" transitionEnterTimeout={500} transitionLeaveTimeout={1}>
+            {clueForms}
+          </CSSTransitionGroup>
+
           {addClueDiv}
           <br/>
           {errorDiv}
