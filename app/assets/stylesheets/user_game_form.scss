@@ -1,0 +1,126 @@
+$dark-blue: #4d82cb;
+
+#delete-div {
+  padding-right: 0
+}
+
+.my-label {
+  font-size: 20px;
+}
+
+.update-form {
+  box-shadow: 0 0 20px #173CA3;
+  border-radius: 5px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: $dark-blue;
+  padding: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  max-width: 745px;
+}
+
+
+.clue-form .my-label {
+  font-size: 18px;
+  color: black;
+}
+
+.clue-form .new-question-title {
+  padding-left: 0px;
+}
+
+.row.value-category {
+  max-width: 700px;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.value-select {
+  min-width: 70px;
+  color: #black;
+}
+
+.value {
+  padding-left: 0px;
+}
+
+.input {
+  max-width: 715px;
+  font-size: 16px;
+}
+
+.textarea {
+  height: 70px;
+  max-width: 715px;
+  font-size: 16px;
+}
+
+.radio-item {
+  display: inline
+}
+
+.add-new-question, .clue-form {
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 3px;
+  background-color: lighten(#b6e3ff, 7%);
+  border-color: darken( $dark-blue, 10% );
+  color: darken( $dark-blue, 10% );
+  padding: 10px;
+  max-width: 715px;
+  margin-top: 15px;
+  text-align: left;
+  box-shadow: 0 0 3px darken( $dark-blue, 10% );
+}
+
+.add-new-question:hover{
+  background-color: darken(#b6e3ff, 13%);
+
+}
+
+.alert {
+  margin-bottom: 5px;
+}
+
+.add-new-question h4 {
+  text-align: left;
+  margin-bottom: 0px;
+  cursor: pointer;
+}
+
+
+.ReactModal__Content, .ReactModal__Content--after-open {
+  border: 1px solid rgb(204, 204, 204);
+  background: rgb(255, 255, 255);
+  overflow: auto;
+  border-radius: 4px;
+  outline: none;
+  padding: 20px;
+  width: 400px;
+  height: 150px;
+  margin: auto;
+  display: table;
+}
+
+.modal-content {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  font-size: 1.08em;
+}
+
+.clueadd-enter {
+  height: 0px;
+  overflow: hidden;
+}
+
+.clueadd-enter.clueadd-enter-active {
+    height: 365px;
+    -webkit-transition: height .5s ease;
+}
+
+.modal-button {
+  display: inline-block;
+  margin: 0px 15px;
+}
