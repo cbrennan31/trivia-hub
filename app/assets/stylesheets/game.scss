@@ -1,0 +1,255 @@
+.loading::after {
+  content: "";
+  background: url("https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Question_mark.svg/1200px-Question_mark.svg.png");
+  opacity: 0.03;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 12%;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+  -webkit-animation: spinX 3s infinite;
+  animation: spinX 3s infinite;
+}
+
+@-webkit-keyframes spinX
+{
+0%   {-webkit-transform: rotateX(0deg); -webkit-transform-origin: 0% 50% 0;}
+100% {-webkit-transform: rotateX(360deg); -webkit-transform-origin: 0% 50% 0;}
+}
+@keyframes spinX
+{
+0%   {transform: rotateX(0deg); transform-origin: 0% 50% 0;}
+100% {transform: rotateX(360deg); transform-origin: 0% 50% 0;}
+}
+
+#current-value {
+  font-size: 34px;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.circle, .circle-selected {
+  border: 2px solid red;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  box-shadow: 0 0 8px red;
+  display: inline-block;
+  margin: 7px 2px 0px 2px;
+}
+
+.circle {
+  background-color: #173CA3;
+}
+
+.circle-selected {
+  background-color:red;
+}
+
+.row .category-title, .row .clue, .row .score-and-question-container {
+  max-width: 750px;
+  min-width: 400px;
+  margin: 10px 10px 10px auto;
+}
+
+@media screen and (max-width: 640px) {
+  .row .category-title, .row .clue, .row .score-and-question-container {
+    min-width: 225px;
+    margin: 10px 10px 10px auto;
+  }
+
+  .columns .score {
+    background-color: #173CA3;
+    color: white;
+    font-size: 12px;
+    font-family: 'Bitter', serif;
+    font-weight: bold;
+    padding: 0px;
+    height: 40px;
+    width: 108px;
+    border-radius: 3px
+  }
+
+  .columns .question {
+    background-color: #173CA3;
+    color: white;
+    font-size: 12px;
+    font-family: 'Bitter', serif;
+    font-weight: bold;
+    padding: 0px;
+    height: 40px;
+    width: 108px;
+    line-height: 40px;
+    border-radius: 3px;
+    display: table;
+  }
+
+  #current-value {
+    font-size: 22px;
+    display: table-cell;
+    vertical-align: middle;
+  }
+
+  .circle, .circle-selected {
+    border: 1px solid red;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    box-shadow: 0 0 6px red;
+    margin: 5px 2px 0px 2px;
+  }
+
+  .scoreboard-container > p {
+    font-size: 12px;
+  }
+
+  .scoreboard-container {
+    min-width: 40px;
+  }
+
+  .columns .scoreboard-container {
+    margin-right: 3px;
+  }
+
+  li.guidelines-item {
+    font-size: 11px;
+  }
+
+  h6.guidelines-subheader {
+    font-size: 12px;
+  }
+
+  h5#guidelines-header {
+    font-size: 14px;
+  }
+
+  input.answer-input {
+    font-size: 12px;
+    height: 16px;
+  }
+}
+
+.score {
+  background-color: #173CA3;
+  color: white;
+  font-size: 20px;
+  font-family: 'Bitter', serif;
+  font-weight: bold;
+  padding: 0px;
+  height: 60px;
+  width: 195px;
+  border-radius: 3px
+}
+
+.question {
+  background-color: #173CA3;
+  color: white;
+  font-size: 20px;
+  font-family: 'Bitter', serif;
+  font-weight: bold;
+  padding: 0px;
+  height: 60px;
+  width: 195px;
+  line-height: 60px;
+  border-radius: 3px
+}
+
+
+.category-title {
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+#guidelines-header {
+  cursor: pointer;
+}
+
+#guidelines-header:hover {
+  color: #4d82cb;
+}
+
+.clue {
+  color: white;
+  background-color: #173CA3;
+  font-size: 22px;
+  padding: 10px;
+  font-weight: bold;
+  box-shadow: 10px 10px 5px #00838f;
+  border-radius: 3px;
+  font-family: "Bitter", serif;
+}
+
+.answer-input {
+  text-align: center;
+  font-weight: normal;
+  font-size: 18px;
+}
+
+
+.scoreboard-container {
+  margin: 10px auto 5px 10px;
+  border-style: solid;
+  border-color: lighten(#8eacbb, 34%);
+  border-radius: 2px;
+  box-shadow: 0 0 3px #34515e;
+  min-width: 60px;
+  max-width: 125px;
+}
+
+.answer-submit {
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 3px;
+  padding: 20px;
+  font-size: 24px;
+  background-color: lighten(#4d82cb, 10%)
+}
+
+.game-container {
+  margin: 0px auto;
+  text-align: center;
+}
+
+.earnings-table {
+  margin-bottom: 0px;
+}
+
+#earnings-top {
+  border-bottom: 1px solid white;
+}
+
+.scoreboard-correct, .scoreboard-current, .scoreboard-upcoming, .scoreboard-incorrect{
+  font-weight: bold;
+  font-size: 16px;
+  padding: 5px;
+  margin: 0px;
+}
+
+.no-margin {
+  margin: 0px
+}
+
+.scoreboard-current {
+  background-color: #173CA3;
+  color: lighten(#8eacbb, 34%);
+  box-shadow: 0 0 10px #90a4ae;
+}
+
+.scoreboard-correct {
+  background-color: lighten(#8eacbb, 34%);
+  color: #003300;
+}
+
+.scoreboard-incorrect {
+  background-color: lighten(#8eacbb, 34%);
+  color: #7f0000;
+}
+
+.scoreboard-upcoming {
+  background-color: lighten(#8eacbb, 34%);
+  color: #90a4ae;
+}
