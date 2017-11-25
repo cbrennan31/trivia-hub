@@ -2,3 +2,13 @@
   font-weight: 700;
   font-size: 1.1em;
 }
+
+@media screen and (max-width: 640px) {
+  .stats-header {
+    font-size: 12px;
+  }
+
+  .stats-info {
+    font-size: 12px;
+  }
+}

@@ -124,3 +124,38 @@ $dark-blue: #4d82cb;
   display: inline-block;
   margin: 0px 15px;
 }
+
+@media screen and (max-width: 640px) {
+  .my-label, .clue-form .my-label {
+    font-size: 14px;
+  }
+
+  .columns.category {
+    padding-right: 0px;
+  }
+
+  input.input {
+    font-size: 12px;
+  }
+
+  textarea.textarea {
+    font-size: 12px;
+  }
+
+  .ReactModal__Content, .ReactModal__Content--after-open {
+    border: 1px solid rgb(204, 204, 204);
+    background: rgb(255, 255, 255);
+    overflow: auto;
+    border-radius: 4px;
+    outline: none;
+    padding: 20px;
+    width: 240px;
+    height: 150px;
+    margin: auto;
+    display: table;
+  }
+
+  h4.new-question-title {
+    font-size: 16px;
+  }
+}
