@@ -28,8 +28,8 @@
 
 #current-value {
   font-size: 34px;
-  margin-top: auto;
-  margin-bottom: auto;
+  display: table-cell;
+  vertical-align: middle;
 }
 
 .circle, .circle-selected {
@@ -56,83 +56,6 @@
   margin: 10px 10px 10px auto;
 }
 
-@media screen and (max-width: 640px) {
-  .row .category-title, .row .clue, .row .score-and-question-container {
-    min-width: 225px;
-    margin: 10px 10px 10px auto;
-  }
-
-  .columns .score {
-    background-color: #173CA3;
-    color: white;
-    font-size: 12px;
-    font-family: 'Bitter', serif;
-    font-weight: bold;
-    padding: 0px;
-    height: 40px;
-    width: 108px;
-    border-radius: 3px
-  }
-
-  .columns .question {
-    background-color: #173CA3;
-    color: white;
-    font-size: 12px;
-    font-family: 'Bitter', serif;
-    font-weight: bold;
-    padding: 0px;
-    height: 40px;
-    width: 108px;
-    line-height: 40px;
-    border-radius: 3px;
-    display: table;
-  }
-
-  #current-value {
-    font-size: 22px;
-    display: table-cell;
-    vertical-align: middle;
-  }
-
-  .circle, .circle-selected {
-    border: 1px solid red;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    box-shadow: 0 0 6px red;
-    margin: 5px 2px 0px 2px;
-  }
-
-  .scoreboard-container > p {
-    font-size: 12px;
-  }
-
-  .scoreboard-container {
-    min-width: 40px;
-  }
-
-  .columns .scoreboard-container {
-    margin-right: 3px;
-  }
-
-  li.guidelines-item {
-    font-size: 11px;
-  }
-
-  h6.guidelines-subheader {
-    font-size: 12px;
-  }
-
-  h5#guidelines-header {
-    font-size: 14px;
-  }
-
-  input.answer-input {
-    font-size: 12px;
-    height: 16px;
-  }
-}
-
 .score {
   background-color: #173CA3;
   color: white;
@@ -140,28 +63,30 @@
   font-family: 'Bitter', serif;
   font-weight: bold;
   padding: 0px;
-  height: 60px;
+  height: 63px;
   width: 195px;
   border-radius: 3px
 }
 
-.question {
+.columns .question {
   background-color: #173CA3;
   color: white;
   font-size: 20px;
   font-family: 'Bitter', serif;
   font-weight: bold;
   padding: 0px;
-  height: 60px;
+  height: 63px;
   width: 195px;
-  line-height: 60px;
-  border-radius: 3px
+  line-height: 63px;
+  border-radius: 3px;
+  display: table;
 }
 
 
 .category-title {
   text-transform: uppercase;
   font-weight: 400;
+  padding: 2px;
 }
 
 #guidelines-header {
@@ -220,6 +145,7 @@
 
 #earnings-top {
   border-bottom: 1px solid white;
+  height: 31px;
 }
 
 .scoreboard-correct, .scoreboard-current, .scoreboard-upcoming, .scoreboard-incorrect{
@@ -237,6 +163,8 @@
   background-color: #173CA3;
   color: lighten(#8eacbb, 34%);
   box-shadow: 0 0 10px #90a4ae;
+  position: relative;
+  z-index: 1;
 }
 
 .scoreboard-correct {
@@ -252,4 +180,85 @@
 .scoreboard-upcoming {
   background-color: lighten(#8eacbb, 34%);
   color: #90a4ae;
+}
+
+@media screen and (max-width: 640px) {
+  .row .category-title, .row .clue, .row .score-and-question-container {
+    min-width: 225px;
+    margin: 10px 10px 10px auto;
+  }
+
+  .columns .score {
+    background-color: #173CA3;
+    color: white;
+    font-size: 12px;
+    font-family: 'Bitter', serif;
+    font-weight: bold;
+    padding: 0px;
+    height: 41px;
+    width: 108px;
+    border-radius: 3px
+  }
+
+  .columns .question {
+    background-color: #173CA3;
+    color: white;
+    font-size: 12px;
+    font-family: 'Bitter', serif;
+    font-weight: bold;
+    padding: 0px;
+    height: 41px;
+    width: 108px;
+    line-height: 41px;
+    border-radius: 3px;
+    display: table;
+  }
+
+  #current-value {
+    font-size: 22px;
+    display: table-cell;
+    vertical-align: middle;
+  }
+
+  .circle, .circle-selected {
+    border: 1px solid red;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    box-shadow: 0 0 6px red;
+    margin: 5px 2px 0px 2px;
+  }
+
+  .scoreboard-container > p {
+    font-size: 10.4px;
+  }
+
+  .scoreboard-container {
+    min-width: 40px;
+  }
+
+  .columns .scoreboard-container {
+    margin-right: 3px;
+  }
+
+  li.guidelines-item {
+    font-size: 11px;
+  }
+
+  h6.guidelines-subheader {
+    font-size: 12px;
+  }
+
+  h5#guidelines-header {
+    font-size: 14px;
+  }
+
+  input.answer-input {
+    font-size: 12px;
+    height: 16px;
+  }
+
+  #earnings-top {
+    height: 20px;
+  }
 }
