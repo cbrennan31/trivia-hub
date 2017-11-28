@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import GameForm from '../components/GameForm'
 import ClueFormContainer from './ClueFormContainer'
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
-import { TransitionGroup } from 'react-transition-group'
 
 class GameFormContainer extends Component{
 
