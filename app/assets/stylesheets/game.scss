@@ -191,32 +191,6 @@
     -webkit-transition: opacity .8s ease;
 }
 
-.category1-enter {
-  opacity: 0;
-}
-
-.category1-enter.category1-enter-active {
-    opacity: 1;
-    -webkit-transition: opacity .8s ease;
-}
-
-.category1-leave {
-  opacity: 0
-}
-
-.category2-enter {
-  opacity: 0;
-}
-
-.category2-enter.category2-enter-active {
-    opacity: 1;
-    -webkit-transition: opacity .8s ease;
-    -webkit-transition-delay: .8s;
-}
-
-.category2-leave {
-  opacity: 0
-}
 
 @media screen and (max-width: 640px) {
   .row .category-title, .row .clue, .row .score-and-question-container {

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import GameForm from '../components/GameForm'
 import ClueFormContainer from './ClueFormContainer'
 import ReactModal from 'react-modal';
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
 
 class UpdateGameFormContainer extends Component{
 
@@ -251,7 +252,11 @@ class UpdateGameFormContainer extends Component{
             description = {this.state.description}
             strikes = {this.state.strikes}
           />
-          {clueForms}
+
+          <CSSTransitionGroup transitionName="clueadd" transitionEnterTimeout={500} transitionLeaveTimeout={1}>
+            {clueForms}
+          </CSSTransitionGroup>
+
           {addClueDiv}
           <br/>
           {errorDiv}
