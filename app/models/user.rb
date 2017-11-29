@@ -26,4 +26,22 @@ class User < ActiveRecord::Base
 
     return lifetime_earnings
   end
+
+  def self.top_five(users)
+    users = users.sort_by do |u|
+      u.lifetime_earnings
+    end
+
+    users.reverse!
+
+    top_five_users = []
+
+    users.each do |u|
+      if users.index(u) < 5
+        top_five_users << u
+      end
+    end
+
+    return top_five_users
+  end
 end
