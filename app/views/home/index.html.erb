@@ -8,7 +8,7 @@
 
    <table id="leaderboard-table" class="text-left">
      <tbody>
-       <% @users.each do |user| %>
+       <% @top_five_users.each do |user| %>
          <tr>
            <td><%= "#{user.first_name} #{user.last_name[0]}." %></td>
            <td><%= number_to_currency(user.lifetime_earnings, precision: 0) %></td>
