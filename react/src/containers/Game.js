@@ -2,7 +2,7 @@ import React from 'react';
 import ClueContainer from './ClueContainer'
 import ScoreboardContainer from './ScoreboardContainer'
 import Guidelines from '../components/Guidelines'
-import {TransitionGroup} from 'react-transition-group'
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
 
 class Game extends React.Component{
 
@@ -142,11 +142,11 @@ class Game extends React.Component{
       let strikeCircles = []
 
       for (let i=0; i < this.state.strikes; i++) {
-        strikeCircles.push(<div className = "circle-selected"/>)
+        strikeCircles.push(<div className = "circle-selected" key = {i}/>)
       }
 
       for (let i=this.state.strikes; i < this.state.maxStrikes; i++) {
-        strikeCircles.push(<div className = "circle" />)
+        strikeCircles.push(<div className = "circle" key = {i}/>)
       }
 
       score =
@@ -213,17 +213,17 @@ class Game extends React.Component{
 
       if (this.state.selectedCategory == 2) {
         clue2 =
-        <ClueContainer
-          clue={this.state.cat2Clues[currentQuestionIndex]}
-          strikes={this.state.strikes}
-          gameOver={this.state.gameOver}
-          latestQuestionCorrect={this.state.latestQuestionCorrect}
-          maxStrikes={this.state.maxStrikes}
+          <ClueContainer
+            clue={this.state.cat2Clues[currentQuestionIndex]}
+            strikes={this.state.strikes}
+            gameOver={this.state.gameOver}
+            latestQuestionCorrect={this.state.latestQuestionCorrect}
+            maxStrikes={this.state.maxStrikes}
 
-          handleIncorrectResponse={this.handleIncorrectResponse}
-          handleCorrectResponse={this.handleCorrectResponse}
-          handleNextQuestion={this.handleNextQuestion}
-        />
+            handleIncorrectResponse={this.handleIncorrectResponse}
+            handleCorrectResponse={this.handleCorrectResponse}
+            handleNextQuestion={this.handleNextQuestion}
+          />
       }
     }
 
@@ -237,12 +237,19 @@ class Game extends React.Component{
 
         <div className = "row game-container">
           <div className = "small-9 columns game-and-score-container">
-
             {score}
             {categoryTitle1}
-            {clue1}
+
+            <CSSTransitionGroup transitionName="clue" transitionEnterTimeout={800} transitionLeaveTimeout={1}>
+              {clue1}
+            </CSSTransitionGroup>
+
             {categoryTitle2}
-            {clue2}
+
+            <CSSTransitionGroup transitionName="clue" transitionEnterTimeout={800} transitionLeaveTimeout={1}>
+              {clue2}
+            </CSSTransitionGroup>
+
           </div>
 
           <div className = "small-3 columns">

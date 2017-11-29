@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import * as modify from '../modules/modifyAnswersAndResponses.js'
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
 
 class ClueContainer extends Component{
 

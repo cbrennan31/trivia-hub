@@ -125,6 +125,10 @@ $dark-blue: #4d82cb;
   margin: 0px 15px;
 }
 
+.columns.category {
+  padding-right: 0px;
+}
+
 @media screen and (max-width: 640px) {
   .my-label, .clue-form .my-label {
     font-size: 14px;

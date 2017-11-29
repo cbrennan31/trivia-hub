@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ClueContainer from './ClueContainer'
 import UserScoreboardContainer from './UserScoreboardContainer'
 import Guidelines from '../components/Guidelines'
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
 
 class UserGame extends Component{
 
