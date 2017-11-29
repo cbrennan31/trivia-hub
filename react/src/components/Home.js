@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
 
 class Home extends Component {
   constructor(props) {
@@ -37,59 +38,66 @@ class Home extends Component {
       <div id="home-page-intro">
         <h3><i><h3 className='q-and-a'>Q:</h3> What brings you here today?</i></h3>
         <h3 id="home-answer-intro"><i><h3 className='q-and-a'>A:</h3> I'm here to...</i></h3>
+
         <div className="row home-links">
-          <div className="medium-4 small-12 columns text-center">
-            <div className="home-column-padding">
-              <div className="home-button">
-                <a href="/game">
-                  <span className="link-panel"
-                    id="play"
-                    onMouseEnter={this.showDesc}
-                    onMouseLeave={this.hideDesc}>
-                  </span>
-                </a>
-                <div className="home-button-text" >
-                  {playText}
+          <CSSTransitionGroup transitionAppear={true} transitionName="home-button-1" transitionAppearTimeout={1100} transitionLeaveTimeout={1}>
+            <div className="medium-4 small-12 columns text-center">
+              <div className="home-column-padding">
+                <div className="home-button">
+                  <a href="/game">
+                    <span className="link-panel"
+                      id="play"
+                      onMouseEnter={this.showDesc}
+                      onMouseLeave={this.hideDesc}>
+                    </span>
+                  </a>
+                  <div className="home-button-text" >
+                    {playText}
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          </CSSTransitionGroup>
 
-          <div className="medium-4 small-12 columns text-center">
-            <div className="home-column-padding">
-              <div className="home-button">
-                <a href="/user_games">
-                  <span className="link-panel"
-                    id="browse"
-                    onMouseEnter={this.showDesc}
-                    onMouseLeave={this.hideDesc}>
-                  </span>
-                </a>
+          <CSSTransitionGroup transitionAppear={true} transitionName="home-button-2" transitionAppearTimeout={1900} transitionLeaveTimeout={1}>
+            <div className="medium-4 small-12 columns text-center">
+              <div className="home-column-padding">
+                <div className="home-button">
+                  <a href="/user_games">
+                    <span className="link-panel"
+                      id="browse"
+                      onMouseEnter={this.showDesc}
+                      onMouseLeave={this.hideDesc}>
+                    </span>
+                  </a>
 
-                <div className="home-button-text" id='browse'>
-                  {browseText}
+                  <div className="home-button-text" id='browse'>
+                    {browseText}
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          </CSSTransitionGroup>
 
-          <div className="medium-4 small-12 columns text-center">
-            <div className="home-column-padding">
-              <div className="home-button">
-                <a href="/user_games/new">
-                  <span className="link-panel"
-                    id="create"
-                    onMouseEnter={this.showDesc}
-                    onMouseLeave={this.hideDesc}>
-                  </span>
-                </a>
+          <CSSTransitionGroup transitionAppear={true} transitionName="home-button-3" transitionAppearTimeout={2700} transitionLeaveTimeout={1}>
+            <div className="medium-4 small-12 columns text-center">
+              <div className="home-column-padding">
+                <div className="home-button">
+                  <a href="/user_games/new">
+                    <span className="link-panel"
+                      id="create"
+                      onMouseEnter={this.showDesc}
+                      onMouseLeave={this.hideDesc}>
+                    </span>
+                  </a>
 
-                <div className="home-button-text" id='create'>
-                  {createText}
+                  <div className="home-button-text" id='create'>
+                    {createText}
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          </CSSTransitionGroup>
         </div>
       </div>
     )
