@@ -1,5 +1,7 @@
 class Api::V1::CluesController < ApplicationController
-  def index
+  skip_before_action :verify_authenticity_token
+
+  def create
 
     def get_clues(value, number_of_times)
       invalid_ids_two = [
@@ -180,11 +182,41 @@ class Api::V1::CluesController < ApplicationController
       return questions
     end
 
-    two_hund_questions = get_clues(200, 2)
-    four_hund_questions = get_clues(400, 2)
-    six_hund_questions = get_clues(600, 2)
-    eight_hund_questions = get_clues(800, 2)
-    one_thou_questions = get_clues(1000, 2)
+    number_of_two_hund_questions = nil
+    number_of_four_hund_questions = nil
+    number_of_six_hund_questions = nil
+    number_of_eight_hund_questions = nil
+    number_of_one_thou_questions = nil
+
+    if clue_params[:difficulty_level] == 'Easy'
+      number_of_two_hund_questions = 2
+      number_of_four_hund_questions = 2
+      number_of_six_hund_questions = 2
+      number_of_eight_hund_questions = 2
+      number_of_one_thou_questions = 0
+    end
+
+    if clue_params[:difficulty_level] == 'Standard'
+      number_of_two_hund_questions = 2
+      number_of_four_hund_questions = 2
+      number_of_six_hund_questions = 2
+      number_of_eight_hund_questions = 2
+      number_of_one_thou_questions = 2
+    end
+
+    if clue_params[:difficulty_level] == 'Hard'
+      number_of_two_hund_questions = 2
+      number_of_four_hund_questions = 2
+      number_of_six_hund_questions = 2
+      number_of_eight_hund_questions = 3
+      number_of_one_thou_questions = 3
+    end
+
+    two_hund_questions = get_clues(200, number_of_two_hund_questions)
+    four_hund_questions = get_clues(400, number_of_four_hund_questions)
+    six_hund_questions = get_clues(600, number_of_six_hund_questions)
+    eight_hund_questions = get_clues(800, number_of_eight_hund_questions)
+    one_thou_questions = get_clues(1000, number_of_one_thou_questions)
 
     cat_1_all = [
       two_hund_questions[:cat_1_array],
@@ -204,5 +236,11 @@ class Api::V1::CluesController < ApplicationController
 
     clue_array = [cat_1_all.flatten, cat_2_all.flatten]
     render json: clue_array
+  end
+
+  private
+
+  def clue_params
+    params.permit(:difficulty_level)
   end
 end

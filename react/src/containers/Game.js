@@ -3,6 +3,7 @@ import ClueContainer from './ClueContainer'
 import ScoreboardContainer from './ScoreboardContainer'
 import Guidelines from '../components/Guidelines'
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
+import DifficultyLevelModal from '../components/DifficultyLevelModal'
 
 class Game extends React.Component{
 
@@ -20,8 +21,9 @@ class Game extends React.Component{
       score: 0,
       selectedCategory: null,
       gameOver: false,
-      maxStrikes: 3,
-      guidelinesOpen: false
+      maxStrikes: null,
+      guidelinesOpen: false,
+      showModal: true
     }
 
     this.handleIncorrectResponse = this.handleIncorrectResponse.bind(this)
@@ -29,11 +31,20 @@ class Game extends React.Component{
     this.handleNextQuestion = this.handleNextQuestion.bind(this)
     this.handleSelection = this.handleSelection.bind(this)
     this.openGuidelines = this.openGuidelines.bind(this)
+    this.selectDifficultyLevel = this.selectDifficultyLevel.bind(this)
   }
 
-  componentDidMount() {
+  selectDifficultyLevel(difficultyLevel) {
+    this.setState({showModal: false})
+
     let that = this;
-    fetch('/api/v1/clues.json')
+
+    fetch('/api/v1/clues', {
+      credentials: 'same-origin',
+      method: 'POST',
+      body: JSON.stringify({difficulty_level: difficultyLevel}),
+      headers: { 'Content-Type': 'application/json' }
+    })
     .then(response => {
       if (response.ok) {
         return response;
@@ -45,9 +56,18 @@ class Game extends React.Component{
     })
     .then(response => response.json())
     .then(body => {
+      let maxStrikes
+
+      if (difficultyLevel == 'Hard') {
+        maxStrikes = 2
+      } else {
+        maxStrikes = 3
+      }
+
       that.setState({
         cat1Clues: body[0],
-        cat2Clues: body[1]
+        cat2Clues: body[1],
+        maxStrikes: maxStrikes
       });
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
@@ -116,6 +136,15 @@ class Game extends React.Component{
   }
 
   render(){
+    let difficultyLevelModal;
+
+    if (this.state.showModal == true) {
+      difficultyLevelModal = <DifficultyLevelModal
+        showModal = {this.state.showModal}
+        selectDifficultyLevel = {this.selectDifficultyLevel}
+      />
+    }
+
     let guidelinesText = "Show Guidelines"
     let guidelinesContent
 
@@ -228,32 +257,36 @@ class Game extends React.Component{
     }
 
     return (
-      <div className = {loadingClass}>
-        <div className="guidelines text-left">
-          <h5 id="guidelines-header" onClick={this.openGuidelines} >{guidelinesText}</h5>
-          <hr/>
-          {guidelinesContent}
-        </div>
+      <div>
+        {difficultyLevelModal}
 
-        <div className = "row game-container">
-          <div className = "small-9 columns game-and-score-container">
-            {score}
-            {categoryTitle1}
-
-            <CSSTransitionGroup transitionName="clue" transitionEnterTimeout={800} transitionLeaveTimeout={1}>
-              {clue1}
-            </CSSTransitionGroup>
-
-            {categoryTitle2}
-
-            <CSSTransitionGroup transitionName="clue" transitionEnterTimeout={800} transitionLeaveTimeout={1}>
-              {clue2}
-            </CSSTransitionGroup>
-
+        <div className = {loadingClass}>
+          <div className="guidelines text-left">
+            <h5 id="guidelines-header" onClick={this.openGuidelines} >{guidelinesText}</h5>
+            <hr/>
+            {guidelinesContent}
           </div>
 
-          <div className = "small-3 columns">
-            {scoreboardContainer}
+          <div className = "row game-container">
+            <div className = "small-9 columns game-and-score-container">
+              {score}
+              {categoryTitle1}
+
+              <CSSTransitionGroup transitionName="clue" transitionEnterTimeout={800} transitionLeaveTimeout={1}>
+                {clue1}
+              </CSSTransitionGroup>
+
+              {categoryTitle2}
+
+              <CSSTransitionGroup transitionName="clue" transitionEnterTimeout={800} transitionLeaveTimeout={1}>
+                {clue2}
+              </CSSTransitionGroup>
+
+            </div>
+
+            <div className = "small-3 columns">
+              {scoreboardContainer}
+            </div>
           </div>
         </div>
       </div>
