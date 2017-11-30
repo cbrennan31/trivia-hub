@@ -166,7 +166,7 @@ class Game extends React.Component{
 
     let categoryTitle1, categoryTitle2, clue1, clue2, scoreboardContainer, score;
 
-    if (this.state.showClues == false) {
+    if (this.state.showModal == false) {
       loadingClass = ''
     }
 
