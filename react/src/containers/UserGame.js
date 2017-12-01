@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ClueContainer from './ClueContainer'
-import UserScoreboardContainer from './UserScoreboardContainer'
+import UserScoreboard from '../components/UserScoreboard'
 import Guidelines from '../components/Guidelines'
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
 
@@ -102,7 +102,7 @@ class UserGame extends Component{
 
     let currentQuestionIndex = this.state.currentQuestionIndex
 
-    let clue, userScoreboardContainer, score, clueContainer;
+    let clue, userScoreboard, score, clueContainer;
 
     if (this.state.clues) {
       let strikeCircles = []
@@ -133,8 +133,8 @@ class UserGame extends Component{
           </div>
         </div>
 
-      userScoreboardContainer =
-        <UserScoreboardContainer
+      userScoreboard =
+        <UserScoreboard
           clues = {this.state.clues}
           correctClues = {this.state.correctClues}
           incorrectClues = {this.state.incorrectClues}
@@ -172,7 +172,7 @@ class UserGame extends Component{
           </div>
 
           <div className = "small-3 columns">
-            {userScoreboardContainer}
+            {userScoreboard}
           </div>
         </div>
       </div>

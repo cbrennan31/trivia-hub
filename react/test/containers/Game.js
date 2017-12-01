@@ -1,6 +1,6 @@
 import Game from '../../src/containers/Game.js'
 import ClueContainer from '../../src/containers/ClueContainer.js'
-import ScoreboardContainer from '../../src/containers/ScoreboardContainer.js'
+import Scoreboard from '../../src/components/Scoreboard.js'
 import Guidelines from '../../src/components/Guidelines.js'
 
 describe('Game', () => {
@@ -236,8 +236,8 @@ describe('Game', () => {
     })
   })
 
-  it ('renders a scoreboard container with specific props', () => {
-    expect(wrapper.find(ScoreboardContainer).props()).toEqual({
+  it ('renders a scoreboard with specific props', () => {
+    expect(wrapper.find(Scoreboard).props()).toEqual({
       cat1Clues: wrapper.state().cat1Clues,
       cat2Clues: wrapper.state().cat2Clues,
       correctClues: wrapper.state().correctClues,

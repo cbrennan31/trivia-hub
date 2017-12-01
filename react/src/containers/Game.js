@@ -1,6 +1,6 @@
 import React from 'react';
 import ClueContainer from './ClueContainer'
-import ScoreboardContainer from './ScoreboardContainer'
+import Scoreboard from '../components/Scoreboard'
 import Guidelines from '../components/Guidelines'
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
 import DifficultyLevelModal from '../components/DifficultyLevelModal'
@@ -155,7 +155,9 @@ class Game extends React.Component{
 
     let loadingClass = "loading"
 
-    let currentQuestionIndex = this.state.currentQuestionIndex
+    if (this.state.showModal) {
+      loadingClass = ''
+    }
 
     let id1 = 1, id2 = 2;
 
@@ -164,16 +166,14 @@ class Game extends React.Component{
       id2 = this.state.selectedCategory
     }
 
-    let categoryTitle1, categoryTitle2, clue1, clue2, scoreboardContainer, score;
+    let categoryTitle1, categoryTitle2, clue1, clue2, scoreboard, score;
 
-    if (this.state.showModal == true) {
-      loadingClass = ''
-    }
+    let currentQuestionIndex = this.state.currentQuestionIndex
 
     if (this.state.cat1Clues && this.state.cat2Clues) {
       loadingClass = ''
       let strikeCircles = []
-
+      // separate component - lines 186-203
       for (let i=0; i < this.state.strikes; i++) {
         strikeCircles.push(<div className = "circle-selected" key = {i}/>)
       }
@@ -196,13 +196,14 @@ class Game extends React.Component{
               </tr>
             </table>
           </div>
+
           <div className = "small-6 columns question">
             <span id="current-value" >${this.state.cat1Clues[currentQuestionIndex].value}</span>
           </div>
         </div>
 
-      scoreboardContainer =
-        <ScoreboardContainer
+      scoreboard =
+        <Scoreboard
           cat1Clues = {this.state.cat1Clues}
           cat2Clues = {this.state.cat2Clues}
           correctClues = {this.state.correctClues}
@@ -289,7 +290,7 @@ class Game extends React.Component{
             </div>
 
             <div className = "small-3 columns">
-              {scoreboardContainer}
+              {scoreboard}
             </div>
           </div>
         </div>
