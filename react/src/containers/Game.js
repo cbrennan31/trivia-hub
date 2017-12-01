@@ -173,7 +173,7 @@ class Game extends React.Component{
     if (this.state.cat1Clues && this.state.cat2Clues) {
       loadingClass = ''
       let strikeCircles = []
-
+      // separate component - lines 186-203
       for (let i=0; i < this.state.strikes; i++) {
         strikeCircles.push(<div className = "circle-selected" key = {i}/>)
       }
@@ -196,7 +196,7 @@ class Game extends React.Component{
               </tr>
             </table>
           </div>
-          
+
           <div className = "small-6 columns question">
             <span id="current-value" >${this.state.cat1Clues[currentQuestionIndex].value}</span>
           </div>

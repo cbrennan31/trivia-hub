@@ -4,7 +4,6 @@ feature 'user visits profile page' do
   scenario 'and sees their stats in classic mode' do
     stub_omniauth
     @user = User.first
-    binding.pry
 
     visit '/'
     click_on('Sign in with Google')
