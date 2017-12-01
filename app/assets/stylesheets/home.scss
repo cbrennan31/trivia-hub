@@ -30,6 +30,26 @@ h1 .keyword {
   font-weight: 700;
 }
 
+#home-page-intro::before {
+  background-image: image_url('jeopardy1996podium.png');
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: .1;
+  z-index: -1;
+  background-position: center top;
+  background-size: 80%;
+  background-repeat: no-repeat;
+}
+
+#home-page-intro {
+  position: relative;
+  z-index: 0;
+}
+
 h3 .q-and-a {
   color: #4d82cb;
   display: inline
@@ -72,6 +92,7 @@ h3 .q-and-a {
 .row.home-links {
   margin-left: auto;
   margin-right: auto;
+  opacity: .73
 }
 
 .category-title:hover, .home-button:hover {
@@ -139,5 +160,14 @@ h3 .q-and-a {
     font-size: 14px;
     height: 30px;
     padding: 6px 10px 6px 10px;
+  }
+
+  #home-page-intro::before {
+    background-image: none;
+
+  }
+
+  .row.home-links {
+    opacity: 1;
   }
 }

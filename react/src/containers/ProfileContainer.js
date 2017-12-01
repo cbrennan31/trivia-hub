@@ -77,10 +77,15 @@ class ProfileContainer extends Component{
   render(){
     let gameDiv;
     let thanksMessage;
+    let noGamesMessage;
 
     if (this.state.games) {
       if (this.state.thanksMessage) {
         thanksMessage = <h4><i>{this.state.thanksMessage}</i></h4>
+      }
+
+      if (this.state.games.length == 0) {
+        noGamesMessage = <h5><a href='/user_games/new'>Create your first game!</a></h5>
       }
 
       let that = this
@@ -130,7 +135,8 @@ class ProfileContainer extends Component{
 
     return(
       <div>
-        <h2>My Games</h2>
+        <h2>Games I've Created</h2>
+        {noGamesMessage}
         {thanksMessage}
         {gameDiv}
       </div>
