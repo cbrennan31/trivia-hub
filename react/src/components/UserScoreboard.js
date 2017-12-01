@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class UserScoreboardContainer extends Component{
+class UserScoreboard extends Component{
 
   constructor(props) {
     super(props);
@@ -38,4 +38,4 @@ class UserScoreboardContainer extends Component{
   }
 }
 
-export default UserScoreboardContainer;
+export default UserScoreboard;
