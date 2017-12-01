@@ -35,10 +35,7 @@ class Home extends Component {
     }
 
     return(
-      <div id="home-page-intro">
-        <h3><i><h3 className='q-and-a'>Q:</h3> What brings you here today?</i></h3>
-        <h3 id="home-answer-intro"><i><h3 className='q-and-a'>A:</h3> I'm here to...</i></h3>
-
+      <div>
         <div className="row home-links">
           <CSSTransitionGroup transitionAppear={true} transitionName="home-button-1" transitionAppearTimeout={1100} transitionLeaveTimeout={1}>
             <div className="medium-4 small-12 columns text-center">
