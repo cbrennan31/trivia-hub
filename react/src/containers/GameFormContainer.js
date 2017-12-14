@@ -244,7 +244,7 @@ class GameFormContainer extends Component{
     if (Object.values(this.state.errors).some(e => e !== null)) {
       errorDiv = Object.values(this.state.errors).map ( error => {
         if (error !== null) {return(<p><i>{error}</i></p>)}
-      })
+      }) 
     }
 
     return(
