@@ -250,7 +250,7 @@ class GameFormContainer extends Component{
     return(
       <div>
         {thanksMessage}
-        
+
         <form onSubmit={this.handleGameRequest}>
           <GameForm
             handleChange = {this.handleChange}
