@@ -244,13 +244,13 @@ class GameFormContainer extends Component{
     if (Object.values(this.state.errors).some(e => e !== null)) {
       errorDiv = Object.values(this.state.errors).map ( error => {
         if (error !== null) {return(<p><i>{error}</i></p>)}
-      })
+      }) 
     }
 
     return(
       <div>
         {thanksMessage}
-        
+
         <form onSubmit={this.handleGameRequest}>
           <GameForm
             handleChange = {this.handleChange}
