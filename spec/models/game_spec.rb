@@ -24,11 +24,11 @@ RSpec.describe Game, type: :game do
     end
 
     it 'has a total score' do
-      expect(Game.last.total_score).to eq(@game.total_score)
+      expect(Game.last.total_score).to eq(2800)
     end
 
     it 'has a number of correctly answered questions' do
-      expect(Game.last.questions_correct).to eq(@game.questions_correct)
+      expect(Game.last.questions_correct).to eq(7)
     end
 
     it 'has a user' do

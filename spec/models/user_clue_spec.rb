@@ -25,19 +25,23 @@ RSpec.describe UserClue, type: :user_clue do
     end
 
     it 'has a value' do
-      expect(UserClue.last.value).to eq(@user_clue.value)
+      expect(UserClue.last.value).to eq(200)
     end
 
     it 'has a category' do
-      expect(UserClue.last.category).to eq(@user_clue.category)
+      expect(UserClue.last.category).to eq('Red Sox')
     end
 
     it 'has a question' do
-      expect(UserClue.last.question).to eq(@user_clue.question)
+      expect(UserClue.last.question).to eq('This Red Sox legend had a street named after him in 2017.')
     end
 
     it 'has an answer' do
-      expect(UserClue.last.answer).to eq(@user_clue.answer)
+      expect(UserClue.last.answer).to eq('David Ortiz')
+    end
+
+    it 'has a user game' do
+      expect(UserClue.last.user_game).to be_truthy
     end
   end
 
