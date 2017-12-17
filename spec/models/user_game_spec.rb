@@ -24,15 +24,15 @@ RSpec.describe UserGame, type: :user_game do
     end
 
     it 'has a title' do
-      expect(UserGame.last.title).to eq(@user_game.title)
+      expect(UserGame.last.title).to eq('MLB Trivia')
     end
 
     it 'has a description' do
-      expect(UserGame.last.description).to eq(@user_game.description)
+      expect(UserGame.last.description).to eq('Think you know everything about our national pastime?')
     end
 
     it 'has a number of strikes' do
-      expect(UserGame.last.strikes).to eq(@user_game.strikes)
+      expect(UserGame.last.strikes).to eq(3)
     end
 
     it 'has a user' do
