@@ -101,6 +101,11 @@ hr {
 
 }
 
+.notes {
+  text-align: left;
+  font-weight: normal;
+}
+
 @media screen and (max-width: 640px) {
   .navbar a.icon {
     float: right;
